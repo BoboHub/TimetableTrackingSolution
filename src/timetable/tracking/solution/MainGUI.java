@@ -6,11 +6,10 @@
 package timetable.tracking.solution;
 
 import dbUtil.dbConnection;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -20,9 +19,6 @@ import net.proteanit.sql.DbUtils;
  */
 public class MainGUI extends javax.swing.JFrame {
 
-//GridBagLayout layout=new GridBagLayout();// create an object
-//CreateProfilePanel cpp;
-  
 
     /**
      * Creates new form MainGUI
@@ -34,15 +30,7 @@ public class MainGUI extends javax.swing.JFrame {
         connection=dbConnection.dbConnector(); // database connection init
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
        
-      /*   
-       cpp=new  CreateProfilePanel();
-       DynamicPanel.setLayout(layout);
-       GridBagConstraints c=new GridBagConstraints();
-       c.gridx=0;
-       c.gridy=0;
-       DynamicPanel.add(cpp,c);
-       cpp.setVisible(false);
-      */
+
     }
 
     /**
@@ -66,8 +54,7 @@ public class MainGUI extends javax.swing.JFrame {
         adminFunctionsP = new javax.swing.JPanel();
         sStudentBT = new javax.swing.JButton();
         sStaffBT = new javax.swing.JButton();
-        addStudentBT = new javax.swing.JButton();
-        addStaffBT = new javax.swing.JButton();
+        addUserBT = new javax.swing.JButton();
         closeBT = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -176,16 +163,13 @@ public class MainGUI extends javax.swing.JFrame {
         sStaffBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         sStaffBT.setText("Search Staff");
 
-        addStudentBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addStudentBT.setText("Add Student");
-        addStudentBT.addActionListener(new java.awt.event.ActionListener() {
+        addUserBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addUserBT.setText("Add User Profile");
+        addUserBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addStudentBTActionPerformed(evt);
+                addUserBTActionPerformed(evt);
             }
         });
-
-        addStaffBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addStaffBT.setText("Add Staff");
 
         closeBT.setBackground(new java.awt.Color(192, 57, 43));
         closeBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -206,10 +190,8 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(sStaffBT)
                 .addGap(18, 18, 18)
-                .addComponent(addStudentBT)
-                .addGap(30, 30, 30)
-                .addComponent(addStaffBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
+                .addComponent(addUserBT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
                 .addComponent(closeBT)
                 .addContainerGap())
         );
@@ -220,8 +202,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sStudentBT)
                     .addComponent(sStaffBT)
-                    .addComponent(addStudentBT)
-                    .addComponent(addStaffBT)
+                    .addComponent(addUserBT)
                     .addComponent(closeBT))
                 .addContainerGap())
         );
@@ -309,19 +290,20 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year2BTActionPerformed
 
-    private void addStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBTActionPerformed
-       //cpp.setVisible(true);
-      // jTable1.setVisible(false);
-       
-        
-
-    }//GEN-LAST:event_addStudentBTActionPerformed
+    private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
+            
+                   NewProfileGUI newNewProfileGUI = new NewProfileGUI();
+                    this.dispose();
+                    newNewProfileGUI.setVisible(true);
+                    newNewProfileGUI.setSize(1000, 1000);
+                   // newNewProfileGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    }//GEN-LAST:event_addUserBTActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
-    private javax.swing.JButton addStaffBT;
-    private javax.swing.JButton addStudentBT;
+    private javax.swing.JButton addUserBT;
     private javax.swing.JPanel adminFunctionsP;
     private javax.swing.JPanel classInfoP;
     private javax.swing.JLabel classNLB;

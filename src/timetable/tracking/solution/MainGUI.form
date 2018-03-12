@@ -196,10 +196,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="sStaffBT" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="addStudentBT" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="addStaffBT" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="305" max="32767" attributes="0"/>
+                  <Component id="addUserBT" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="410" max="32767" attributes="0"/>
                   <Component id="closeBT" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -212,8 +210,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="sStudentBT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="sStaffBT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addStudentBT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addStaffBT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addUserBT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="closeBT" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -238,24 +235,16 @@
             <Property name="text" type="java.lang.String" value="Search Staff"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="addStudentBT">
+        <Component class="javax.swing.JButton" name="addUserBT">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Add Student"/>
+            <Property name="text" type="java.lang.String" value="Add User Profile"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addStudentBTActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addUserBTActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="addStaffBT">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Add Staff"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="closeBT">
           <Properties>
