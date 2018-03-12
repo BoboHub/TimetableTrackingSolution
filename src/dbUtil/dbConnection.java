@@ -23,7 +23,7 @@ public class dbConnection {
     public static Connection dbConnector() {
         try {
                 Class.forName("org.sqlite.JDBC");
-                Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Bobo\\Desktop\\TimetableTrackingSolution-master\\TimetableTrackingSolution-master\\src\\tracking_database.sqlite");
+                Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Richard\\Documents\\College\\Year 2\\Semester 02\\Team Project\\TimetableTrackingSolution-master\\TimetableTrackingSolution-master\\src\\tracking_database.sqlite");
                 JOptionPane.showMessageDialog(null, "Connecton was successful");
                 return conn;
         }

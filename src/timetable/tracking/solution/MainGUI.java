@@ -5,17 +5,44 @@
  */
 package timetable.tracking.solution;
 
+import dbUtil.dbConnection;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Bobo
  */
 public class MainGUI extends javax.swing.JFrame {
 
+//GridBagLayout layout=new GridBagLayout();// create an object
+//CreateProfilePanel cpp;
+  
+
     /**
      * Creates new form MainGUI
      */
+    Connection connection = null;
     public MainGUI() {
         initComponents();
+        
+        connection=dbConnection.dbConnector(); // database connection init
+        jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
+       
+      /*   
+       cpp=new  CreateProfilePanel();
+       DynamicPanel.setLayout(layout);
+       GridBagConstraints c=new GridBagConstraints();
+       c.gridx=0;
+       c.gridy=0;
+       DynamicPanel.add(cpp,c);
+       cpp.setVisible(false);
+      */
     }
 
     /**
@@ -42,19 +69,30 @@ public class MainGUI extends javax.swing.JFrame {
         addStudentBT = new javax.swing.JButton();
         addStaffBT = new javax.swing.JButton();
         closeBT = new javax.swing.JButton();
-        listStudentP = new javax.swing.JPanel();
-        listStudentsLB = new javax.swing.JLabel();
+        DynamicPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setName("Attendance Tracking Solutions"); // NOI18N
-        setLayout(null);
+        getContentPane().setLayout(null);
 
         listYearsP.setBackground(new java.awt.Color(248, 148, 6));
 
         year1BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         year1BT.setText("Year 1");
+        year1BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year1BTActionPerformed(evt);
+            }
+        });
 
         year2BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         year2BT.setText("Year 2");
+        year2BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year2BTActionPerformed(evt);
+            }
+        });
 
         year3BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         year3BT.setText("Year 3");
@@ -89,7 +127,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
-        add(listYearsP);
+        getContentPane().add(listYearsP);
         listYearsP.setBounds(0, 0, 900, 50);
 
         classInfoP.setBackground(new java.awt.Color(248, 188, 8));
@@ -127,7 +165,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(246, Short.MAX_VALUE))
         );
 
-        add(classInfoP);
+        getContentPane().add(classInfoP);
         classInfoP.setBounds(0, 50, 230, 410);
 
         adminFunctionsP.setBackground(new java.awt.Color(248, 148, 6));
@@ -140,6 +178,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         addStudentBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         addStudentBT.setText("Add Student");
+        addStudentBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStudentBTActionPerformed(evt);
+            }
+        });
 
         addStaffBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         addStaffBT.setText("Add Staff");
@@ -147,6 +190,11 @@ public class MainGUI extends javax.swing.JFrame {
         closeBT.setBackground(new java.awt.Color(192, 57, 43));
         closeBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         closeBT.setText("Close");
+        closeBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminFunctionsPLayout = new javax.swing.GroupLayout(adminFunctionsP);
         adminFunctionsP.setLayout(adminFunctionsPLayout);
@@ -159,9 +207,9 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(sStaffBT)
                 .addGap(18, 18, 18)
                 .addComponent(addStudentBT)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(addStaffBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
                 .addComponent(closeBT)
                 .addContainerGap())
         );
@@ -178,48 +226,108 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        add(adminFunctionsP);
+        getContentPane().add(adminFunctionsP);
         adminFunctionsP.setBounds(0, 460, 900, 50);
 
-        listStudentP.setBackground(new java.awt.Color(44, 62, 80));
-        listStudentP.setMinimumSize(new java.awt.Dimension(700, 440));
+        DynamicPanel.setBackground(new java.awt.Color(44, 62, 80));
+        DynamicPanel.setMinimumSize(new java.awt.Dimension(700, 440));
 
-        listStudentsLB.setBackground(new java.awt.Color(255, 255, 255));
-        listStudentsLB.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        listStudentsLB.setForeground(new java.awt.Color(255, 255, 255));
-        listStudentsLB.setText("List of Students");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
-        javax.swing.GroupLayout listStudentPLayout = new javax.swing.GroupLayout(listStudentP);
-        listStudentP.setLayout(listStudentPLayout);
-        listStudentPLayout.setHorizontalGroup(
-            listStudentPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listStudentPLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(listStudentsLB)
-                .addContainerGap(551, Short.MAX_VALUE))
+        javax.swing.GroupLayout DynamicPanelLayout = new javax.swing.GroupLayout(DynamicPanel);
+        DynamicPanel.setLayout(DynamicPanelLayout);
+        DynamicPanelLayout.setHorizontalGroup(
+            DynamicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DynamicPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 34, Short.MAX_VALUE))
         );
-        listStudentPLayout.setVerticalGroup(
-            listStudentPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listStudentPLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(listStudentsLB)
-                .addContainerGap(407, Short.MAX_VALUE))
+        DynamicPanelLayout.setVerticalGroup(
+            DynamicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DynamicPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 205, Short.MAX_VALUE))
         );
 
-        add(listStudentP);
-        listStudentP.setBounds(230, 50, 670, 410);
+        getContentPane().add(DynamicPanel);
+        DynamicPanel.setBounds(230, 50, 670, 410);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBTActionPerformed
+        // TODO add your handling code here:
+           int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+       
+        }
+    }//GEN-LAST:event_closeBTActionPerformed
+
+    private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
+        // TODO add your handling code here:
+        try {
+            String query = "select * from year1";
+             PreparedStatement pst=connection.prepareStatement(query);
+             ResultSet rs = pst.executeQuery();
+             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+             jTable1.setVisible(true);
+             
+      
+             
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_year1BTActionPerformed
+
+    private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
+        // TODO add your handling code here:
+             try {
+            String query = "select * from year2";
+             PreparedStatement pst=connection.prepareStatement(query);
+             ResultSet rs = pst.executeQuery();
+             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+             jTable1.setVisible(true);
+             
+             
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_year2BTActionPerformed
+
+    private void addStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBTActionPerformed
+       //cpp.setVisible(true);
+      // jTable1.setVisible(false);
+       
+        
+
+    }//GEN-LAST:event_addStudentBTActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DynamicPanel;
     private javax.swing.JButton addStaffBT;
     private javax.swing.JButton addStudentBT;
     private javax.swing.JPanel adminFunctionsP;
     private javax.swing.JPanel classInfoP;
     private javax.swing.JLabel classNLB;
     private javax.swing.JButton closeBT;
-    private javax.swing.JPanel listStudentP;
-    private javax.swing.JLabel listStudentsLB;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
     private javax.swing.JLabel nStudentsLB;
     private javax.swing.JButton sStaffBT;
