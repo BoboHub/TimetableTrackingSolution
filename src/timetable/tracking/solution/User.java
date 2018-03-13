@@ -5,12 +5,9 @@
  */
 package timetable.tracking.solution;
 
-/**
- *
- * @author Bobo
- */
+//@author Boris, Owen, Richard, Yami
+
 public class User {
-    
       // We can have a userType here to tell if user is a teacher or an admin
      
     public String id; 
@@ -105,6 +102,5 @@ public class User {
    // public String getFullName() {
      //    return String.format("%s %s", name, address);
     //}
-    
     
 }

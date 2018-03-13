@@ -5,12 +5,9 @@
  */
 package timetable.tracking.solution;
 
-/**
- *
- * @author x16110561
- */
+//@author Boris, Owen, Richard, Yami
+
 public class Student {
-    
     
     private String studentName;
     private String mothersName;
@@ -27,7 +24,6 @@ public class Student {
         this.phone = phone;
         this.email = email;
         this.information = information;
-            
     }
 
     public String getStudentName() {
@@ -89,6 +85,4 @@ public class Student {
     public String toString(){
             return studentName.toString();
     }
-    
-    
 }

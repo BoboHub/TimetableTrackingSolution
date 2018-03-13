@@ -13,12 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
-/**
- *
- * @author Bobo
- */
-public class MainGUI extends javax.swing.JFrame {
+//@author Boris, Owen, Richard, Yami
 
+public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form MainGUI
@@ -29,8 +26,6 @@ public class MainGUI extends javax.swing.JFrame {
         
         connection=dbConnection.dbConnector(); // database connection init
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
-       
-
     }
 
     /**
@@ -56,6 +51,7 @@ public class MainGUI extends javax.swing.JFrame {
         sStaffBT = new javax.swing.JButton();
         addUserBT = new javax.swing.JButton();
         closeBT = new javax.swing.JButton();
+        deleteRecordBT = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -180,6 +176,9 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        deleteRecordBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        deleteRecordBT.setText("Delete Record");
+
         javax.swing.GroupLayout adminFunctionsPLayout = new javax.swing.GroupLayout(adminFunctionsP);
         adminFunctionsP.setLayout(adminFunctionsPLayout);
         adminFunctionsPLayout.setHorizontalGroup(
@@ -191,7 +190,9 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(sStaffBT)
                 .addGap(18, 18, 18)
                 .addComponent(addUserBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deleteRecordBT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
                 .addComponent(closeBT)
                 .addContainerGap())
         );
@@ -203,7 +204,8 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(sStudentBT)
                     .addComponent(sStaffBT)
                     .addComponent(addUserBT)
-                    .addComponent(closeBT))
+                    .addComponent(closeBT)
+                    .addComponent(deleteRecordBT))
                 .addContainerGap())
         );
 
@@ -247,12 +249,10 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void closeBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBTActionPerformed
         // TODO add your handling code here:
-           int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
         
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
-
-       
         }
     }//GEN-LAST:event_closeBTActionPerformed
 
@@ -264,14 +264,11 @@ public class MainGUI extends javax.swing.JFrame {
              ResultSet rs = pst.executeQuery();
              jTable1.setModel(DbUtils.resultSetToTableModel(rs));
              jTable1.setVisible(true);
-             
-      
-             
+ 
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        
     }//GEN-LAST:event_year1BTActionPerformed
 
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
@@ -281,9 +278,7 @@ public class MainGUI extends javax.swing.JFrame {
              PreparedStatement pst=connection.prepareStatement(query);
              ResultSet rs = pst.executeQuery();
              jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-             jTable1.setVisible(true);
-             
-             
+             jTable1.setVisible(true);   
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -296,10 +291,7 @@ public class MainGUI extends javax.swing.JFrame {
                     this.dispose();
                     newNewProfileGUI.setVisible(true);
                     newNewProfileGUI.setSize(1000, 1000);
-                   // newNewProfileGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
     }//GEN-LAST:event_addUserBTActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
@@ -308,6 +300,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel classInfoP;
     private javax.swing.JLabel classNLB;
     private javax.swing.JButton closeBT;
+    private javax.swing.JButton deleteRecordBT;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
@@ -320,7 +313,5 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton year3BT;
     private javax.swing.JButton year4BT;
     // End of variables declaration//GEN-END:variables
-
-   
 
 }
