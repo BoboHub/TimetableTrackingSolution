@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package timetable.tracking.solution;
-
+import dbUtil.dbConnection;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+
 
 /**
- *
  * @author Bobo
  */
 public class LoginForm extends javax.swing.JFrame {
@@ -16,8 +21,11 @@ public class LoginForm extends javax.swing.JFrame {
     /**
      * Creates new form LoginForm
      */
+    Connection connection=null;
+    
     public LoginForm() {
         initComponents();
+        connection=dbConnection.dbConnector();
     }
 
     /**
@@ -71,6 +79,11 @@ public class LoginForm extends javax.swing.JFrame {
         cancelBT.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancelBT.setForeground(new java.awt.Color(255, 255, 255));
         cancelBT.setText("Cancel");
+        cancelBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBTActionPerformed(evt);
+            }
+        });
 
         loginBT.setBackground(new java.awt.Color(34, 167, 240));
         loginBT.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -203,63 +216,84 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_minLBMouseClicked
-
+    private void clearFields() {
+                  passwordTF.setText("");
+                  userNameTF.setText("");
+               }
+    
     private void loginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTActionPerformed
         // TODO add your handling code here:
         
+             try {
+                    String query ="select * from EmployeeInfo where Username=? and password=? ";
+                    PreparedStatement pst=connection.prepareStatement(query);
+                    pst.setString(1, userNameTF.getText());
+                    pst.setString(2, passwordTF.getText());
+                    
+                    ResultSet rs=pst.executeQuery(); 
+                    int count = 0;
+                    while(rs.next()) {
+                    count=count+1;
+                   
+                    }
+                    if(count ==1)
+                    {
+                    JOptionPane.showMessageDialog(null, "Username and pssword is correct");
+                    MainGUI newMainGUI = new MainGUI();
+                    this.dispose();
+                    newMainGUI.setVisible(true);
+                    newMainGUI.setLocationRelativeTo(this);
+                    newMainGUI.setSize(1000, 700);
+                    newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    }
+                    else if (count >1)
+                    {
+                      JOptionPane.showMessageDialog(null, "Duplicated Username and Pssword is correct");
+                    }
+                    else 
+                    {
+                      JOptionPane.showMessageDialog(null, "Username and pssword is NOT correct");
+                    }
+                    rs.close();
+                    pst.close();
+        }
+        catch (Exception e)    
+        {
+                     JOptionPane.showMessageDialog(null, e);
+        }
+           
+        
+   /*
+        String password =  passwordTF.getText();
+        String username = userNameTF.getText();
+        
+        if (password.contains("password") && (username.contains("Boris")))
+        {
+       */ 
+      
+       /* }
+        else
+        {
+        JOptionPane.showMessageDialog(null, "Invalid Login Details", "Please use the correct name or password", JOptionPane.ERROR_MESSAGE);
+        clearFields();
+        }
         
         
-        
-        
-        
-        
-        
-        MainGUI newMainGUI = new MainGUI();
-        newMainGUI.setVisible(true);
-        
-        
-        
-        
+        /*
         newMainGUI.pack();
         
         newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
+        */
     }//GEN-LAST:event_loginBTActionPerformed
+    // clears field when pressing CANCEL
+       
+    
+    private void cancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTActionPerformed
+        // TODO add your handling code here:
+           clearFields();
+    }//GEN-LAST:event_cancelBTActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBT;
