@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package timetable.tracking.solution;
+
 import dbUtil.dbConnection;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -11,11 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+//@author Boris, Owen, Richard, Yami
 
-
-/**
- * @author Bobo
- */
 public class LoginForm extends javax.swing.JFrame {
 
     /**
@@ -238,7 +236,7 @@ public class LoginForm extends javax.swing.JFrame {
                     }
                     if(count ==1)
                     {
-                    JOptionPane.showMessageDialog(null, "Username and pssword is correct");
+                    JOptionPane.showMessageDialog(null, "Username and password is correct");
                     MainGUI newMainGUI = new MainGUI();
                     this.dispose();
                     newMainGUI.setVisible(true);
@@ -248,11 +246,11 @@ public class LoginForm extends javax.swing.JFrame {
                     }
                     else if (count >1)
                     {
-                      JOptionPane.showMessageDialog(null, "Duplicated Username and Pssword is correct");
+                      JOptionPane.showMessageDialog(null, "Duplicated username and password is correct");
                     }
                     else 
                     {
-                      JOptionPane.showMessageDialog(null, "Username and pssword is NOT correct");
+                      JOptionPane.showMessageDialog(null, "Username/password is NOT correct");
                     }
                     rs.close();
                     pst.close();
@@ -288,12 +286,10 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBTActionPerformed
     // clears field when pressing CANCEL
        
-    
     private void cancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTActionPerformed
         // TODO add your handling code here:
            clearFields();
     }//GEN-LAST:event_cancelBTActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBT;
