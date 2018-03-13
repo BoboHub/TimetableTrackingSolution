@@ -7,7 +7,7 @@ package timetable.tracking.solution;
 
 //@author Boris, Owen, Richard, Yami
 
-public class NewProfileGUI extends javax.swing.JPanel {
+public class NewProfileGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form NewProfileGUI
