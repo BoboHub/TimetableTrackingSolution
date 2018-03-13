@@ -13,12 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
-/**
- *
- * @author Bobo
- */
-public class MainGUI extends javax.swing.JFrame {
+//@author Boris, Owen, Richard, Yami
 
+public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form MainGUI
@@ -29,8 +26,6 @@ public class MainGUI extends javax.swing.JFrame {
         
         connection=dbConnection.dbConnector(); // database connection init
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
-       
-
     }
 
     /**
@@ -247,12 +242,10 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void closeBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBTActionPerformed
         // TODO add your handling code here:
-           int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
         
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
-
-       
         }
     }//GEN-LAST:event_closeBTActionPerformed
 
@@ -264,14 +257,11 @@ public class MainGUI extends javax.swing.JFrame {
              ResultSet rs = pst.executeQuery();
              jTable1.setModel(DbUtils.resultSetToTableModel(rs));
              jTable1.setVisible(true);
-             
-      
-             
+ 
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        
     }//GEN-LAST:event_year1BTActionPerformed
 
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
@@ -281,9 +271,7 @@ public class MainGUI extends javax.swing.JFrame {
              PreparedStatement pst=connection.prepareStatement(query);
              ResultSet rs = pst.executeQuery();
              jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-             jTable1.setVisible(true);
-             
-             
+             jTable1.setVisible(true);   
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -296,10 +284,7 @@ public class MainGUI extends javax.swing.JFrame {
                     this.dispose();
                     newNewProfileGUI.setVisible(true);
                     newNewProfileGUI.setSize(1000, 1000);
-                   // newNewProfileGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
     }//GEN-LAST:event_addUserBTActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
@@ -320,7 +305,5 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton year3BT;
     private javax.swing.JButton year4BT;
     // End of variables declaration//GEN-END:variables
-
-   
 
 }

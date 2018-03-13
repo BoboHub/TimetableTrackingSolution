@@ -5,12 +5,9 @@
  */
 package timetable.tracking.solution;
 
-/**
- *
- * @author Bobo
- */
+//@author Boris, Owen, Richard, Yami
+
 public class User {
-    
 	
       // We can have a userType here to tell if user is a teacher or an admin
     
@@ -19,6 +16,5 @@ public class User {
     
     //test2
     //Yamina
-    
     
 }

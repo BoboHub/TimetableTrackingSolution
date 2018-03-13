@@ -5,10 +5,8 @@
  */
 package timetable.tracking.solution;
 
-/**
- *
- * @author Bobo
- */
+//@author Boris, Owen, Richard, Yami
+
 public class CreateProfilePanel extends javax.swing.JPanel {
 
     /**

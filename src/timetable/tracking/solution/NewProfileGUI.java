@@ -5,18 +5,15 @@
  */
 package timetable.tracking.solution;
 
-/**
- *
- * @author Bobo
- */
+//@author Boris, Owen, Richard, Yami
+
 public class NewProfileGUI extends javax.swing.JPanel {
 
     /**
      * Creates new form NewProfileGUI
      */
     public NewProfileGUI() {
-        initComponents();
-        
+        initComponents();    
     }
 
     /**
@@ -231,7 +228,6 @@ public class NewProfileGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -262,5 +258,4 @@ public class NewProfileGUI extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 
- 
 }

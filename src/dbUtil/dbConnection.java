@@ -4,19 +4,14 @@
  * and open the template in the editor.
  */
 package dbUtil;
-/*import.java.sql.*;
-import.javax.swing.*; 
-*/
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
+//@author Boris, Owen, Richard, Yami
 
-    
- * @author Bobo
- */
 public class dbConnection {
     Connection conn = null;
     
@@ -24,7 +19,7 @@ public class dbConnection {
         try {
                 Class.forName("org.sqlite.JDBC");
                 Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Richard\\Documents\\GitHub\\TimetableTrackingSolution\\TimetableTrackingSolution\\src\\tracking_database.sqlite");
-                JOptionPane.showMessageDialog(null, "Connecton was successful");
+                JOptionPane.showMessageDialog(null, "The connection was successful");
                 return conn;
         }
         catch (Exception e)    
