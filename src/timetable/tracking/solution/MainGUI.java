@@ -280,7 +280,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
-            try {
+        try {
             String query = "select * from year2";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -293,10 +293,10 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
             
-                   NewProfileGUI newNewProfileGUI = new NewProfileGUI();
-                    this.dispose();
-                    newNewProfileGUI.setVisible(true);
-                    newNewProfileGUI.setSize(1000, 1000);
+        NewProfileGUI newNewProfileGUI = new NewProfileGUI();
+        this.dispose();
+        newNewProfileGUI.setVisible(true);
+        newNewProfileGUI.setSize(1000, 1000);
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
