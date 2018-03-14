@@ -86,6 +86,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         year4BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         year4BT.setText("Year 4");
+        year4BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year4BTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout listYearsPLayout = new javax.swing.GroupLayout(listYearsP);
         listYearsP.setLayout(listYearsPLayout);
@@ -306,6 +311,19 @@ public class MainGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_year3BTActionPerformed
+
+    private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
+        // TODO add your handling code here:
+        try{
+            String query = "select * from year4";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable1.setVisible(true);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_year4BTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
