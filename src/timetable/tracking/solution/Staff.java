@@ -13,7 +13,7 @@ public class Staff extends User{
     public String username;
     public String password;
     
-    public Staff(String id, String firstName, String lastName, String address, int phone, String email, String dob){
+    public Staff(String id, String firstName, String lastName, String address, int phone, String email, String dob, String jobCategory, String username, String password){
         super(id, firstName, lastName, address, phone, email, dob);
         this.jobCategory = jobCategory;
         this.username = username;
