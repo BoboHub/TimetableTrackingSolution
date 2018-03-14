@@ -11,18 +11,22 @@ public class User {
       // We can have a userType here to tell if user is a teacher or an admin
      
     public String id; 
-    
-    public String name;
-    
+    public String firstName;
+    public String lastName;
+    public String address; 
     public int phone;
-    
     public String email;
-    
     public String dob;
     
-    public String address; 
-    
-    public String jobCategory;
+    public User(String id, String firstName, String lastName, String address, int phone, String email, String dob){
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address = address;
+    this.phone = phone;
+    this.email = email;
+    this.dob = dob;
+    }
     
      /**
      * Checks if a minimum amount of fields have been set.
@@ -32,33 +36,36 @@ public class User {
      * @return Whether this customer can be saved.
      */
     public boolean validates() {
-        if (name.equals("") || email.equals("")) {
+        if (firstName.equals("") || email.equals("")) {
             return false;
         }
-
         return true;
     }
 
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public String getLastName(){
+        return lastName;
+    }
+    public void setLastName(String lastName){
+        this.lastName = lastName;
     }
 
     public int getPhone() {
         return phone;
     }
-
     public void setPhone(int phone) {
         this.phone = phone;
     }
@@ -66,7 +73,6 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -74,7 +80,6 @@ public class User {
     public String getDob() {
         return dob;
     }
-
     public void setDob(String dob) {
         this.dob = dob;
     }
@@ -82,18 +87,10 @@ public class User {
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getJobCategory() {
-        return jobCategory;
-    }
-
-    public void setJobCategory(String jobCategory) {
-        this.jobCategory = jobCategory;
-    }
 
     /**
      * Returns the full name of a customer and email from the customer
