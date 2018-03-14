@@ -17,9 +17,8 @@ import net.proteanit.sql.DbUtils;
 
 public class MainGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainGUI
-     */
+    //Creates new form MainGUI
+
     Connection connection = null;
     public MainGUI() {
         initComponents();
@@ -79,9 +78,19 @@ public class MainGUI extends javax.swing.JFrame {
 
         year3BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         year3BT.setText("Year 3");
+        year3BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year3BTActionPerformed(evt);
+            }
+        });
 
         year4BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         year4BT.setText("Year 4");
+        year4BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year4BTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout listYearsPLayout = new javax.swing.GroupLayout(listYearsP);
         listYearsP.setLayout(listYearsPLayout);
@@ -260,38 +269,61 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String query = "select * from year1";
-             PreparedStatement pst=connection.prepareStatement(query);
-             ResultSet rs = pst.executeQuery();
-             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-             jTable1.setVisible(true);
- 
-        }
-        catch (Exception e) {
+            PreparedStatement pst=connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable1.setVisible(true);
+        }catch (Exception e){
             e.printStackTrace();
         }
     }//GEN-LAST:event_year1BTActionPerformed
 
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
-             try {
+        try {
             String query = "select * from year2";
-             PreparedStatement pst=connection.prepareStatement(query);
-             ResultSet rs = pst.executeQuery();
-             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-             jTable1.setVisible(true);   
-        }
-        catch (Exception e) {
+            PreparedStatement pst=connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable1.setVisible(true);   
+        }catch (Exception e){
             e.printStackTrace();
         }
     }//GEN-LAST:event_year2BTActionPerformed
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
             
-                   NewProfileGUI newNewProfileGUI = new NewProfileGUI();
-                    this.dispose();
-                    newNewProfileGUI.setVisible(true);
-                    newNewProfileGUI.setSize(1000, 1000);
+        NewProfileGUI newNewProfileGUI = new NewProfileGUI();
+        this.dispose();
+        newNewProfileGUI.setVisible(true);
+        newNewProfileGUI.setSize(1000, 1000);
     }//GEN-LAST:event_addUserBTActionPerformed
+
+    private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
+        // TODO add your handling code here:
+        try{
+            String query = "select * from year3";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable1.setVisible(true);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_year3BTActionPerformed
+
+    private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
+        // TODO add your handling code here:
+        try{
+            String query = "select * from year4";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable1.setVisible(true);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_year4BTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
