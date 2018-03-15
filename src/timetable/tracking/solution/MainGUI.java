@@ -258,7 +258,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void closeBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBTActionPerformed
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Timetable Tracking Solution | Exit", JOptionPane.YES_NO_OPTION);
         
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
