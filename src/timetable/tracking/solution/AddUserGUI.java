@@ -268,13 +268,17 @@ public class AddUserGUI extends javax.swing.JFrame {
 
     private void subProfileBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subProfileBTActionPerformed
               try {
-            String query = "insert into staff (ID, firstName, lastName, phone) values (?, ?, ?, ?)";
+            String query = "insert into staff (ID, firstName, lastName, phone, email, DOB, address) values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst=connection.prepareStatement(query);
           
             pst.setString(1, idTF.getText() );
             pst.setString(2, firstNameTF.getText() );
             pst.setString(3, lastNameTF.getText() );
             pst.setString(4, phoneTF.getText() );
+            pst.setString(5, emailTF.getText() );
+            pst.setString(6, dobTF.getText() );
+            pst.setString(7, addressTF.getText() );
+            
             
             pst.execute();
             
