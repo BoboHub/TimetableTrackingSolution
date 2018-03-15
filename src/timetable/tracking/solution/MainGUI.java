@@ -258,7 +258,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void closeBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBTActionPerformed
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Timetable Tracking Solution | Exit", JOptionPane.YES_NO_OPTION);
         
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
@@ -292,11 +292,17 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_year2BTActionPerformed
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
-            
-        NewProfileGUI newNewProfileGUI = new NewProfileGUI();
+        
+        AddUserGUI myAddUserGUI = new AddUserGUI();
         this.dispose();
-        newNewProfileGUI.setVisible(true);
-        newNewProfileGUI.setSize(1000, 1000);
+        myAddUserGUI.setVisible(true);
+        myAddUserGUI.setLocationRelativeTo(this);
+        
+        //Check size later on with more time
+        //myAddUserGUI.setSize(1000, 700);
+
+        myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
