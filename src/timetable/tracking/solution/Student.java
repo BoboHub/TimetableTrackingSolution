@@ -17,9 +17,10 @@ public class Student {
     private String email;
     private String DOB;
     private String address;
+    private int year;
     private String addInformation;
     
-    public Student(String firstName, String lastName,String mothersName,String fathersName,int phone, String email, String DOB, String address,String addInformation ){
+    public Student(String firstName, String lastName,String mothersName,String fathersName,int phone, String email, String DOB, String address,int year, String addInformation ){
         this.firstName = firstName;
         this.lastName = lastName;
         this.mothersName = mothersName;
@@ -28,6 +29,7 @@ public class Student {
         this.email = email;
         this.DOB = DOB;
         this.address = address;
+        this.year = year;
         this.addInformation = addInformation;
     }
 
@@ -95,6 +97,14 @@ public class Student {
         this.address = address;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public String getAddInformation() {
         return addInformation;
     }
@@ -102,7 +112,6 @@ public class Student {
     public void setAddInformation(String addInformation) {
         this.addInformation = addInformation;
     }
-    
 
     
     public String toString(){
