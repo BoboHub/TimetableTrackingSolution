@@ -139,10 +139,10 @@ public class MainGUI extends javax.swing.JFrame {
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classInfoPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tutorNLB)
-                    .addComponent(classNLB)
-                    .addComponent(nStudentsLB))
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tutorNLB, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(classNLB, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nStudentsLB, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         classInfoPLayout.setVerticalGroup(
