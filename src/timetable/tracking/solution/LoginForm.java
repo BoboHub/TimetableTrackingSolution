@@ -241,7 +241,7 @@ public class LoginForm extends javax.swing.JFrame {
                     this.dispose();
                     newMainGUI.setVisible(true);
                     newMainGUI.setLocationRelativeTo(this);
-                    newMainGUI.setSize(1000, 700);
+                    newMainGUI.setSize(925, 550);
                     newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     }
                     else if (count >1)
