@@ -9,29 +9,42 @@ package timetable.tracking.solution;
 
 public class Student {
     
-    private String studentName;
+    private String firstName;
+    private String lastName;
     private String mothersName;
     private String fathersName;
-    private String homeAddress;
     private int phone;
     private String email;
-    private String information;
+    private String DOB;
+    private String address;
+    private String addInformation;
     
-    public Student(String studentName,String mothersName,String fathersName,String homeAddress,int phone, String email, String information ){
-        this.studentName = studentName;
+    public Student(String firstName, String lastName,String mothersName,String fathersName,int phone, String email, String DOB, String address,String addInformation ){
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.mothersName = mothersName;
-        this.homeAddress = homeAddress;
+        this.fathersName = fathersName;
         this.phone = phone;
         this.email = email;
-        this.information = information;
+        this.DOB = DOB;
+        this.address = address;
+        this.addInformation = addInformation;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getMothersName() {
@@ -50,14 +63,6 @@ public class Student {
         this.fathersName = fathersName;
     }
 
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
     public int getPhone() {
         return phone;
     }
@@ -74,15 +79,33 @@ public class Student {
         this.email = email;
     }
 
-    public String getInformation() {
-        return information;
+    public String getDOB() {
+        return DOB;
     }
 
-    public void setInformation(String information) {
-        this.information = information;
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddInformation() {
+        return addInformation;
+    }
+
+    public void setAddInformation(String addInformation) {
+        this.addInformation = addInformation;
     }
     
+
+    
     public String toString(){
-            return studentName.toString();
+            return firstName.toString();
     }
 }
