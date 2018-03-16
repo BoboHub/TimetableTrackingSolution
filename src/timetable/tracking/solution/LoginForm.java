@@ -240,7 +240,7 @@ public class LoginForm extends javax.swing.JFrame {
                     MainGUI newMainGUI = new MainGUI();
                     this.dispose();
                     newMainGUI.setVisible(true);
-                    newMainGUI.setLocationRelativeTo(this);
+                    newMainGUI.setLocationRelativeTo(null);
                     newMainGUI.setSize(925, 550);
                     newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     }
