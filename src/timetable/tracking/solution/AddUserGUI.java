@@ -16,10 +16,8 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Richard
- */
+//@author Boris, Owen, Richard, Yami
+
 public class AddUserGUI extends javax.swing.JFrame {
 
     /**
@@ -147,7 +145,7 @@ public class AddUserGUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
@@ -157,25 +155,24 @@ public class AddUserGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(selectClassCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(101, 101, 101)
-                                .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel6))
+                                .addGap(56, 56, 56)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(firstNameTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lastNameTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phoneTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dobTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addressTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(firstNameTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lastNameTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(phoneTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(emailTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(dobTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addressTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -266,11 +263,25 @@ public class AddUserGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_closeBTActionPerformed
 
+    public void clearFields(){                                        
+        idTF.setText("");
+        firstNameTF.setText("");
+        lastNameTF.setText("");
+        phoneTF.setText("");
+        emailTF.setText("");
+        dobTF.setText("");
+        addressTF.setText("");
+        addNoteTA.setText("");
+        //typeUserCB.setName("test");
+    }   
+    
+    
     private void subProfileBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subProfileBTActionPerformed
-              try {
+            
+        try {
             String query = "insert into staff (ID, firstName, lastName, phone, email, DOB, address) values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst=connection.prepareStatement(query);
-          
+            
             pst.setString(1, idTF.getText() );
             pst.setString(2, firstNameTF.getText() );
             pst.setString(3, lastNameTF.getText() );
@@ -278,19 +289,18 @@ public class AddUserGUI extends javax.swing.JFrame {
             pst.setString(5, emailTF.getText() );
             pst.setString(6, dobTF.getText() );
             pst.setString(7, addressTF.getText() );
-            
-            
+                        
             pst.execute();
             
             JOptionPane.showMessageDialog(null, "Data saved");
             
-            pst.close();
-       
+            clearFields();
             
+            pst.close();
+                   
         }catch (Exception e){
             e.printStackTrace();
-        }
-        
+        }  
     }//GEN-LAST:event_subProfileBTActionPerformed
 
     /**
