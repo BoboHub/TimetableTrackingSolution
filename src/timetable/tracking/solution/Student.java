@@ -9,16 +9,16 @@ package timetable.tracking.solution;
 
 public class Student {
     
-    private String firstName;
-    private String lastName;
-    private String mothersName;
-    private String fathersName;
-    private int phone;
-    private String email;
-    private String DOB;
-    private String address;
-    private int year;
-    private String addInformation;
+    public String firstName;
+    public String lastName;
+    public String mothersName;
+    public String fathersName;
+    public int phone;
+    public String email;
+    public String DOB;
+    public String address;
+    public int year;
+    public String addInformation;
     
     public Student(String firstName, String lastName,String mothersName,String fathersName,int phone, String email, String DOB, String address,int year, String addInformation ){
         this.firstName = firstName;
