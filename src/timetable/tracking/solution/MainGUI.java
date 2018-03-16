@@ -167,6 +167,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         sStaffBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         sStaffBT.setText("Search Staff");
+        sStaffBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sStaffBTActionPerformed(evt);
+            }
+        });
 
         addUserBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         addUserBT.setText("Add User Profile");
@@ -330,6 +335,22 @@ public class MainGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_year4BTActionPerformed
+
+    private void sStaffBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStaffBTActionPerformed
+        // TODO add your handling code here:
+        
+        SearchGUI mySearchGUI = new SearchGUI();
+        this.dispose();
+        mySearchGUI.setVisible(rootPaneCheckingEnabled);
+        mySearchGUI.setLocationRelativeTo(this);
+        
+       
+        
+        //Check size later on with more time
+        //myAddUserGUI.setSize(1000, 700);
+
+        //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_sStaffBTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
