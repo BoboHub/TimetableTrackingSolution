@@ -3,7 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package timetable.tracking.solution;
+
+import dbUtil.dbConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 import javax.swing.JOptionPane;
 
@@ -16,8 +25,10 @@ public class AddUserGUI extends javax.swing.JFrame {
     /**
      * Creates new form Test
      */
+    Connection connection=null;
     public AddUserGUI() {
         initComponents();
+        connection=dbConnection.dbConnector();
     }
 
     /**
@@ -104,6 +115,11 @@ public class AddUserGUI extends javax.swing.JFrame {
 
         subProfileBT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         subProfileBT.setText("Submit profile");
+        subProfileBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subProfileBTActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Select class:");
@@ -249,6 +265,33 @@ public class AddUserGUI extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_closeBTActionPerformed
+
+    private void subProfileBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subProfileBTActionPerformed
+              try {
+            String query = "insert into staff (ID, firstName, lastName, phone, email, DOB, address) values (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst=connection.prepareStatement(query);
+          
+            pst.setString(1, idTF.getText() );
+            pst.setString(2, firstNameTF.getText() );
+            pst.setString(3, lastNameTF.getText() );
+            pst.setString(4, phoneTF.getText() );
+            pst.setString(5, emailTF.getText() );
+            pst.setString(6, dobTF.getText() );
+            pst.setString(7, addressTF.getText() );
+            
+            
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data saved");
+            
+            pst.close();
+       
+            
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_subProfileBTActionPerformed
 
     /**
      * @param args the command line arguments
