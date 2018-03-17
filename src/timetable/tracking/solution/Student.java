@@ -8,7 +8,7 @@ package timetable.tracking.solution;
 //@author Boris, Owen, Richard, Yami
 
 public class Student {
-    
+    public int id;
     public String firstName;
     public String lastName;
     public String mothersName;
@@ -20,7 +20,8 @@ public class Student {
     public int year;
     public String addInformation;
     
-    public Student(String firstName, String lastName,String mothersName,String fathersName,int phone, String email, String DOB, String address,int year, String addInformation ){
+    public Student(int id, String firstName, String lastName,String mothersName,String fathersName,int phone, String email, String DOB, String address,int year, String addInformation ){
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mothersName = mothersName;
@@ -31,6 +32,14 @@ public class Student {
         this.address = address;
         this.year = year;
         this.addInformation = addInformation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
