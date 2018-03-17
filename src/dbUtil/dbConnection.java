@@ -25,7 +25,7 @@ public class dbConnection {
             Class.forName("org.sqlite.JDBC");
             
             //Creates the connection
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:tracking_database.sqlite");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:src\\tracking_database.sqlite");
                 
             //For test purposes only
             JOptionPane.showMessageDialog(null, "The connection was successful");
