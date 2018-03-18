@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 
@@ -54,6 +56,17 @@ public class SearchGUI extends javax.swing.JFrame {
         searchBT = new javax.swing.JButton();
         clearBT = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        firstNameTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lastNameTF = new javax.swing.JTextField();
+        idTF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        usernameTF = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jobCategoryTF = new javax.swing.JTextField();
+        updateBT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Search Database | Timetable Tracking Solution");
@@ -70,6 +83,11 @@ public class SearchGUI extends javax.swing.JFrame {
             }
         ));
         jTable1.setName(""); // NOI18N
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getAccessibleContext().setAccessibleName("Search Database | Timetable Tracking Solution");
 
@@ -102,25 +120,62 @@ public class SearchGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Name");
+
+        jLabel3.setText("Surname");
+
+        jLabel4.setText("ID");
+
+        jLabel5.setText("Username");
+
+        jLabel6.setText("Job Category");
+
+        updateBT.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        updateBT.setText("Update");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchBT)
-                .addGap(18, 18, 18)
-                .addComponent(clearBT)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(676, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(firstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jobCategoryTF, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchBT)
+                                .addGap(18, 18, 18)
+                                .addComponent(clearBT)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(updateBT)))
+                        .addGap(0, 552, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,15 +187,58 @@ public class SearchGUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(searchBT)
                     .addComponent(clearBT)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(updateBT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(firstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jobCategoryTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    public void executeSQlQuery(String query, String message){
+       //Connection connection = getConnection();
+       //Statement st;
+       try{
+           PreparedStatement pst = (PreparedStatement) connection.createStatement();
+           if((pst.executeUpdate(query)) == 1){
+               // refresh jtable data
+               DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+               model.setRowCount(0);
+               //Show_Users_In_JTable();
+               
+               JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
+           }else{
+               JOptionPane.showMessageDialog(null, "Data Not "+message);
+           }
+       }catch(Exception ex){
+           ex.printStackTrace();
+       }
+   }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void clearBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTActionPerformed
         // TODO add your handling code here:
         
@@ -186,9 +284,37 @@ public class SearchGUI extends javax.swing.JFrame {
         */
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+         // Get The Index Of The Slected Row 
+        int i = jTable1.getSelectedRow();
+
+        TableModel model = jTable1.getModel();
+        
+         // Display Slected Row In JTexteFields
+        idTF.setText(model.getValueAt(i,0).toString());
+
+        firstNameTF.setText(model.getValueAt(i,1).toString());
+
+        lastNameTF.setText(model.getValueAt(i,2).toString());
+
+        usernameTF.setText(model.getValueAt(i,3).toString());
+        
+        jobCategoryTF.setText(model.getValueAt(i, 4).toString());
+        
+        
+        
+        
+    }//GEN-LAST:event_jTable1MouseClicked
    
     public void clearFields(){
         searchTF.setText("");
+        idTF.setText("");
+        firstNameTF.setText("");
+        lastNameTF.setText("");
+        usernameTF.setText("");
+        jobCategoryTF.setText("");
     }
     
     /**
@@ -228,11 +354,22 @@ public class SearchGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBT;
+    private javax.swing.JTextField firstNameTF;
+    private javax.swing.JTextField idTF;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jobCategoryTF;
+    private javax.swing.JTextField lastNameTF;
     private javax.swing.JButton searchBT;
     private javax.swing.JTextField searchTF;
+    private javax.swing.JButton updateBT;
+    private javax.swing.JTextField usernameTF;
     // End of variables declaration//GEN-END:variables
 }
