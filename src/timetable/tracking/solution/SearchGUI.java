@@ -8,9 +8,13 @@ package timetable.tracking.solution;
 //@author Boris, Owen, Richard, Yami
 
 import dbUtil.dbConnection;
+import static dbUtil.dbConnection.dbConnector;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -27,7 +31,6 @@ public class SearchGUI extends javax.swing.JFrame {
         initComponents();
         
         connection = dbConnection.dbConnector();
-        //databaseTable.setVisible(false);
         
         try{
             String query = "select * from staff";
@@ -55,7 +58,7 @@ public class SearchGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         searchBT = new javax.swing.JButton();
         clearBT = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        deleteBT = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         firstNameTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -79,7 +82,6 @@ public class SearchGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Search Database | Timetable Tracking Solution");
         setForeground(java.awt.Color.darkGray);
-        setResizable(false);
 
         jTable1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -120,11 +122,11 @@ public class SearchGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        deleteBT.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        deleteBT.setText("Delete");
+        deleteBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                deleteBTActionPerformed(evt);
             }
         });
 
@@ -146,6 +148,11 @@ public class SearchGUI extends javax.swing.JFrame {
 
         updateBT.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         updateBT.setText("Update");
+        updateBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBTActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("DOB");
 
@@ -213,7 +220,7 @@ public class SearchGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(updateBT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(deleteBT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1219, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -260,7 +267,7 @@ public class SearchGUI extends javax.swing.JFrame {
                             .addComponent(addressTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(deleteBT))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -268,11 +275,50 @@ public class SearchGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
+    private void makeScreenFullSize(JFrame searchGUI){
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        searchGUI.setSize(screenSize.width, screenSize.height);
+    }*/
+    
+    
+    public Connection getConnection()
+   {
+       Connection con;
+       try {
+           con = DriverManager.getConnection("jdbc:sqlite:src\\tracking_database.sqlite", "root","");
+           return con;
+       } catch (Exception e) {
+           e.printStackTrace();
+           return null;
+       }
+   }
     
     
     public void executeSQlQuery(String query, String message){
-       //Connection connection = getConnection();
+       
+        Connection connection = getConnection();
+        Statement pst;
+
+        try{
+           pst = connection.createStatement();
+           if((pst.executeUpdate(query)) == 1)
+           {
+               // refresh jtable data
+               DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+               model.setRowCount(0);
+               //Show_Users_In_JTable();
+               
+               JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
+           }else{
+               JOptionPane.showMessageDialog(null, "Data Not "+message);
+           }
+       }catch(Exception ex){
+           ex.printStackTrace();
+       }
+        
+        /*
+        //Connection connection = getConnection();
        //Statement st;
        try{
            PreparedStatement pst = (PreparedStatement) connection.createStatement();
@@ -289,6 +335,8 @@ public class SearchGUI extends javax.swing.JFrame {
        }catch(Exception ex){
            ex.printStackTrace();
        }
+        */    
+        
    }
     
     
@@ -300,10 +348,8 @@ public class SearchGUI extends javax.swing.JFrame {
     
     
     private void clearBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTActionPerformed
-        // TODO add your handling code here:
         
         clearFields();
-        
     }//GEN-LAST:event_clearBTActionPerformed
 
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
@@ -312,7 +358,7 @@ public class SearchGUI extends javax.swing.JFrame {
             
     }//GEN-LAST:event_searchBTActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
         //String sql = "delete from staff where staff = ?";
 
         /*
@@ -343,7 +389,7 @@ public class SearchGUI extends javax.swing.JFrame {
         }
         */
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_deleteBTActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
@@ -366,6 +412,19 @@ public class SearchGUI extends javax.swing.JFrame {
     private void usernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTFActionPerformed
+
+    private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
+        
+        String query = "UPDATE `users` SET `firstName`='"+firstNameTF.getText()+"',`lastName`='"+lastNameTF.getText()+"',`phone`="+phoneTF.getText()
+                + ",`email`='"+emailTF.getText()+"',`dob`='"+dobTF.getText()+"',`address`='"+addressTF.getText()+" WHERE `id` = "+idTF.getText();
+                
+        executeSQlQuery(query,"Updated");
+        
+        /*
+               String query = "UPDATE `users` SET `fname`='"+jTextField_FirstName.getText()+"',`lname`='"+jTextField_LastName.getText()+"',`age`="+jTextField_Age.getText()+" WHERE `id` = "+jTextField_Id.getText();
+       executeSQlQuery(query, "Updated");
+        */
+    }//GEN-LAST:event_updateBTActionPerformed
    
     public void clearFields(){
         searchTF.setText("");
@@ -420,11 +479,11 @@ public class SearchGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTF;
     private javax.swing.JButton clearBT;
+    private javax.swing.JButton deleteBT;
     private javax.swing.JTextField dobTF;
     private javax.swing.JTextField emailTF;
     private javax.swing.JTextField firstNameTF;
     private javax.swing.JTextField idTF;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
