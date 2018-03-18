@@ -28,7 +28,7 @@ public class SearchGUI extends javax.swing.JFrame {
         //databaseTable.setVisible(false);
         
         try{
-            String query = "select (id, firstName, lastName, username, jobCategory) from staff";
+            String query = "select * from staff";
             PreparedStatement pst =connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -63,41 +63,7 @@ public class SearchGUI extends javax.swing.JFrame {
         jTable1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Staff ID", "First Name", "Last Name", "Username", "Job Category", "Phone", "Email", "Data of Birth", "Address", "Test"
@@ -128,7 +94,8 @@ public class SearchGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButton1.setText("Delete");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -150,10 +117,11 @@ public class SearchGUI extends javax.swing.JFrame {
                 .addComponent(clearBT)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(661, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(676, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +133,9 @@ public class SearchGUI extends javax.swing.JFrame {
                     .addComponent(searchBT)
                     .addComponent(clearBT)
                     .addComponent(jButton1))
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,9 +149,15 @@ public class SearchGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_clearBTActionPerformed
 
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
+        
+
+            
+    }//GEN-LAST:event_searchBTActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //String sql = "delete from staff where staff = ?";
 
-
+        /*
         try{
             
             String sql = "delete from staff where staff = ?";
@@ -197,6 +171,8 @@ public class SearchGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Deleted");	
         }catch(Exception e){
      }       
+        */
+        
         /*
                 try{
             String query = "select (id, firstName, lastName, username, jobCategory) from staff";
@@ -208,12 +184,6 @@ public class SearchGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
         */
-
-            
-    }//GEN-LAST:event_searchBTActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_jButton1ActionPerformed
    
