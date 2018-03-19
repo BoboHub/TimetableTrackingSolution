@@ -9,6 +9,7 @@ import dbUtil.dbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 //@author Boris, Owen, Richard, Yami
@@ -118,6 +119,11 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         jLabel12.setText("ID");
 
         saveBT.setText("Save");
+        saveBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBTActionPerformed(evt);
+            }
+        });
 
         deleteBT.setText("Delete");
 
@@ -258,7 +264,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
     private void takeDataBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeDataBTActionPerformed
         
         try{
-            String query = "SELECT * FROM student";
+            String query = "SELECT * FROM students";
             
             //More specific query
             //String query = "SELECT id, firstName, address FROM student";
@@ -269,14 +275,50 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            pst.close();
+            rs.close();
              
         }catch(Exception e){
             e.printStackTrace();
-        }
-        
-        
-        
+        }  
     }//GEN-LAST:event_takeDataBTActionPerformed
+
+    private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
+        
+        try{
+            String query = "INSERT INTO students (id, firstName, lastName, mothersName, fathersName, phone, email, dob, address, year, teacher, addInformation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            //More specific query
+            //String query = "SELECT id, firstName, address FROM student";
+            
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, idTF.getText());
+            pst.setString(2, firstNameTF.getText());
+            pst.setString(3, lastNameTF.getText());
+            pst.setString(4, mothersNameTF.getText());
+            pst.setString(5, fathersNameTF.getText());
+            pst.setString(6, phoneTF.getText());
+            pst.setString(7, emailTF.getText());
+            pst.setString(8, dobTF.getText());
+            pst.setString(9, addressTF.getText());
+            pst.setString(10, yearTF.getText());
+            pst.setString(11, teacherTF.getText());
+            pst.setString(12, infoTF.getText());
+            
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null,"Data saved into students DB successfully!");
+                        
+            pst.close();
+                         
+        }catch(Exception e){
+            e.printStackTrace();
+        }  
+        
+        
+    }//GEN-LAST:event_saveBTActionPerformed
 
     /**
      * @param args the command line arguments
