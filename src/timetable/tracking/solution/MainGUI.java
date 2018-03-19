@@ -164,6 +164,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         sStudentBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         sStudentBT.setText("Search Student");
+        sStudentBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sStudentBTActionPerformed(evt);
+            }
+        });
 
         sStaffBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         sStaffBT.setText("Search Staff");
@@ -351,6 +356,13 @@ public class MainGUI extends javax.swing.JFrame {
 
         //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_sStaffBTActionPerformed
+
+    private void sStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStudentBTActionPerformed
+        SearchStudentsGUI myStudentsSearchGUI = new SearchStudentsGUI();
+        this.dispose();
+        myStudentsSearchGUI.setVisible(rootPaneCheckingEnabled);
+        myStudentsSearchGUI.setLocationRelativeTo(this);
+    }//GEN-LAST:event_sStudentBTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
