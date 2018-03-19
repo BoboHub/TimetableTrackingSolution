@@ -231,15 +231,14 @@ public class SearchGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(searchBT)
-                                .addComponent(clearBT)))
-                        .addGap(18, 18, 18)
+                                .addComponent(clearBT))
+                            .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
@@ -268,8 +267,8 @@ public class SearchGUI extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deleteBT))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -281,7 +280,7 @@ public class SearchGUI extends javax.swing.JFrame {
         searchGUI.setSize(screenSize.width, screenSize.height);
     }*/
     
-    
+    /*
     public Connection getConnection()
    {
        Connection con;
@@ -293,11 +292,12 @@ public class SearchGUI extends javax.swing.JFrame {
            return null;
        }
    }
+    */
     
-    
+    /*
     public void executeSQlQuery(String query, String message){
        
-        Connection connection = getConnection();
+        //Connection connection = getConnection();
         Statement pst;
 
         try{
@@ -335,17 +335,11 @@ public class SearchGUI extends javax.swing.JFrame {
        }catch(Exception ex){
            ex.printStackTrace();
        }
-        */    
+           
         
    }
-    
-    
-    
-    
-    
-    
-    
-    
+    */
+
     
     private void clearBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTActionPerformed
         
@@ -359,71 +353,48 @@ public class SearchGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBTActionPerformed
 
     private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
-        //String sql = "delete from staff where staff = ?";
 
-        /*
-        try{
-            
-            String sql = "delete from staff where staff = ?";
-            
-            PreparedStatement pst = connection.prepareStatement(sql);
-            pst = connection.prepareStatement(sql);
-
-            //pst.setString(1, id.getText());
-
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Deleted");	
-        }catch(Exception e){
-     }       
-        */
-        
-        /*
-                try{
-            String query = "select (id, firstName, lastName, username, jobCategory) from staff";
-            PreparedStatement pst =connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        */
         
     }//GEN-LAST:event_deleteBTActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
         // Get the index of the selected row
-        int i = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
+        //int i = jTable1.getSelectedRow();
+        //TableModel model = jTable1.getModel();
        
         // Display selected row in JTexteFields
-        idTF.setText(model.getValueAt(i,0).toString());
-        firstNameTF.setText(model.getValueAt(i,1).toString());
-        lastNameTF.setText(model.getValueAt(i,2).toString());
+        //idTF.setText(model.getValueAt(i,0).toString());
+        //firstNameTF.setText(model.getValueAt(i,1).toString());
+        //lastNameTF.setText(model.getValueAt(i,2).toString());
         //usernameTF.setText(model.getValueAt(i,3).toString());
         //jobCategoryTF.setText(model.getValueAt(i, 4).toString());
-        phoneTF.setText(model.getValueAt(i,3).toString());
-        emailTF.setText(model.getValueAt(i,4).toString());
-        dobTF.setText(model.getValueAt(i,5).toString());
-        addressTF.setText(model.getValueAt(i,6).toString());
+        //phoneTF.setText(model.getValueAt(i,3).toString());
+        //emailTF.setText(model.getValueAt(i,4).toString());
+        //dobTF.setText(model.getValueAt(i,5).toString());
+        //addressTF.setText(model.getValueAt(i,6).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
+    
     private void usernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTFActionPerformed
 
     private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
         
-        String query = "UPDATE `users` SET `firstName`='"+firstNameTF.getText()+"',`lastName`='"+lastNameTF.getText()+"',`phone`="+phoneTF.getText()
-                + ",`email`='"+emailTF.getText()+"',`dob`='"+dobTF.getText()+"',`address`='"+addressTF.getText()+" WHERE `id` = "+idTF.getText();
-                
-        executeSQlQuery(query,"Updated");
-        
-        /*
-               String query = "UPDATE `users` SET `fname`='"+jTextField_FirstName.getText()+"',`lname`='"+jTextField_LastName.getText()+"',`age`="+jTextField_Age.getText()+" WHERE `id` = "+jTextField_Id.getText();
-       executeSQlQuery(query, "Updated");
-        */
+        try{
+            String query = "UPDATE staff SET id'"+idTF.getText()+"', firstName'"+firstNameTF.getText()+"', lastName'"+lastNameTF.getText()+"', phone'"+phoneTF.getText()+"', email'"+emailTF.getText()+"', address'"+addressTF.getText()+"' WHERE id='"+idTF.getText()+"'";
+            PreparedStatement pst = connection.prepareStatement(query);
+            
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null, "Data updated!");
+            
+            pst.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_updateBTActionPerformed
    
     public void clearFields(){
