@@ -74,6 +74,8 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         searchBT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Students Database");
+        setResizable(false);
 
         jLabel1.setText("Name");
 
@@ -134,6 +136,11 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         });
 
         deleteBT.setText("Delete");
+        deleteBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBTActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Search");
 
@@ -217,7 +224,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel11)
                                 .addGap(18, 18, 18)
                                 .addComponent(infoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 96, Short.MAX_VALUE))
+                        .addGap(0, 276, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -273,7 +280,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
                                 .addComponent(yearTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(infoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -355,6 +362,25 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
+        
+        try{
+            String query = "DELETE FROM students WHERE id='"+idTF.getText()+"'";
+
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null,"Data successfully deleted from students DB!");
+                        
+            pst.close();
+                         
+        }catch(Exception e){
+            e.printStackTrace();
+        }  
+    }//GEN-LAST:event_deleteBTActionPerformed
 
     /**
      * @param args the command line arguments
