@@ -7,12 +7,13 @@
 package timetable.tracking.solution;
 
 import dbUtil.dbConnection;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 import javax.swing.JOptionPane;
 
@@ -25,25 +26,9 @@ public class AddUserGUI extends javax.swing.JFrame {
      */
     Connection connection=null;
     
-    
-    //if States is true, we are looking at creating a student form
-    //if States is false, we are looking at creating a user form
-    boolean state;
-    
     public AddUserGUI() {
         initComponents();
         connection=dbConnection.dbConnector();
-        
-       
-        mothersNameTF.setVisible(false);
-        mothersNameLB.setVisible(false);
-        fathersNameTF.setVisible(false);
-        fathersNameLB.setVisible(false);
-        submitStudentBT.setVisible(false);
-        subProfileBT.setVisible(true);
-        
-               
-        state = true;
     }
 
     /**
@@ -82,13 +67,7 @@ public class AddUserGUI extends javax.swing.JFrame {
         selectClassCB = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        studentForm = new javax.swing.JButton();
-        userForm = new javax.swing.JButton();
-        mothersNameLB = new javax.swing.JLabel();
-        fathersNameLB = new javax.swing.JLabel();
-        mothersNameTF = new javax.swing.JTextField();
-        fathersNameTF = new javax.swing.JTextField();
-        submitStudentBT = new javax.swing.JButton();
+        pathTF = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -121,6 +100,11 @@ public class AddUserGUI extends javax.swing.JFrame {
 
         browsePicBT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         browsePicBT.setText("Browse");
+        browsePicBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browsePicBTActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Surname:");
@@ -156,34 +140,6 @@ public class AddUserGUI extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Create New Profile");
 
-        studentForm.setText("Student");
-        studentForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentFormActionPerformed(evt);
-            }
-        });
-
-        userForm.setText("User");
-        userForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFormActionPerformed(evt);
-            }
-        });
-
-        mothersNameLB.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        mothersNameLB.setText("Mothers Name:");
-
-        fathersNameLB.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        fathersNameLB.setText("Fathers Name:");
-
-        submitStudentBT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        submitStudentBT.setText("Submit Student");
-        submitStudentBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitStudentBTActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,8 +150,6 @@ public class AddUserGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitStudentBT)
-                .addGap(18, 18, 18)
                 .addComponent(subProfileBT)
                 .addGap(18, 18, 18)
                 .addComponent(closeBT)
@@ -210,23 +164,17 @@ public class AddUserGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel6)
-                                    .addComponent(mothersNameLB)
-                                    .addComponent(fathersNameLB)
                                     .addComponent(jLabel11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(20, 20, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(idTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                                         .addComponent(firstNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                                         .addComponent(lastNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                        .addComponent(phoneTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                        .addComponent(emailTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                                         .addComponent(dobTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                        .addComponent(addressTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                        .addComponent(mothersNameTF)
-                                        .addComponent(fathersNameTF)))
-                                .addGap(0, 97, Short.MAX_VALUE))
+                                        .addComponent(addressTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -237,20 +185,23 @@ public class AddUserGUI extends javax.swing.JFrame {
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
                                         .addComponent(selectClassCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
                                     .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(userForm)
-                            .addComponent(studentForm))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                        .addGap(40, 40, 40)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 558, Short.MAX_VALUE)))
                         .addComponent(picLB, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pathTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addComponent(browsePicBT)
                         .addGap(79, 79, 79))))
         );
@@ -263,17 +214,16 @@ public class AddUserGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(picLB, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(browsePicBT))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(browsePicBT)
+                            .addComponent(pathTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(typeUserCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(selectClassCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentForm))
-                        .addGap(18, 18, 18)
-                        .addComponent(userForm)
-                        .addGap(4, 4, 4)
+                            .addComponent(selectClassCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -284,28 +234,16 @@ public class AddUserGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mothersNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mothersNameLB))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(fathersNameLB)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fathersNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(phoneTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(emailTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(dobTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -320,8 +258,7 @@ public class AddUserGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeBT)
-                    .addComponent(subProfileBT)
-                    .addComponent(submitStudentBT))
+                    .addComponent(subProfileBT))
                 .addContainerGap())
         );
 
@@ -341,8 +278,6 @@ public class AddUserGUI extends javax.swing.JFrame {
         idTF.setText("");
         firstNameTF.setText("");
         lastNameTF.setText("");
-        mothersNameTF.setText("");
-        fathersNameTF.setText("");
         phoneTF.setText("");
         emailTF.setText("");
         dobTF.setText("");
@@ -354,17 +289,19 @@ public class AddUserGUI extends javax.swing.JFrame {
     
     private void subProfileBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subProfileBTActionPerformed
             
-        try {
-            String query = "insert into staff (ID, firstName, lastName, phone, email, DOB, address) values (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pst=connection.prepareStatement(query);
+            try {
+            String sql = "insert into staff (ID, firstName, lastName, phone, email, dob, address, profilePic ) values (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst=connection.prepareStatement(sql);
             
             pst.setString(1, idTF.getText() );
             pst.setString(2, firstNameTF.getText() );
             pst.setString(3, lastNameTF.getText() );
             pst.setString(4, phoneTF.getText() );
             pst.setString(5, emailTF.getText() );
-            pst.setString(6, dobTF.getText() );
+            pst.setString(6,dobTF.getText() );
             pst.setString(7, addressTF.getText() );
+            //
+            pst.setBytes(8, person_image);
                         
             pst.execute();
             
@@ -381,65 +318,28 @@ public class AddUserGUI extends javax.swing.JFrame {
        
     }//GEN-LAST:event_subProfileBTActionPerformed
 
-    private void userFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFormActionPerformed
-        // TODO add your handling code here:
+    private void browsePicBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePicBTActionPerformed
+     JFileChooser Chooser = new JFileChooser();
+       Chooser.showOpenDialog(null);
+       File f = Chooser.getSelectedFile();
+       filename = f.getAbsolutePath();
+       pathTF.setText(filename); 
         
-        state = false;
-        mothersNameTF.setVisible(false);
-        mothersNameLB.setVisible(false);
-        fathersNameTF.setVisible(false);
-        fathersNameLB.setVisible(false);
-        submitStudentBT.setVisible(false);
-        subProfileBT.setVisible(true);
-       
+        try {
+            File image = new File(filename);
+            FileInputStream fis = new FileInputStream(image);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for(int readNum; (readNum=fis.read(buf))!=-1; ){
+                bos.write(buf, 0, readNum);
+            }
+              person_image=bos.toByteArray();
         
-    }//GEN-LAST:event_userFormActionPerformed
-
-    private void studentFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentFormActionPerformed
-        // TODO add your handling code here:
-        
-        state = true;
-        mothersNameTF.setVisible(true);
-        mothersNameLB.setVisible(true);
-        fathersNameTF.setVisible(true);
-        fathersNameLB.setVisible(true);
-        submitStudentBT.setVisible(true);
-        subProfileBT.setVisible(false);
-        
-    }//GEN-LAST:event_studentFormActionPerformed
-
-    private void submitStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitStudentBTActionPerformed
-        // TODO add your handling code here:
-        
-         try {
-            String sql = "insert into student (ID, firstName, lastName, mothersName, fathersName, phone, email, dob, address ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pst=connection.prepareStatement(sql);
-            
-            pst.setString(1, idTF.getText() );
-            pst.setString(2, firstNameTF.getText() );
-            pst.setString(3, lastNameTF.getText() );
-            pst.setString(4, mothersNameTF.getText() );
-            pst.setString(5, fathersNameTF.getText() );
-            pst.setString(6, phoneTF.getText() );
-            pst.setString(7, emailTF.getText() );
-            pst.setString(8, dobTF.getText() );
-            pst.setString(9, addressTF.getText() );
-            //pst.setString(10, addNoteTA.getText() );
-                        
-            pst.execute();
-            
-            JOptionPane.showMessageDialog(null, "Data saved");
-            
-            clearFields();
-            
-            pst.close();
-                   
-        }catch (Exception e){
+      }catch (Exception e){
             e.printStackTrace();
+            
         }  
-                                               
-        
-    }//GEN-LAST:event_submitStudentBTActionPerformed
+    }//GEN-LAST:event_browsePicBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,8 +402,6 @@ public class AddUserGUI extends javax.swing.JFrame {
     private javax.swing.JButton closeBT;
     private javax.swing.JTextField dobTF;
     private javax.swing.JTextField emailTF;
-    private javax.swing.JLabel fathersNameLB;
-    private javax.swing.JTextField fathersNameTF;
     private javax.swing.JTextField firstNameTF;
     private javax.swing.JTextField idTF;
     private javax.swing.JButton jButton1;
@@ -520,15 +418,17 @@ public class AddUserGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastNameTF;
-    private javax.swing.JLabel mothersNameLB;
-    private javax.swing.JTextField mothersNameTF;
+    private javax.swing.JTextField pathTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JLabel picLB;
     private javax.swing.JComboBox<String> selectClassCB;
-    private javax.swing.JButton studentForm;
     private javax.swing.JButton subProfileBT;
-    private javax.swing.JButton submitStudentBT;
     private javax.swing.JComboBox<String> typeUserCB;
-    private javax.swing.JButton userForm;
     // End of variables declaration//GEN-END:variables
+
+     //global varibales
+private ImageIcon format = null;
+String filename = null;
+int s = 0;
+byte[] person_image = null;
 }

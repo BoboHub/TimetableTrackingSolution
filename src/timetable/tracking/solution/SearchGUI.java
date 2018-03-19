@@ -8,10 +8,16 @@ package timetable.tracking.solution;
 //@author Boris, Owen, Richard, Yami
 
 import dbUtil.dbConnection;
+import static dbUtil.dbConnection.dbConnector;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 
@@ -25,10 +31,9 @@ public class SearchGUI extends javax.swing.JFrame {
         initComponents();
         
         connection = dbConnection.dbConnector();
-        //databaseTable.setVisible(false);
         
         try{
-            String query = "select (id, firstName, lastName, username, jobCategory) from staff";
+            String query = "select * from staff";
             PreparedStatement pst =connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -53,61 +58,50 @@ public class SearchGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         searchBT = new javax.swing.JButton();
         clearBT = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        deleteBT = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        firstNameTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lastNameTF = new javax.swing.JTextField();
+        idTF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        usernameTF = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jobCategoryTF = new javax.swing.JTextField();
+        updateBT = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        dobTF = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        addressTF = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        phoneTF = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        emailTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Search Database | Timetable Tracking Solution");
         setForeground(java.awt.Color.darkGray);
-        setResizable(false);
 
         jTable1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Staff ID", "First Name", "Last Name", "Username", "Job Category", "Phone", "Email", "Data of Birth", "Address", "Test"
+                "Staff ID", "First Name", "Last Name", "Username", "Job Category", "Phone", "Email", "Data of Birth", "Address"
             }
         ));
         jTable1.setName(""); // NOI18N
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getAccessibleContext().setAccessibleName("Search Database | Timetable Tracking Solution");
 
-        searchTF.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        searchTF.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel1.setText("Search");
@@ -128,62 +122,246 @@ public class SearchGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        deleteBT.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        deleteBT.setText("Delete");
+        deleteBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                deleteBTActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Name");
+
+        jLabel3.setText("Surname");
+
+        jLabel4.setText("ID");
+
+        jLabel5.setText("Username");
+
+        usernameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTFActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Job Category");
+
+        updateBT.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        updateBT.setText("Update");
+        updateBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBTActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("DOB");
+
+        jLabel8.setText("Address");
+
+        jLabel9.setText("Phone");
+
+        jLabel10.setText("Email");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchBT)
-                .addGap(18, 18, 18)
-                .addComponent(clearBT)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(661, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBT)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearBT))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(firstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lastNameTF))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dobTF, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addressTF, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jobCategoryTF, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(updateBT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteBT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(searchBT)
-                    .addComponent(clearBT)
-                    .addComponent(jButton1))
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(searchBT)
+                                .addComponent(clearBT)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(firstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jobCategoryTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(updateBT)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(dobTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(addressTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteBT))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+/*
+    private void makeScreenFullSize(JFrame searchGUI){
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        searchGUI.setSize(screenSize.width, screenSize.height);
+    }*/
+    
+    
+    public Connection getConnection()
+   {
+       Connection con;
+       try {
+           con = DriverManager.getConnection("jdbc:sqlite:src\\tracking_database.sqlite", "root","");
+           return con;
+       } catch (Exception e) {
+           e.printStackTrace();
+           return null;
+       }
+   }
+    
+    
+    public void executeSQlQuery(String query, String message){
+       
+        Connection connection = getConnection();
+        Statement pst;
 
+        try{
+           pst = connection.createStatement();
+           if((pst.executeUpdate(query)) == 1)
+           {
+               // refresh jtable data
+               DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+               model.setRowCount(0);
+               //Show_Users_In_JTable();
+               
+               JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
+           }else{
+               JOptionPane.showMessageDialog(null, "Data Not "+message);
+           }
+       }catch(Exception ex){
+           ex.printStackTrace();
+       }
+        
+        /*
+        //Connection connection = getConnection();
+       //Statement st;
+       try{
+           PreparedStatement pst = (PreparedStatement) connection.createStatement();
+           if((pst.executeUpdate(query)) == 1){
+               // refresh jtable data
+               DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+               model.setRowCount(0);
+               //Show_Users_In_JTable();
+               
+               JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
+           }else{
+               JOptionPane.showMessageDialog(null, "Data Not "+message);
+           }
+       }catch(Exception ex){
+           ex.printStackTrace();
+       }
+        */    
+        
+   }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void clearBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTActionPerformed
-        // TODO add your handling code here:
         
         clearFields();
-        
     }//GEN-LAST:event_clearBTActionPerformed
 
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
+        
+
+            
+    }//GEN-LAST:event_searchBTActionPerformed
+
+    private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
         //String sql = "delete from staff where staff = ?";
 
-
+        /*
         try{
             
             String sql = "delete from staff where staff = ?";
@@ -197,6 +375,8 @@ public class SearchGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Deleted");	
         }catch(Exception e){
      }       
+        */
+        
         /*
                 try{
             String query = "select (id, firstName, lastName, username, jobCategory) from staff";
@@ -208,17 +388,57 @@ public class SearchGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
         */
-
-            
-    }//GEN-LAST:event_searchBTActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_deleteBTActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        // Get the index of the selected row
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+       
+        // Display selected row in JTexteFields
+        idTF.setText(model.getValueAt(i,0).toString());
+        firstNameTF.setText(model.getValueAt(i,1).toString());
+        lastNameTF.setText(model.getValueAt(i,2).toString());
+        //usernameTF.setText(model.getValueAt(i,3).toString());
+        //jobCategoryTF.setText(model.getValueAt(i, 4).toString());
+        phoneTF.setText(model.getValueAt(i,3).toString());
+        emailTF.setText(model.getValueAt(i,4).toString());
+        dobTF.setText(model.getValueAt(i,5).toString());
+        addressTF.setText(model.getValueAt(i,6).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void usernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameTFActionPerformed
+
+    private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
+        
+        String query = "UPDATE `users` SET `firstName`='"+firstNameTF.getText()+"',`lastName`='"+lastNameTF.getText()+"',`phone`="+phoneTF.getText()
+                + ",`email`='"+emailTF.getText()+"',`dob`='"+dobTF.getText()+"',`address`='"+addressTF.getText()+" WHERE `id` = "+idTF.getText();
+                
+        executeSQlQuery(query,"Updated");
+        
+        /*
+               String query = "UPDATE `users` SET `fname`='"+jTextField_FirstName.getText()+"',`lname`='"+jTextField_LastName.getText()+"',`age`="+jTextField_Age.getText()+" WHERE `id` = "+jTextField_Id.getText();
+       executeSQlQuery(query, "Updated");
+        */
+    }//GEN-LAST:event_updateBTActionPerformed
    
     public void clearFields(){
         searchTF.setText("");
+        idTF.setText("");
+        firstNameTF.setText("");
+        lastNameTF.setText("");
+        usernameTF.setText("");
+        jobCategoryTF.setText("");
+        usernameTF.setText("");
+        jobCategoryTF.setText("");
+        phoneTF.setText("");
+        emailTF.setText("");
+        dobTF.setText("");
+        addressTF.setText("");
     }
     
     /**
@@ -257,12 +477,31 @@ public class SearchGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addressTF;
     private javax.swing.JButton clearBT;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton deleteBT;
+    private javax.swing.JTextField dobTF;
+    private javax.swing.JTextField emailTF;
+    private javax.swing.JTextField firstNameTF;
+    private javax.swing.JTextField idTF;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jobCategoryTF;
+    private javax.swing.JTextField lastNameTF;
+    private javax.swing.JTextField phoneTF;
     private javax.swing.JButton searchBT;
     private javax.swing.JTextField searchTF;
+    private javax.swing.JButton updateBT;
+    private javax.swing.JTextField usernameTF;
     // End of variables declaration//GEN-END:variables
 }
