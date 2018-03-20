@@ -18,16 +18,17 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
 
     //Create a GLOBAL variable called conn
     Connection connection = null;
-    
-    /**
-     * Creates new form searchStudentsGUI
-     */
+        
+    //Creates new form searchStudentsGUI
+
     public SearchStudentsGUI() {
         initComponents();
         
         connection = dbConnection.dbConnector();
         
         //connection = sqliteConnection.dbConnector();
+        
+        refreshDBTable();
     }
 
     /**
@@ -44,7 +45,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         takeDataBT = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        updateBT = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lastNameTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -72,6 +73,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         searchTF = new javax.swing.JTextField();
         searchBT = new javax.swing.JButton();
+        clearTF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Students Database");
@@ -99,10 +101,10 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        updateBT.setText("Update");
+        updateBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateBTActionPerformed(evt);
             }
         });
 
@@ -146,6 +148,13 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
 
         searchBT.setText("Search");
 
+        clearTF.setText("Clear");
+        clearTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearTFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,9 +175,11 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(saveBT)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)
+                                .addComponent(updateBT)
                                 .addGap(18, 18, 18)
-                                .addComponent(deleteBT))
+                                .addComponent(deleteBT)
+                                .addGap(18, 18, 18)
+                                .addComponent(clearTF))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -237,8 +248,9 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
                         .addComponent(takeDataBT)
                         .addComponent(searchBT)
                         .addComponent(saveBT)
-                        .addComponent(jButton1)
-                        .addComponent(deleteBT))
+                        .addComponent(updateBT)
+                        .addComponent(deleteBT)
+                        .addComponent(clearTF))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13)
                         .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -309,7 +321,45 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }  
     }//GEN-LAST:event_takeDataBTActionPerformed
-
+    
+    public void clearFields(){
+        searchTF.setText(null);
+        idTF.setText(null);
+        firstNameTF.setText(null);
+        lastNameTF.setText(null);
+        mothersNameTF.setText(null);
+        fathersNameTF.setText(null);
+        phoneTF.setText(null);
+        emailTF.setText(null);
+        dobTF.setText(null);
+        addressTF.setText(null);
+        yearTF.setText(null);
+        teacherTF.setText(null);
+        infoTF.setText(null);
+    }
+    
+    public void refreshDBTable(){
+        try{
+            String query = "SELECT * FROM students";
+            
+            //More specific query
+            //String query = "SELECT id, firstName, address FROM student";
+            
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            //Declare a result set - execute the query and pass it to the rs
+            ResultSet rs = pst.executeQuery();
+            
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            pst.close();
+            rs.close();
+             
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         
         try{
@@ -341,10 +391,13 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
                          
         }catch(Exception e){
             e.printStackTrace();
-        } 
+        }
+        refreshDBTable();
+        
+        clearFields();
     }//GEN-LAST:event_saveBTActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
         
         try{
             String query = "UPDATE students SET id='"+idTF.getText()+"', firstName='"+firstNameTF.getText()+"', lastName='"+lastNameTF.getText()+"', mothersName='"+mothersNameTF.getText()+"', fathersName='"+fathersNameTF.getText()+"', phone='"+phoneTF.getText()+"', email='"+emailTF.getText()+"', dob='"+dobTF.getText()+"', address='"+addressTF.getText()+"', year='"+yearTF.getText()+"', teacher='"+teacherTF.getText()+"', addInformation='"+infoTF.getText()+"' WHERE id='"+idTF.getText()+"'";
@@ -361,7 +414,10 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        refreshDBTable();
+        
+        clearFields();
+    }//GEN-LAST:event_updateBTActionPerformed
 
     private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
         
@@ -379,8 +435,15 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
                          
         }catch(Exception e){
             e.printStackTrace();
-        }  
+        }
+        refreshDBTable();
+        
+        clearFields();
     }//GEN-LAST:event_deleteBTActionPerformed
+
+    private void clearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTFActionPerformed
+        clearFields();
+    }//GEN-LAST:event_clearTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,6 +483,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTF;
+    private javax.swing.JButton clearTF;
     private javax.swing.JButton deleteBT;
     private javax.swing.JTextField dobTF;
     private javax.swing.JTextField emailTF;
@@ -427,7 +491,6 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
     private javax.swing.JTextField firstNameTF;
     private javax.swing.JTextField idTF;
     private javax.swing.JTextField infoTF;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -451,6 +514,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
     private javax.swing.JTextField searchTF;
     private javax.swing.JButton takeDataBT;
     private javax.swing.JTextField teacherTF;
+    private javax.swing.JButton updateBT;
     private javax.swing.JTextField yearTF;
     // End of variables declaration//GEN-END:variables
 }
