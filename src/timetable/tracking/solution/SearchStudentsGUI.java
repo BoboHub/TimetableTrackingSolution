@@ -99,6 +99,11 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         updateBT.setText("Update");
@@ -444,6 +449,39 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
     private void clearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTFActionPerformed
         clearFields();
     }//GEN-LAST:event_clearTFActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        try{
+            int row = jTable1.getSelectedRow();
+            String id = (jTable1.getModel().getValueAt(row, 0).toString());
+            
+            String query = "SELECT * FROM students WHERE id='"+id+"'     ";
+            PreparedStatement pst = connection.prepareStatement(query);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                idTF.setText(rs.getString("id"));
+                firstNameTF.setText(rs.getString("firstName"));
+                lastNameTF.setText(rs.getString("lastName"));
+                mothersNameTF.setText(rs.getString("mothersName"));
+                fathersNameTF.setText(rs.getString("fathersName"));
+                phoneTF.setText(rs.getString("phone"));
+                emailTF.setText(rs.getString("email"));
+                dobTF.setText(rs.getString("dob"));
+                addressTF.setText(rs.getString("address"));
+                yearTF.setText(rs.getString("year"));
+                teacherTF.setText(rs.getString("teacher"));
+                infoTF.setText(rs.getString("addInformation"));
+            }
+            
+            pst.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        } 
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
