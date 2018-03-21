@@ -26,8 +26,6 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         
         connection = dbConnection.dbConnector();
         
-        //connection = sqliteConnection.dbConnector();
-        
         refreshDBTable();
     }
 
@@ -55,7 +53,6 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        searchTF = new javax.swing.JTextField();
         mothersNameTF = new javax.swing.JTextField();
         searchBT = new javax.swing.JButton();
         fathersNameTF = new javax.swing.JTextField();
@@ -74,6 +71,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         lastNameTF = new javax.swing.JTextField();
         dobTF = new javax.swing.JTextField();
         yearTF = new javax.swing.JTextField();
+        searchTF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -111,12 +109,6 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         jLabel13.setText("Search");
 
         jLabel4.setText("Father");
-
-        searchTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchTFKeyReleased(evt);
-            }
-        });
 
         searchBT.setText("Search");
         searchBT.addActionListener(new java.awt.event.ActionListener() {
@@ -491,7 +483,10 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBTActionPerformed
 
     private void clearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTFActionPerformed
+        
         clearFields();
+        refreshDBTable();
+        
     }//GEN-LAST:event_clearTFActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -500,7 +495,7 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
             int row = jTable1.getSelectedRow();
             String id = (jTable1.getModel().getValueAt(row, 0).toString());
             
-            String query = "SELECT * FROM students WHERE id='"+id+"'     ";
+            String query = "SELECT * FROM students WHERE id='"+id+"'";
             PreparedStatement pst = connection.prepareStatement(query);
             
             ResultSet rs = pst.executeQuery();
@@ -526,23 +521,6 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
             e.printStackTrace();
         } 
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void searchTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTFKeyReleased
-
-//        try{
-//            String query = "SELECT * FROM students WHERE firstName=?";
-//            PreparedStatement pst = connection.prepareStatement(query);
-//            pst.setString(1, searchTF.getText());
-//            ResultSet rs = pst.executeQuery();
-//
-//            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-//
-//            pst.close();
-//
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-    }//GEN-LAST:event_searchTFKeyReleased
 
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
         try{

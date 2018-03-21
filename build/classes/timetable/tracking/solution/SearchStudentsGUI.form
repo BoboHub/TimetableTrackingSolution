@@ -316,11 +316,6 @@
                 <Property name="text" type="java.lang.String" value="Father"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="searchTF">
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchTFKeyReleased"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="mothersNameTF">
             </Component>
             <Component class="javax.swing.JButton" name="searchBT">
@@ -398,6 +393,8 @@
             <Component class="javax.swing.JTextField" name="dobTF">
             </Component>
             <Component class="javax.swing.JTextField" name="yearTF">
+            </Component>
+            <Component class="javax.swing.JTextField" name="searchTF">
             </Component>
           </SubComponents>
         </Container>
