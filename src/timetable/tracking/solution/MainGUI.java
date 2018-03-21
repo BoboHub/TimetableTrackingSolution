@@ -344,7 +344,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void sStaffBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStaffBTActionPerformed
         // TODO add your handling code here:
         
-        SearchGUI mySearchGUI = new SearchGUI();
+        SearchStaffGUI mySearchGUI = new SearchStaffGUI();
         this.dispose();
         mySearchGUI.setVisible(rootPaneCheckingEnabled);
         mySearchGUI.setLocationRelativeTo(this);
