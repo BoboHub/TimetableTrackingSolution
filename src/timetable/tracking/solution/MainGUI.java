@@ -20,6 +20,8 @@ public class MainGUI extends javax.swing.JFrame {
     //Creates new form MainGUI
 
     Connection connection = null;
+    String userType="";
+    
     public MainGUI() {
         initComponents();
         
@@ -27,6 +29,9 @@ public class MainGUI extends javax.swing.JFrame {
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
     }
 
+    public void setUserType(String userType){
+        this.userType = userType;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -197,6 +202,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         deleteRecordBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteRecordBT.setText("Delete Record");
+        deleteRecordBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteRecordBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminFunctionsPLayout = new javax.swing.GroupLayout(adminFunctionsP);
         adminFunctionsP.setLayout(adminFunctionsPLayout);
@@ -278,7 +288,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "select * from year1";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year1";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -291,7 +301,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "select * from year2";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year2";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -303,22 +313,25 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
         
-        AddUserGUI myAddUserGUI = new AddUserGUI();
-        this.dispose();
-        myAddUserGUI.setVisible(true);
-        myAddUserGUI.setLocationRelativeTo(this);
+        if(userType.equals("admin")){
+          AddUserGUI myAddUserGUI = new AddUserGUI();
+          this.dispose();
+          myAddUserGUI.setVisible(true);
+          myAddUserGUI.setLocationRelativeTo(this);
         
-        //Check size later on with more time
-        //myAddUserGUI.setSize(1000, 700);
+          //Check size later on with more time
+          //myAddUserGUI.setSize(1000, 700);
 
-        myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+          myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }else{
+            JOptionPane.showMessageDialog(null, "You are not authorised for this action");
+        }
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "select * from year3";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year3";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -331,7 +344,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "select * from year4";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year4";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -363,6 +376,15 @@ public class MainGUI extends javax.swing.JFrame {
         myStudentsSearchGUI.setVisible(rootPaneCheckingEnabled);
         myStudentsSearchGUI.setLocationRelativeTo(this);
     }//GEN-LAST:event_sStudentBTActionPerformed
+
+    private void deleteRecordBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRecordBTActionPerformed
+        // TODO add your handling code here:
+        if(userType.equals("admin")){
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "You are not authorised for this action");
+        }
+    }//GEN-LAST:event_deleteRecordBTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;

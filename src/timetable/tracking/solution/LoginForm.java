@@ -223,16 +223,18 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
              try {
-                    String query ="select * from EmployeeInfo where Username=? and password=? ";
+                    String query ="select ID,firstName,userType from EmployeeInfo where Username=? and password=? ";
                     PreparedStatement pst=connection.prepareStatement(query);
                     pst.setString(1, userNameTF.getText());
                     pst.setString(2, passwordTF.getText());
                     
                     ResultSet rs=pst.executeQuery(); 
                     int count = 0;
+                    String userType="";
+                    
                     while(rs.next()) {
                     count=count+1;
-                   
+                    userType = rs.getString(3);
                     }
                     if(count ==1)
                     {
@@ -243,6 +245,7 @@ public class LoginForm extends javax.swing.JFrame {
                     newMainGUI.setSize(925, 550);
                     newMainGUI.setLocationRelativeTo(null);
                     newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    newMainGUI.setUserType(userType);
                     }
                     else if (count >1)
                     {
