@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 //@author Boris, Owen, Richard, Yami
@@ -264,6 +265,11 @@ public class MainGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout DynamicPanelLayout = new javax.swing.GroupLayout(DynamicPanel);
@@ -385,6 +391,33 @@ public class MainGUI extends javax.swing.JFrame {
     private void deleteRecordBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRecordBTActionPerformed
 
     }//GEN-LAST:event_deleteRecordBTActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+          int index = jTable1.getSelectedRow();
+          TableModel model = jTable1.getModel();
+          String id =model.getValueAt(index, 0).toString();
+          String name =model.getValueAt(index, 1).toString();
+          String surname =model.getValueAt(index, 2).toString();
+          String phone =model.getValueAt(index, 2).toString();
+          String email =model.getValueAt(index, 3).toString();
+          String dob =model.getValueAt(index, 4).toString();
+          String address =model.getValueAt(index, 5).toString();
+          
+          AddUserGUI myAddUserGUI = new AddUserGUI();
+          myAddUserGUI.pack();
+          myAddUserGUI.setVisible(true);
+          myAddUserGUI.setLocationRelativeTo(this);
+          
+          myAddUserGUI.idTF.setText(id);
+          myAddUserGUI.firstNameTF.setText(name);
+          myAddUserGUI.firstNameTF.setText(surname);
+          myAddUserGUI.phoneTF.setText(phone);
+          myAddUserGUI.emailTF.setText(email);
+          myAddUserGUI.dobTF.setText(dob);
+          myAddUserGUI.addressTF.setText(address);
+   
+    }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
