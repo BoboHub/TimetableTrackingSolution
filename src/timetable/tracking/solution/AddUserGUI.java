@@ -114,6 +114,11 @@ public class AddUserGUI extends javax.swing.JFrame {
         jLabel3.setText("Surname:");
 
         typeUserCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Teacher", "Principal", "Admin", "Staff" }));
+        typeUserCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeUserCBActionPerformed(evt);
+            }
+        });
 
         closeBT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         closeBT.setText("Close");
@@ -387,6 +392,10 @@ public class AddUserGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_browsePicBTActionPerformed
 
+    private void typeUserCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeUserCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeUserCBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,14 +451,14 @@ public class AddUserGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea addNoteTA;
-    private javax.swing.JTextField addressTF;
+    public javax.swing.JTextArea addNoteTA;
+    public javax.swing.JTextField addressTF;
     private javax.swing.JButton browsePicBT;
     private javax.swing.JButton closeBT;
-    private javax.swing.JTextField dobTF;
-    private javax.swing.JTextField emailTF;
-    private javax.swing.JTextField firstNameTF;
-    private javax.swing.JTextField idTF;
+    public javax.swing.JTextField dobTF;
+    public javax.swing.JTextField emailTF;
+    public javax.swing.JTextField firstNameTF;
+    public javax.swing.JTextField idTF;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -463,9 +472,9 @@ public class AddUserGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField lastNameTF;
+    public javax.swing.JTextField lastNameTF;
     private javax.swing.JTextField pathTF;
-    private javax.swing.JTextField phoneTF;
+    public javax.swing.JTextField phoneTF;
     private javax.swing.JLabel picLB;
     private javax.swing.JComboBox<String> selectClassCB;
     private javax.swing.JButton studentForm;
