@@ -31,6 +31,15 @@ public class MainGUI extends javax.swing.JFrame {
 
     public void setUserType(String userType){
         this.userType = userType;
+          if(userType.equals("admin")){       
+        }
+          else{
+            sStudentBT.setVisible(false);
+            sStaffBT.setVisible(false);
+            addUserBT.setVisible(false);
+            deleteRecordBT.setVisible(false);
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -313,7 +322,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
         
-        if(userType.equals("admin")){
+
           AddUserGUI myAddUserGUI = new AddUserGUI();
           this.dispose();
           myAddUserGUI.setVisible(true);
@@ -323,9 +332,6 @@ public class MainGUI extends javax.swing.JFrame {
           //myAddUserGUI.setSize(1000, 700);
 
           myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }else{
-            JOptionPane.showMessageDialog(null, "You are not authorised for this action");
-        }
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
@@ -356,14 +362,11 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void sStaffBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStaffBTActionPerformed
         // TODO add your handling code here:
-        
-        SearchStaffGUI mySearchGUI = new SearchStaffGUI();
-        this.dispose();
-        mySearchGUI.setVisible(rootPaneCheckingEnabled);
-        mySearchGUI.setLocationRelativeTo(this);
-        
-       
-        
+            SearchStaffGUI mySearchGUI = new SearchStaffGUI();
+            this.dispose();
+            mySearchGUI.setVisible(rootPaneCheckingEnabled);
+            mySearchGUI.setLocationRelativeTo(this);
+
         //Check size later on with more time
         //myAddUserGUI.setSize(1000, 700);
 
@@ -371,19 +374,16 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_sStaffBTActionPerformed
 
     private void sStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStudentBTActionPerformed
-        SearchStudentsGUI myStudentsSearchGUI = new SearchStudentsGUI();
-        this.dispose();
-        myStudentsSearchGUI.setVisible(rootPaneCheckingEnabled);
-        myStudentsSearchGUI.setLocationRelativeTo(this);
+
+            SearchStudentsGUI myStudentsSearchGUI = new SearchStudentsGUI();
+            this.dispose();
+            myStudentsSearchGUI.setVisible(rootPaneCheckingEnabled);
+            myStudentsSearchGUI.setLocationRelativeTo(this);
+ 
     }//GEN-LAST:event_sStudentBTActionPerformed
 
     private void deleteRecordBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRecordBTActionPerformed
-        // TODO add your handling code here:
-        if(userType.equals("admin")){
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "You are not authorised for this action");
-        }
+
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
