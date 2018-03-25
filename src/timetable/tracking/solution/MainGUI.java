@@ -337,7 +337,7 @@ public class MainGUI extends javax.swing.JFrame {
           //Check size later on with more time
           //myAddUserGUI.setSize(1000, 700);
 
-          myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+          //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
@@ -411,12 +411,18 @@ public class MainGUI extends javax.swing.JFrame {
           
           myAddUserGUI.idTF.setText(id);
           myAddUserGUI.firstNameTF.setText(name);
-          myAddUserGUI.firstNameTF.setText(surname);
+          myAddUserGUI.lastNameTF.setText(surname);
           myAddUserGUI.phoneTF.setText(phone);
           myAddUserGUI.emailTF.setText(email);
           myAddUserGUI.dobTF.setText(dob);
           myAddUserGUI.addressTF.setText(address);
-   
+          
+          myAddUserGUI.subProfileBT.setVisible(false); 
+          myAddUserGUI.pathTF.setVisible(false);
+          myAddUserGUI.jLabel5.setVisible(false);
+            myAddUserGUI.browsePicBT.setVisible(false);
+           
+      
     }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 
 import javax.swing.JOptionPane;
@@ -69,8 +70,6 @@ public class AddUserGUI extends javax.swing.JFrame {
         selectClassCB = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        studentForm = new javax.swing.JButton();
-        userForm = new javax.swing.JButton();
         pathTF = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
@@ -142,26 +141,17 @@ public class AddUserGUI extends javax.swing.JFrame {
         picLB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         selectClassCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectClassCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectClassCBActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("ID:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Create New Profile");
-
-        studentForm.setText("Student");
-        studentForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentFormActionPerformed(evt);
-            }
-        });
-
-        userForm.setText("User");
-        userForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFormActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,11 +183,11 @@ public class AddUserGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 97, Short.MAX_VALUE))
+                                        .addGap(0, 91, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(idTF, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
@@ -224,10 +214,7 @@ public class AddUserGUI extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userForm)
-                                    .addComponent(studentForm))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 86, Short.MAX_VALUE)
                                 .addComponent(picLB, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
@@ -246,11 +233,8 @@ public class AddUserGUI extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(typeUserCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(selectClassCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentForm))
-                        .addGap(18, 18, 18)
-                        .addComponent(userForm)
-                        .addGap(4, 4, 4)
+                            .addComponent(selectClassCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -281,7 +265,7 @@ public class AddUserGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(dobTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(addressTF, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -352,21 +336,6 @@ public class AddUserGUI extends javax.swing.JFrame {
        
     }//GEN-LAST:event_subProfileBTActionPerformed
 
-    private void userFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFormActionPerformed
-        // TODO add your handling code here:
-        
-     
-       
-        
-    }//GEN-LAST:event_userFormActionPerformed
-
-    private void studentFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentFormActionPerformed
-        // TODO add your handling code here:
-        
-
-        
-    }//GEN-LAST:event_studentFormActionPerformed
-
     private void browsePicBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePicBTActionPerformed
       JFileChooser Chooser = new JFileChooser();
        Chooser.showOpenDialog(null);
@@ -394,7 +363,13 @@ public class AddUserGUI extends javax.swing.JFrame {
 
     private void typeUserCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeUserCBActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_typeUserCBActionPerformed
+
+    private void selectClassCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectClassCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectClassCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -453,7 +428,7 @@ public class AddUserGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextArea addNoteTA;
     public javax.swing.JTextField addressTF;
-    private javax.swing.JButton browsePicBT;
+    public javax.swing.JButton browsePicBT;
     private javax.swing.JButton closeBT;
     public javax.swing.JTextField dobTF;
     public javax.swing.JTextField emailTF;
@@ -466,21 +441,19 @@ public class AddUserGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField lastNameTF;
-    private javax.swing.JTextField pathTF;
+    public javax.swing.JTextField pathTF;
     public javax.swing.JTextField phoneTF;
     private javax.swing.JLabel picLB;
     private javax.swing.JComboBox<String> selectClassCB;
-    private javax.swing.JButton studentForm;
-    private javax.swing.JButton subProfileBT;
+    public javax.swing.JButton subProfileBT;
     private javax.swing.JComboBox<String> typeUserCB;
-    private javax.swing.JButton userForm;
     // End of variables declaration//GEN-END:variables
  //global varibales
 private ImageIcon format = null;
