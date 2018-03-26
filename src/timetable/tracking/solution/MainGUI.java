@@ -32,16 +32,21 @@ public class MainGUI extends javax.swing.JFrame {
 
     public void setUserType(String userType){
         this.userType = userType;
-          if(userType.equals("admin")){       
-        }
-          else{
+          if(userType.equals("admin")){   
+              
+          }else{
             sStudentBT.setVisible(false);
             sStaffBT.setVisible(false);
             addUserBT.setVisible(false);
             deleteRecordBT.setVisible(false);
-        }
+          }
         
     }
+    
+    public void setName(String name){
+        nameLabel.setText(name);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +65,9 @@ public class MainGUI extends javax.swing.JFrame {
         tutorNLB = new javax.swing.JLabel();
         classNLB = new javax.swing.JLabel();
         nStudentsLB = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        classNameLabel = new javax.swing.JLabel();
+        numOfStudents = new javax.swing.JLabel();
         adminFunctionsP = new javax.swing.JPanel();
         sStudentBT = new javax.swing.JButton();
         sStaffBT = new javax.swing.JButton();
@@ -148,27 +156,48 @@ public class MainGUI extends javax.swing.JFrame {
         nStudentsLB.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nStudentsLB.setText("No.of Students:");
 
+        nameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        classNameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        numOfStudents.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout classInfoPLayout = new javax.swing.GroupLayout(classInfoP);
         classInfoP.setLayout(classInfoPLayout);
         classInfoPLayout.setHorizontalGroup(
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classInfoPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tutorNLB, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(classNLB, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nStudentsLB, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(tutorNLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(classNLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(classNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(nStudentsLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numOfStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         classInfoPLayout.setVerticalGroup(
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classInfoPLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(tutorNLB)
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tutorNLB)
+                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(classNLB)
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(classNLB)
+                    .addComponent(classNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(nStudentsLB)
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nStudentsLB)
+                    .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(246, Short.MAX_VALUE))
         );
 
@@ -308,6 +337,8 @@ public class MainGUI extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             jTable1.setVisible(true);
+            classNameLabel.setText("Year 1");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -320,7 +351,9 @@ public class MainGUI extends javax.swing.JFrame {
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);   
+            jTable1.setVisible(true); 
+            classNameLabel.setText("Year 2");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -348,6 +381,8 @@ public class MainGUI extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             jTable1.setVisible(true);
+            classNameLabel.setText("Year 3");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -361,6 +396,8 @@ public class MainGUI extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             jTable1.setVisible(true);
+            classNameLabel.setText("Year 4");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -431,12 +468,15 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel adminFunctionsP;
     private javax.swing.JPanel classInfoP;
     private javax.swing.JLabel classNLB;
+    private javax.swing.JLabel classNameLabel;
     private javax.swing.JButton closeBT;
     private javax.swing.JButton deleteRecordBT;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
     private javax.swing.JLabel nStudentsLB;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel numOfStudents;
     private javax.swing.JButton sStaffBT;
     private javax.swing.JButton sStudentBT;
     private javax.swing.JLabel tutorNLB;

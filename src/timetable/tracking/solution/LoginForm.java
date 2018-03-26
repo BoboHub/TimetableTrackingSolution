@@ -231,9 +231,11 @@ public class LoginForm extends javax.swing.JFrame {
                     ResultSet rs=pst.executeQuery(); 
                     int count = 0;
                     String userType="";
+                    String userName="";
                     
                     while(rs.next()) {
                     count=count+1;
+                    userName = rs.getString(2);
                     userType = rs.getString(3);
                     }
                     if(count ==1)
@@ -246,6 +248,7 @@ public class LoginForm extends javax.swing.JFrame {
                     newMainGUI.setLocationRelativeTo(null);
                     newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     newMainGUI.setUserType(userType);
+                    newMainGUI.setName(userName);
                     }
                     else if (count >1)
                     {
