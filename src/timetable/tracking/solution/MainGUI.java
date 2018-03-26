@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 //@author Boris, Owen, Richard, Yami
@@ -20,6 +21,8 @@ public class MainGUI extends javax.swing.JFrame {
     //Creates new form MainGUI
 
     Connection connection = null;
+    String userType="";
+    
     public MainGUI() {
         initComponents();
         
@@ -27,6 +30,23 @@ public class MainGUI extends javax.swing.JFrame {
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
     }
 
+    public void setUserType(String userType){
+        this.userType = userType;
+          if(userType.equals("admin")){   
+              
+          }else{
+            sStudentBT.setVisible(false);
+            sStaffBT.setVisible(false);
+            addUserBT.setVisible(false);
+            deleteRecordBT.setVisible(false);
+          }
+        
+    }
+    
+    public void setName(String name){
+        nameLabel.setText(name);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +65,9 @@ public class MainGUI extends javax.swing.JFrame {
         tutorNLB = new javax.swing.JLabel();
         classNLB = new javax.swing.JLabel();
         nStudentsLB = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        classNameLabel = new javax.swing.JLabel();
+        numOfStudents = new javax.swing.JLabel();
         adminFunctionsP = new javax.swing.JPanel();
         sStudentBT = new javax.swing.JButton();
         sStaffBT = new javax.swing.JButton();
@@ -133,27 +156,48 @@ public class MainGUI extends javax.swing.JFrame {
         nStudentsLB.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nStudentsLB.setText("No.of Students:");
 
+        nameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        classNameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        numOfStudents.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout classInfoPLayout = new javax.swing.GroupLayout(classInfoP);
         classInfoP.setLayout(classInfoPLayout);
         classInfoPLayout.setHorizontalGroup(
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classInfoPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tutorNLB, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(classNLB, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nStudentsLB, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(tutorNLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(classNLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(classNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(nStudentsLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numOfStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         classInfoPLayout.setVerticalGroup(
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classInfoPLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(tutorNLB)
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tutorNLB)
+                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(classNLB)
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(classNLB)
+                    .addComponent(classNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(nStudentsLB)
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nStudentsLB)
+                    .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(246, Short.MAX_VALUE))
         );
 
@@ -197,6 +241,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         deleteRecordBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteRecordBT.setText("Delete Record");
+        deleteRecordBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteRecordBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminFunctionsPLayout = new javax.swing.GroupLayout(adminFunctionsP);
         adminFunctionsP.setLayout(adminFunctionsPLayout);
@@ -245,6 +294,11 @@ public class MainGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout DynamicPanelLayout = new javax.swing.GroupLayout(DynamicPanel);
@@ -278,11 +332,13 @@ public class MainGUI extends javax.swing.JFrame {
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "select * from year1";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year1";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             jTable1.setVisible(true);
+            classNameLabel.setText("Year 1");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -291,11 +347,13 @@ public class MainGUI extends javax.swing.JFrame {
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "select * from year2";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year2";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);   
+            jTable1.setVisible(true); 
+            classNameLabel.setText("Year 2");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -303,26 +361,28 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
         
-        AddUserGUI myAddUserGUI = new AddUserGUI();
-        this.dispose();
-        myAddUserGUI.setVisible(true);
-        myAddUserGUI.setLocationRelativeTo(this);
+
+          AddUserGUI myAddUserGUI = new AddUserGUI();
+          this.dispose();
+          myAddUserGUI.setVisible(true);
+          myAddUserGUI.setLocationRelativeTo(this);
         
-        //Check size later on with more time
-        //myAddUserGUI.setSize(1000, 700);
+          //Check size later on with more time
+          //myAddUserGUI.setSize(1000, 700);
 
-        myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+          //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "select * from year3";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year3";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             jTable1.setVisible(true);
+            classNameLabel.setText("Year 3");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -331,11 +391,13 @@ public class MainGUI extends javax.swing.JFrame {
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "select * from year4";
+            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year4";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             jTable1.setVisible(true);
+            classNameLabel.setText("Year 4");
+            numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -343,14 +405,11 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void sStaffBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStaffBTActionPerformed
         // TODO add your handling code here:
-        
-        SearchGUI mySearchGUI = new SearchGUI();
-        this.dispose();
-        mySearchGUI.setVisible(rootPaneCheckingEnabled);
-        mySearchGUI.setLocationRelativeTo(this);
-        
-       
-        
+            SearchStaffGUI mySearchGUI = new SearchStaffGUI();
+            this.dispose();
+            mySearchGUI.setVisible(rootPaneCheckingEnabled);
+            mySearchGUI.setLocationRelativeTo(this);
+
         //Check size later on with more time
         //myAddUserGUI.setSize(1000, 700);
 
@@ -358,11 +417,50 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_sStaffBTActionPerformed
 
     private void sStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStudentBTActionPerformed
-        SearchStudentsGUI myStudentsSearchGUI = new SearchStudentsGUI();
-        this.dispose();
-        myStudentsSearchGUI.setVisible(rootPaneCheckingEnabled);
-        myStudentsSearchGUI.setLocationRelativeTo(this);
+
+            SearchStudentsGUI myStudentsSearchGUI = new SearchStudentsGUI();
+            this.dispose();
+            myStudentsSearchGUI.setVisible(rootPaneCheckingEnabled);
+            myStudentsSearchGUI.setLocationRelativeTo(this);
+ 
     }//GEN-LAST:event_sStudentBTActionPerformed
+
+    private void deleteRecordBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRecordBTActionPerformed
+
+    }//GEN-LAST:event_deleteRecordBTActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+          int index = jTable1.getSelectedRow();
+          TableModel model = jTable1.getModel();
+          String id =model.getValueAt(index, 0).toString();
+          String name =model.getValueAt(index, 1).toString();
+          String surname =model.getValueAt(index, 2).toString();
+          String phone =model.getValueAt(index, 2).toString();
+          String email =model.getValueAt(index, 3).toString();
+          String dob =model.getValueAt(index, 4).toString();
+          String address =model.getValueAt(index, 5).toString();
+          
+          AddUserGUI myAddUserGUI = new AddUserGUI();
+          myAddUserGUI.pack();
+          myAddUserGUI.setVisible(true);
+          myAddUserGUI.setLocationRelativeTo(this);
+          
+          myAddUserGUI.idTF.setText(id);
+          myAddUserGUI.firstNameTF.setText(name);
+          myAddUserGUI.lastNameTF.setText(surname);
+          myAddUserGUI.phoneTF.setText(phone);
+          myAddUserGUI.emailTF.setText(email);
+          myAddUserGUI.dobTF.setText(dob);
+          myAddUserGUI.addressTF.setText(address);
+          
+          myAddUserGUI.subProfileBT.setVisible(false); 
+          myAddUserGUI.pathTF.setVisible(false);
+          myAddUserGUI.jLabel5.setVisible(false);
+            myAddUserGUI.browsePicBT.setVisible(false);
+           
+      
+    }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
@@ -370,12 +468,15 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel adminFunctionsP;
     private javax.swing.JPanel classInfoP;
     private javax.swing.JLabel classNLB;
+    private javax.swing.JLabel classNameLabel;
     private javax.swing.JButton closeBT;
     private javax.swing.JButton deleteRecordBT;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
     private javax.swing.JLabel nStudentsLB;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel numOfStudents;
     private javax.swing.JButton sStaffBT;
     private javax.swing.JButton sStudentBT;
     private javax.swing.JLabel tutorNLB;
