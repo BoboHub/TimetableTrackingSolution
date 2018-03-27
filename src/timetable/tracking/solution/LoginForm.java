@@ -23,7 +23,7 @@ public class LoginForm extends javax.swing.JFrame {
     
     public LoginForm() {
         initComponents();
-        connection=dbConnection.dbConnector();
+        connection=dbConnection.dbConnector();// ininitialise connection with DB via object called "connection"
     }
 
     /**
@@ -220,25 +220,25 @@ public class LoginForm extends javax.swing.JFrame {
                }
     
     private void loginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTActionPerformed
-        // TODO add your handling code here:
+
         
              try {
                     String query ="select ID,firstName,userType from EmployeeInfo where Username=? and password=? ";
-                    PreparedStatement pst=connection.prepareStatement(query);
-                    pst.setString(1, userNameTF.getText());
+                    PreparedStatement pst=connection.prepareStatement(query); // pst object equals to object conneciton and pass in the query
+                    pst.setString(1, userNameTF.getText()); // passing valuses from the users with index pramter 1 to identify the "username" + then the value
                     pst.setString(2, passwordTF.getText());
                     
-                    ResultSet rs=pst.executeQuery(); 
+                    ResultSet rs=pst.executeQuery(); //resultset which executes the query and the result will be transfered to the "rs" object
                     int count = 0;
                     String userType="";
                     String userName="";
                     
-                    while(rs.next()) {
+                    while(rs.next()) { //gives us the result one by one - next = boolean
                     count=count+1;
                     userName = rs.getString(2);
                     userType = rs.getString(3);
                     }
-                    if(count ==1)
+                    if(count ==1)// if we find one user with valid credentials execute the following 
                     {
                     JOptionPane.showMessageDialog(null, "Username and password is correct");
                     MainGUI newMainGUI = new MainGUI();
@@ -250,11 +250,11 @@ public class LoginForm extends javax.swing.JFrame {
                     newMainGUI.setUserType(userType);
                     newMainGUI.setName(userName);
                     }
-                    else if (count >1)
+                    else if (count >1)// if we find more then  one user with valid credentials execute the following 
                     {
                       JOptionPane.showMessageDialog(null, "Duplicated username and password is correct");
                     }
-                    else 
+                    else // if we dont find a user with valid credentials execute the following 
                     {
                       JOptionPane.showMessageDialog(null, "Username/password is NOT correct");
                     }
