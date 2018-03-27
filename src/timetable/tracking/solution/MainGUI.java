@@ -9,8 +9,12 @@ import dbUtil.dbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -335,8 +339,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year1";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 1");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
@@ -350,8 +356,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year2";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true); 
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 2");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
@@ -379,8 +387,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year3";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 3");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
@@ -394,8 +404,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year4";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 4");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
