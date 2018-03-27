@@ -9,12 +9,7 @@ import dbUtil.dbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -442,16 +437,17 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+    
           int index = jTable1.getSelectedRow();
           TableModel model = jTable1.getModel();
-          String id =model.getValueAt(index, 0).toString();
-          String name =model.getValueAt(index, 1).toString();
-          String surname =model.getValueAt(index, 2).toString();
-          String phone =model.getValueAt(index, 2).toString();
-          String email =model.getValueAt(index, 3).toString();
-          String dob =model.getValueAt(index, 4).toString();
-          String address =model.getValueAt(index, 5).toString();
+          
+          String id =model.getValueAt(index, 1).toString();
+          String name =model.getValueAt(index, 2).toString();
+          String surname =model.getValueAt(index, 3).toString();
+          String phone =model.getValueAt(index, 4).toString();
+          String email =model.getValueAt(index, 5).toString();
+          String dob =model.getValueAt(index, 6).toString();
+          String address =model.getValueAt(index, 7).toString();
           
           AddUserGUI myAddUserGUI = new AddUserGUI();
           myAddUserGUI.pack();
@@ -470,8 +466,7 @@ public class MainGUI extends javax.swing.JFrame {
           myAddUserGUI.pathTF.setVisible(false);
           myAddUserGUI.jLabel5.setVisible(false);
             myAddUserGUI.browsePicBT.setVisible(false);
-           
-      
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
