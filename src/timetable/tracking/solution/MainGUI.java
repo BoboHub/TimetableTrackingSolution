@@ -74,6 +74,7 @@ public class MainGUI extends javax.swing.JFrame {
         addUserBT = new javax.swing.JButton();
         closeBT = new javax.swing.JButton();
         deleteRecordBT = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -247,12 +248,22 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("DBs Search and C.R.U.D.");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout adminFunctionsPLayout = new javax.swing.GroupLayout(adminFunctionsP);
         adminFunctionsP.setLayout(adminFunctionsPLayout);
         adminFunctionsPLayout.setHorizontalGroup(
             adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(sStudentBT)
                 .addGap(18, 18, 18)
                 .addComponent(sStaffBT)
@@ -260,7 +271,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(addUserBT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteRecordBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(closeBT)
                 .addContainerGap())
         );
@@ -273,7 +284,8 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(sStaffBT)
                     .addComponent(addUserBT)
                     .addComponent(closeBT)
-                    .addComponent(deleteRecordBT))
+                    .addComponent(deleteRecordBT)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -470,6 +482,13 @@ public class MainGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AdminDatabases myAdminDB = new AdminDatabases();
+        this.dispose();
+        myAdminDB.setVisible(rootPaneCheckingEnabled);
+        myAdminDB.setLocationRelativeTo(this);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
     private javax.swing.JButton addUserBT;
@@ -479,6 +498,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel classNameLabel;
     private javax.swing.JButton closeBT;
     private javax.swing.JButton deleteRecordBT;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
