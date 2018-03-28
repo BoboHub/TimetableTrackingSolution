@@ -26,11 +26,11 @@ public class AdminDatabases extends javax.swing.JFrame {
         
         connection = dbConnection.dbConnector();
         
-        takeData();
-        refreshDBTable();
+        refreshStudentsDBTable();
+        refreshStaffDBTable();
     }
     
-    public void takeData(){
+    public void takeStudentsData(){
         try{
             String query = "SELECT * FROM students";
             
@@ -51,8 +51,30 @@ public class AdminDatabases extends javax.swing.JFrame {
             e.printStackTrace();
         } 
     }
+    
+    public void takeStaffData(){
+        try{
+            String query = "SELECT * FROM staff";
+            
+            //More specific query
+            //String query = "SELECT id, firstName, address FROM student";
+            
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            //Declare a result set - execute the query and pass it to the rs
+            ResultSet rs = pst.executeQuery();
+            
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            pst.close();
+            rs.close();
+             
+        }catch(Exception e){
+            e.printStackTrace();
+        } 
+    }
 
-    public void refreshDBTable(){
+    public void refreshStudentsDBTable(){
         try{
             String query = "SELECT * FROM students";
             
@@ -65,6 +87,25 @@ public class AdminDatabases extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            pst.close();
+            rs.close();
+             
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void refreshStaffDBTable(){
+        try{
+            String query = "SELECT * FROM staff";
+
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            //Declare a result set - execute the query and pass it to the rs
+            ResultSet rs = pst.executeQuery();
+            
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
             
             pst.close();
             rs.close();
@@ -88,6 +129,15 @@ public class AdminDatabases extends javax.swing.JFrame {
         yearTF.setText(null);
         teacherTF.setText(null);
         addInfoTA.setText(null);
+        
+        searchTF1.setText(null);
+        idTF1.setText(null);
+        firstNameTF1.setText(null);
+        lastNameTF1.setText(null);
+        phoneTF1.setText(null);
+        emailTF1.setText(null);
+        dobTF1.setText(null);
+        addressTF1.setText(null);
     }
 
     /**
@@ -157,9 +207,9 @@ public class AdminDatabases extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         emailTF1 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        dobTF1 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        fdsfsa1 = new javax.swing.JTextField();
+        phoneTF1 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         addressTF1 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -475,15 +525,35 @@ public class AdminDatabases extends javax.swing.JFrame {
 
         clearBT1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         clearBT1.setText("Clear");
+        clearBT1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBT1ActionPerformed(evt);
+            }
+        });
 
         saveBT1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         saveBT1.setText("Save");
+        saveBT1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBT1ActionPerformed(evt);
+            }
+        });
 
         updateBT1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         updateBT1.setText("Update");
+        updateBT1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBT1ActionPerformed(evt);
+            }
+        });
 
         deleteBT1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         deleteBT1.setText("Delete");
+        deleteBT1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBT1ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("ID");
 
@@ -569,7 +639,7 @@ public class AdminDatabases extends javax.swing.JFrame {
                                     .addComponent(jLabel22)
                                     .addComponent(jLabel19))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(dobTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -580,7 +650,7 @@ public class AdminDatabases extends javax.swing.JFrame {
                                 .addGap(7, 7, 7)
                                 .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fdsfsa1)))))
+                                .addComponent(phoneTF1)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -654,8 +724,8 @@ public class AdminDatabases extends javax.swing.JFrame {
                             .addComponent(idTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fdsfsa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dobTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19)
                             .addComponent(jLabel21)
                             .addComponent(addressTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -692,6 +762,11 @@ public class AdminDatabases extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -742,10 +817,19 @@ public class AdminDatabases extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBTActionPerformed
 
     private void searchBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBT1ActionPerformed
-        // TODO add your handling code here:
-        
-        //hello there
-        
+        try{
+            String query = "SELECT * FROM staff WHERE firstName=?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, searchTF1.getText());
+            ResultSet rs = pst.executeQuery();
+
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+
+            pst.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_searchBT1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -783,7 +867,7 @@ public class AdminDatabases extends javax.swing.JFrame {
 
     private void clearBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTActionPerformed
         clearFields();
-        refreshDBTable();
+        refreshStudentsDBTable();
     }//GEN-LAST:event_clearBTActionPerformed
 
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
@@ -817,7 +901,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        refreshDBTable();
+        refreshStudentsDBTable();
         
         clearFields();
     }//GEN-LAST:event_saveBTActionPerformed
@@ -839,9 +923,7 @@ public class AdminDatabases extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-        takeData();
-        
-        refreshDBTable();
+        refreshStudentsDBTable();
         
         clearFields(); 
     }//GEN-LAST:event_updateBTActionPerformed
@@ -862,10 +944,113 @@ public class AdminDatabases extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        refreshDBTable();
+        refreshStudentsDBTable();
         
         clearFields();        
     }//GEN-LAST:event_deleteBTActionPerformed
+
+    private void clearBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBT1ActionPerformed
+        clearFields();
+        refreshStaffDBTable();
+    }//GEN-LAST:event_clearBT1ActionPerformed
+
+    private void saveBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBT1ActionPerformed
+        try{
+            String query = "INSERT INTO staff (id, firstName, lastName, phone, email, dob, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, idTF1.getText());
+            pst.setString(2, firstNameTF1.getText());
+            pst.setString(3, lastNameTF1.getText());
+            pst.setString(4, phoneTF1.getText());
+            pst.setString(5, emailTF1.getText());
+            pst.setString(6, dobTF1.getText());
+            pst.setString(7, addressTF1.getText());
+            
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null,"Data saved into staff DB successfully!");
+                        
+            pst.close();
+                         
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        refreshStaffDBTable();
+        
+        clearFields();   
+    }//GEN-LAST:event_saveBT1ActionPerformed
+
+    private void updateBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBT1ActionPerformed
+        try{
+            String query = "UPDATE staff SET id='"+idTF1.getText()+"', firstName='"+firstNameTF1.getText()+"', lastName='"+lastNameTF1.getText()+"', phone='"+phoneTF1.getText()+"', email='"+emailTF1.getText()+"', dob='"+dobTF1.getText()+"', address='"+addressTF1.getText()+"' WHERE id='"+idTF1.getText()+"'";
+
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null,"Data successfully updated into staff DB!");
+                        
+            pst.close();
+                         
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        refreshStaffDBTable();
+        
+        clearFields(); 
+    }//GEN-LAST:event_updateBT1ActionPerformed
+
+    private void deleteBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBT1ActionPerformed
+        try{
+            String query = "DELETE FROM staff WHERE id='"+idTF1.getText()+"'";
+
+            //Pass the query to the preparedStatement
+            PreparedStatement pst = connection.prepareStatement(query);
+            
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null,"Data successfully deleted from staff DB!");
+                        
+            pst.close();
+                         
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        refreshStaffDBTable();
+        
+        clearFields();        
+    }//GEN-LAST:event_deleteBT1ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        try{
+            int row = jTable2.getSelectedRow();
+            String id = (jTable2.getModel().getValueAt(row, 0).toString());
+            
+            String query = "SELECT * FROM staff WHERE id='"+id+"'";
+            PreparedStatement pst = connection.prepareStatement(query);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                idTF1.setText(rs.getString("id"));
+                firstNameTF1.setText(rs.getString("firstName"));
+                lastNameTF1.setText(rs.getString("lastName"));
+                phoneTF1.setText(rs.getString("phone"));
+                emailTF1.setText(rs.getString("email"));
+                dobTF1.setText(rs.getString("dob"));
+                addressTF1.setText(rs.getString("address"));
+            }
+            
+            pst.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -931,10 +1116,10 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JButton deleteBT;
     private javax.swing.JButton deleteBT1;
     private javax.swing.JTextField dobTF;
+    private javax.swing.JTextField dobTF1;
     private javax.swing.JTextField emailTF;
     private javax.swing.JTextField emailTF1;
     private javax.swing.JTextField fathersNameTF;
-    private javax.swing.JTextField fdsfsa1;
     private javax.swing.JTextField firstNameTF;
     private javax.swing.JTextField firstNameTF1;
     private javax.swing.JTextField idTF;
@@ -980,7 +1165,6 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
@@ -988,6 +1172,7 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JTextField lastNameTF1;
     private javax.swing.JTextField mothersNameTF;
     private javax.swing.JTextField phoneTF;
+    private javax.swing.JTextField phoneTF1;
     private javax.swing.JLabel picLB;
     private javax.swing.JLabel picLB1;
     private javax.swing.JButton saveBT;
