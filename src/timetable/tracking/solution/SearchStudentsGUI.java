@@ -340,6 +340,8 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //DONE
     private void takeDataBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeDataBTActionPerformed
         
         try{
@@ -363,6 +365,10 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_takeDataBTActionPerformed
     
+    
+    
+    
+    
     public void clearFields(){
         searchTF.setText(null);
         idTF.setText(null);
@@ -379,6 +385,11 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         infoTF.setText(null);
     }
     
+    
+    
+    
+    
+    //DONE
     public void refreshDBTable(){
         try{
             String query = "SELECT * FROM students";
@@ -400,6 +411,10 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    
+    
+    
     
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         
@@ -438,6 +453,9 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         clearFields();
     }//GEN-LAST:event_saveBTActionPerformed
 
+    
+    
+    
     private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
         
         try{
@@ -460,6 +478,9 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         clearFields();
     }//GEN-LAST:event_updateBTActionPerformed
 
+    
+    
+    
     private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
         
         try{
@@ -482,6 +503,9 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         clearFields();
     }//GEN-LAST:event_deleteBTActionPerformed
 
+    
+    
+    //DONE
     private void clearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTFActionPerformed
         
         clearFields();
@@ -489,6 +513,9 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_clearTFActionPerformed
 
+    
+    
+    //DONE
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
         try{
@@ -522,6 +549,10 @@ public class SearchStudentsGUI extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jTable1MouseClicked
 
+    
+    
+    
+    //DONE
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
         try{
             String query = "SELECT * FROM students WHERE firstName=?";
