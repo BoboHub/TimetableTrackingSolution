@@ -9,10 +9,10 @@ import dbUtil.dbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+
 
 //@author Boris, Owen, Richard, Yami
 
@@ -335,8 +335,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year1";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 1");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
@@ -350,8 +352,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year2";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true); 
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 2");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
@@ -379,8 +383,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year3";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 3");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
@@ -394,8 +400,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year4";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 4");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
@@ -430,16 +438,17 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+    
           int index = jTable1.getSelectedRow();
           TableModel model = jTable1.getModel();
-          String id =model.getValueAt(index, 0).toString();
-          String name =model.getValueAt(index, 1).toString();
-          String surname =model.getValueAt(index, 2).toString();
-          String phone =model.getValueAt(index, 2).toString();
-          String email =model.getValueAt(index, 3).toString();
-          String dob =model.getValueAt(index, 4).toString();
-          String address =model.getValueAt(index, 5).toString();
+          
+          String id =model.getValueAt(index, 1).toString();
+          String name =model.getValueAt(index, 2).toString();
+          String surname =model.getValueAt(index, 3).toString();
+          String phone =model.getValueAt(index, 4).toString();
+          String email =model.getValueAt(index, 5).toString();
+          String dob =model.getValueAt(index, 6).toString();
+          String address =model.getValueAt(index, 7).toString();
           
           AddUserGUI myAddUserGUI = new AddUserGUI();
           myAddUserGUI.pack();
@@ -458,8 +467,7 @@ public class MainGUI extends javax.swing.JFrame {
           myAddUserGUI.pathTF.setVisible(false);
           myAddUserGUI.jLabel5.setVisible(false);
             myAddUserGUI.browsePicBT.setVisible(false);
-           
-      
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
