@@ -32,15 +32,15 @@ public class MainGUI extends javax.swing.JFrame {
 
     public void setUserType(String userType){
         this.userType = userType;
-          if(userType.equals("admin")){   
+            if(userType.equals("admin")){   
               
-          }else{
-            sStudentBT.setVisible(false);
-            sStaffBT.setVisible(false);
-            addUserBT.setVisible(false);
-            deleteRecordBT.setVisible(false);
+            }else{
+                searchDBsBT.setVisible(false);
+                sStudentBT.setVisible(false);
+                sStaffBT.setVisible(false);
+                addUserBT.setVisible(false);
+                deleteRecordBT.setVisible(false);
           }
-        
     }
     
     public void setName(String name){
@@ -74,7 +74,7 @@ public class MainGUI extends javax.swing.JFrame {
         addUserBT = new javax.swing.JButton();
         closeBT = new javax.swing.JButton();
         deleteRecordBT = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        searchDBsBT = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -248,11 +248,11 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("DBs Search and C.R.U.D.");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchDBsBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        searchDBsBT.setText("DBs Search and C.R.U.D.");
+        searchDBsBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchDBsBTActionPerformed(evt);
             }
         });
 
@@ -262,7 +262,7 @@ public class MainGUI extends javax.swing.JFrame {
             adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(searchDBsBT)
                 .addGap(18, 18, 18)
                 .addComponent(sStudentBT)
                 .addGap(18, 18, 18)
@@ -285,7 +285,7 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(addUserBT)
                     .addComponent(closeBT)
                     .addComponent(deleteRecordBT)
-                    .addComponent(jButton1))
+                    .addComponent(searchDBsBT))
                 .addContainerGap())
         );
 
@@ -376,17 +376,12 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_year2BTActionPerformed
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
-        
 
           AddUserGUI myAddUserGUI = new AddUserGUI();
           this.dispose();
           myAddUserGUI.setVisible(true);
           myAddUserGUI.setLocationRelativeTo(this);
         
-          //Check size later on with more time
-          //myAddUserGUI.setSize(1000, 700);
-
-          //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
@@ -424,16 +419,11 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_year4BTActionPerformed
 
     private void sStaffBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStaffBTActionPerformed
-        // TODO add your handling code here:
+
             SearchStaffGUI mySearchGUI = new SearchStaffGUI();
             this.dispose();
             mySearchGUI.setVisible(rootPaneCheckingEnabled);
             mySearchGUI.setLocationRelativeTo(this);
-
-        //Check size later on with more time
-        //myAddUserGUI.setSize(1000, 700);
-
-        //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_sStaffBTActionPerformed
 
     private void sStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStudentBTActionPerformed
@@ -478,16 +468,16 @@ public class MainGUI extends javax.swing.JFrame {
           myAddUserGUI.subProfileBT.setVisible(false); 
           myAddUserGUI.pathTF.setVisible(false);
           myAddUserGUI.jLabel5.setVisible(false);
-            myAddUserGUI.browsePicBT.setVisible(false);
+          myAddUserGUI.browsePicBT.setVisible(false);
 
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void searchDBsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDBsBTActionPerformed
         AdminDatabases myAdminDB = new AdminDatabases();
         this.dispose();
         myAdminDB.setVisible(rootPaneCheckingEnabled);
         myAdminDB.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_searchDBsBTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
@@ -498,7 +488,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel classNameLabel;
     private javax.swing.JButton closeBT;
     private javax.swing.JButton deleteRecordBT;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
@@ -507,6 +496,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel numOfStudents;
     private javax.swing.JButton sStaffBT;
     private javax.swing.JButton sStudentBT;
+    private javax.swing.JButton searchDBsBT;
     private javax.swing.JLabel tutorNLB;
     private javax.swing.JButton year1BT;
     private javax.swing.JButton year2BT;
