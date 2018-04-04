@@ -344,7 +344,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "SELECT id, firstName, lastName FROM students WHERE year = 1";
+            String query = "SELECT id, firstName, lastName, teacher FROM students WHERE year = 1 AND teacher = 'Boris'";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -361,7 +361,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "SELECT id, firstName, lastName FROM students WHERE year = 2";
+            String query = "SELECT id, firstName, lastName teacher FROM students WHERE year = 2 AND teacher = 'Boris'";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -387,7 +387,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "SELECT id, firstName, lastName FROM students WHERE year = 3";;
+            String query = "SELECT id, firstName, lastName teacher FROM students WHERE year = 3 AND teacher = 'Boris'";;
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -404,7 +404,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "SELECT id, firstName, lastName FROM students WHERE year = 4";
+            String query = "SELECT id, firstName, lastName, teacher FROM students WHERE year = 4 AND teacher = 'Boris'";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
