@@ -344,7 +344,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year1";
+            String query = "SELECT id, firstName, lastName FROM students WHERE year = 1";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -361,7 +361,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year2";
+            String query = "SELECT id, firstName, lastName FROM students WHERE year = 2";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -387,7 +387,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year3";
+            String query = "SELECT id, firstName, lastName FROM students WHERE year = 3";;
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -404,7 +404,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year4";
+            String query = "SELECT id, firstName, lastName FROM students WHERE year = 4";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -441,7 +441,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
     
-          int index = jTable1.getSelectedRow();
+         /* int index = jTable1.getSelectedRow();
           TableModel model = jTable1.getModel();
           
           String id =model.getValueAt(index, 1).toString();
@@ -468,7 +468,7 @@ public class MainGUI extends javax.swing.JFrame {
           myAddUserGUI.subProfileBT.setVisible(false); 
           myAddUserGUI.pathTF.setVisible(false);
           myAddUserGUI.jLabel5.setVisible(false);
-          myAddUserGUI.browsePicBT.setVisible(false);
+          myAddUserGUI.browsePicBT.setVisible(false);*/
 
     }//GEN-LAST:event_jTable1MouseClicked
 
