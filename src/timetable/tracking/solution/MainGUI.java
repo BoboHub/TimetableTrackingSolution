@@ -9,10 +9,10 @@ import dbUtil.dbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+
 
 //@author Boris, Owen, Richard, Yami
 
@@ -32,15 +32,15 @@ public class MainGUI extends javax.swing.JFrame {
 
     public void setUserType(String userType){
         this.userType = userType;
-          if(userType.equals("admin")){   
+            if(userType.equals("admin")){   
               
-          }else{
-            sStudentBT.setVisible(false);
-            sStaffBT.setVisible(false);
-            addUserBT.setVisible(false);
-            deleteRecordBT.setVisible(false);
+            }else{
+                searchDBsBT.setVisible(false);
+                sStudentBT.setVisible(false);
+                sStaffBT.setVisible(false);
+                addUserBT.setVisible(false);
+                deleteRecordBT.setVisible(false);
           }
-        
     }
     
     public void setName(String name){
@@ -74,6 +74,7 @@ public class MainGUI extends javax.swing.JFrame {
         addUserBT = new javax.swing.JButton();
         closeBT = new javax.swing.JButton();
         deleteRecordBT = new javax.swing.JButton();
+        searchDBsBT = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -247,12 +248,22 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        searchDBsBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        searchDBsBT.setText("DBs Search and C.R.U.D.");
+        searchDBsBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchDBsBTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout adminFunctionsPLayout = new javax.swing.GroupLayout(adminFunctionsP);
         adminFunctionsP.setLayout(adminFunctionsPLayout);
         adminFunctionsPLayout.setHorizontalGroup(
             adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(searchDBsBT)
+                .addGap(18, 18, 18)
                 .addComponent(sStudentBT)
                 .addGap(18, 18, 18)
                 .addComponent(sStaffBT)
@@ -260,7 +271,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(addUserBT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteRecordBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(closeBT)
                 .addContainerGap())
         );
@@ -273,7 +284,8 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(sStaffBT)
                     .addComponent(addUserBT)
                     .addComponent(closeBT)
-                    .addComponent(deleteRecordBT))
+                    .addComponent(deleteRecordBT)
+                    .addComponent(searchDBsBT))
                 .addContainerGap())
         );
 
@@ -335,8 +347,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year1";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 1");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
@@ -350,8 +364,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year2";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true); 
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 2");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch (Exception e){
@@ -360,17 +376,12 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_year2BTActionPerformed
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
-        
 
           AddUserGUI myAddUserGUI = new AddUserGUI();
           this.dispose();
           myAddUserGUI.setVisible(true);
           myAddUserGUI.setLocationRelativeTo(this);
         
-          //Check size later on with more time
-          //myAddUserGUI.setSize(1000, 700);
-
-          //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
@@ -379,8 +390,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year3";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 3");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
@@ -394,8 +407,10 @@ public class MainGUI extends javax.swing.JFrame {
             String query = "select ID,Name,Surname,Phone,Email,DOB,Address from year4";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            jTable1.setVisible(true);
+            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel( wrapperModel );
+                jTable1.setVisible(true);
             classNameLabel.setText("Year 4");
             numOfStudents.setText(jTable1.getRowCount()+"");
         }catch(Exception e){
@@ -404,16 +419,11 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_year4BTActionPerformed
 
     private void sStaffBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStaffBTActionPerformed
-        // TODO add your handling code here:
+
             SearchStaffGUI mySearchGUI = new SearchStaffGUI();
             this.dispose();
             mySearchGUI.setVisible(rootPaneCheckingEnabled);
             mySearchGUI.setLocationRelativeTo(this);
-
-        //Check size later on with more time
-        //myAddUserGUI.setSize(1000, 700);
-
-        //myAddUserGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_sStaffBTActionPerformed
 
     private void sStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStudentBTActionPerformed
@@ -430,16 +440,17 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+    
           int index = jTable1.getSelectedRow();
           TableModel model = jTable1.getModel();
-          String id =model.getValueAt(index, 0).toString();
-          String name =model.getValueAt(index, 1).toString();
-          String surname =model.getValueAt(index, 2).toString();
-          String phone =model.getValueAt(index, 2).toString();
-          String email =model.getValueAt(index, 3).toString();
-          String dob =model.getValueAt(index, 4).toString();
-          String address =model.getValueAt(index, 5).toString();
+          
+          String id =model.getValueAt(index, 1).toString();
+          String name =model.getValueAt(index, 2).toString();
+          String surname =model.getValueAt(index, 3).toString();
+          String phone =model.getValueAt(index, 4).toString();
+          String email =model.getValueAt(index, 5).toString();
+          String dob =model.getValueAt(index, 6).toString();
+          String address =model.getValueAt(index, 7).toString();
           
           AddUserGUI myAddUserGUI = new AddUserGUI();
           myAddUserGUI.pack();
@@ -457,10 +468,16 @@ public class MainGUI extends javax.swing.JFrame {
           myAddUserGUI.subProfileBT.setVisible(false); 
           myAddUserGUI.pathTF.setVisible(false);
           myAddUserGUI.jLabel5.setVisible(false);
-            myAddUserGUI.browsePicBT.setVisible(false);
-           
-      
+          myAddUserGUI.browsePicBT.setVisible(false);
+
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void searchDBsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDBsBTActionPerformed
+        AdminDatabases myAdminDB = new AdminDatabases();
+        this.dispose();
+        myAdminDB.setVisible(rootPaneCheckingEnabled);
+        myAdminDB.setLocationRelativeTo(this);
+    }//GEN-LAST:event_searchDBsBTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
@@ -479,6 +496,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel numOfStudents;
     private javax.swing.JButton sStaffBT;
     private javax.swing.JButton sStudentBT;
+    private javax.swing.JButton searchDBsBT;
     private javax.swing.JLabel tutorNLB;
     private javax.swing.JButton year1BT;
     private javax.swing.JButton year2BT;
