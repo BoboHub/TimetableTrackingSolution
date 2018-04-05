@@ -344,7 +344,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address FROM students WHERE year = 1 AND teacher = 'Boris'";
+            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 1 AND teacher = 'Boris'";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -361,7 +361,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address FROM students WHERE year = 2 AND teacher = 'Boris'";
+            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 2 AND teacher = 'Boris'";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -387,7 +387,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address FROM students WHERE year = 3 AND teacher = 'Boris'";;
+            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 3 AND teacher = 'Boris'";;
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -404,7 +404,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address FROM students WHERE year = 4 AND teacher = 'Boris'";
+            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 4 AND teacher = 'Boris'";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -440,10 +440,12 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-    
+     // if (evt.getClickCount() == 2){
+        
          int index = jTable1.getSelectedRow();
           TableModel model = jTable1.getModel();
-          
+        
+   
           String id =model.getValueAt(index, 1).toString();
           String name =model.getValueAt(index, 2).toString();
           String surname =model.getValueAt(index, 3).toString();
@@ -451,6 +453,7 @@ public class MainGUI extends javax.swing.JFrame {
           String email =model.getValueAt(index, 5).toString();
           String dob =model.getValueAt(index, 6).toString();
           String address =model.getValueAt(index, 7).toString();
+          String addInformation = model.getValueAt(index, 8).toString();
           
           AddUserGUI myAddUserGUI = new AddUserGUI();
           myAddUserGUI.pack();
@@ -464,6 +467,7 @@ public class MainGUI extends javax.swing.JFrame {
           myAddUserGUI.emailTF.setText(email);
           myAddUserGUI.dobTF.setText(dob);
           myAddUserGUI.addressTF.setText(address);
+           myAddUserGUI.addNoteTA.setText(addInformation);
           
           myAddUserGUI.subProfileBT.setVisible(false); 
           myAddUserGUI.pathTF.setVisible(false);
@@ -471,7 +475,7 @@ public class MainGUI extends javax.swing.JFrame {
           myAddUserGUI.browsePicBT.setVisible(false);
 
     }//GEN-LAST:event_jTable1MouseClicked
-
+    //}
     private void searchDBsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDBsBTActionPerformed
         AdminDatabases myAdminDB = new AdminDatabases();
         this.dispose();
