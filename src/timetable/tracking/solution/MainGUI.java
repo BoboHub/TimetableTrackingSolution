@@ -486,12 +486,7 @@ public class MainGUI extends javax.swing.JFrame {
         TableModel model = jTable1.getModel();
         
         if(evt.getClickCount() == 2){
-   
-//            AddUserGUI myAddUserGUI = new AddUserGUI();
-//            myAddUserGUI.pack();
-//            myAddUserGUI.setVisible(true);
-//            myAddUserGUI.setLocationRelativeTo(this);
-          
+
             String id =model.getValueAt(index, 1).toString();
             String name =model.getValueAt(index, 2).toString();
             String surname =model.getValueAt(index, 3).toString();
@@ -501,12 +496,11 @@ public class MainGUI extends javax.swing.JFrame {
             String address =model.getValueAt(index, 7).toString();
             String addInformation = model.getValueAt(index, 8).toString();
             
-                        AddUserGUI myAddUserGUI = new AddUserGUI();
+            AddUserGUI myAddUserGUI = new AddUserGUI();
             myAddUserGUI.pack();
             myAddUserGUI.setVisible(true);
             myAddUserGUI.setLocationRelativeTo(this);
             
-
             myAddUserGUI.idTF.setText(id);
             myAddUserGUI.firstNameTF.setText(name);
             myAddUserGUI.lastNameTF.setText(surname);

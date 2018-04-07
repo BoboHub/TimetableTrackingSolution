@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 
 //@author Boris, Owen, Richard, Yami
@@ -32,10 +33,7 @@ public class AdminDatabases extends javax.swing.JFrame {
     
     public void takeStudentsData(){
         try{
-            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', mothersName as 'Mothers Name', fathersName as 'Fathers Name', phone as 'Phone Number', email as 'Email', dob as 'Date of Birth', address as 'Address', year as 'Class Year', teacher as 'Teacher', addInformation as 'Extra Information' FROM students";
-            
-            //More specific query
-//            String query = "SELECT id, firstName, address FROM student";
+            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', mothersName as 'Mothers Name', fathersName as 'Fathers Name', phone as 'Phone Number', email as 'Email', dob as 'Date of Birth', address as 'Address', year as 'Year', teacher as 'Teacher' FROM students";
             
             //Pass the query to the preparedStatement
             PreparedStatement pst = connection.prepareStatement(query);
@@ -44,6 +42,18 @@ public class AdminDatabases extends javax.swing.JFrame {
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(75);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(90);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(115);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(90);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(90);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(105);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(125);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(70);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(135);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(30);
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+                        
             pst.close();
             rs.close();
              
@@ -56,15 +66,23 @@ public class AdminDatabases extends javax.swing.JFrame {
         try{
             String query = "SELECT id as 'Staff ID', firstName as 'Name', lastName as 'Surname', username as 'Username', password as 'Password', jobCategory as 'Job Category',userType as 'User Type', phone as 'Phone', email as 'Email', dob as 'Date of Birth', address as 'Address' FROM staff";
             
-            //More specific query
-            //String query = "SELECT id, firstName, address FROM student";
-            
             //Pass the query to the preparedStatement
             PreparedStatement pst = connection.prepareStatement(query);
             //Declare a result set - execute the query and pass it to the rs
             ResultSet rs = pst.executeQuery();
             
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //Sizes below not finished yet
+            jTable2.getColumnModel().getColumn(0).setPreferredWidth(75);
+            jTable2.getColumnModel().getColumn(1).setPreferredWidth(90);
+            jTable2.getColumnModel().getColumn(2).setPreferredWidth(115);
+            jTable2.getColumnModel().getColumn(3).setPreferredWidth(85);
+            jTable2.getColumnModel().getColumn(4).setPreferredWidth(85);
+            jTable2.getColumnModel().getColumn(5).setPreferredWidth(90);
+            jTable2.getColumnModel().getColumn(6).setPreferredWidth(60);
+            jTable2.getColumnModel().getColumn(7).setPreferredWidth(105);
+            
             
             pst.close();
             rs.close();
