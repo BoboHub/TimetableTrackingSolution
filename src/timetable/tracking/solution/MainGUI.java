@@ -351,37 +351,52 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_closeBTActionPerformed
 
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
-        // TODO add your handling code here:
-        try {
-            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 1 AND teacher = 'Boris'";
-            PreparedStatement pst=connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
-                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
-                jTable1.setVisible(true);
-            classNameLabel.setText("Year 1");
-            numOfStudents.setText(jTable1.getRowCount()+"");
+        
+        if(userType.equalsIgnoreCase("admin")){
             
-        }catch (Exception e){
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 1");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 1 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel(wrapperModel);
+                jTable1.setVisible(true);
+                classNameLabel.setText("Year 1");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year1BTActionPerformed
 
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
-        // TODO add your handling code here:
-        try {
-            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 2 AND teacher = 'Boris'";
-            PreparedStatement pst=connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 2");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 2 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
                 TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
+                jTable1.setModel(wrapperModel);
                 jTable1.setVisible(true);
-            classNameLabel.setText("Year 2");
-            numOfStudents.setText(jTable1.getRowCount()+"");
-        }catch (Exception e){
-            e.printStackTrace();
+                classNameLabel.setText("Year 2");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year2BTActionPerformed
 
@@ -395,36 +410,52 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
-        // TODO add your handling code here:
-        try{
-            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 3 AND teacher = 'Boris'";;
-            PreparedStatement pst = connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 3");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 3 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
                 TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
+                jTable1.setModel(wrapperModel);
                 jTable1.setVisible(true);
-            classNameLabel.setText("Year 3");
-            numOfStudents.setText(jTable1.getRowCount()+"");
-        }catch(Exception e){
-            e.printStackTrace();
+                classNameLabel.setText("Year 3");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year3BTActionPerformed
 
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
-        // TODO add your handling code here:
-        try{
-            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 4 AND teacher = 'Boris'";
-            PreparedStatement pst = connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 4");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 4 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
                 TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
+                jTable1.setModel(wrapperModel);
                 jTable1.setVisible(true);
-            classNameLabel.setText("Year 4");
-            numOfStudents.setText(jTable1.getRowCount()+"");
-        }catch(Exception e){
-            e.printStackTrace();
+                classNameLabel.setText("Year 4");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year4BTActionPerformed
 
