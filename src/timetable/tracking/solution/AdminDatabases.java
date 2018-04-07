@@ -188,7 +188,13 @@ public class AdminDatabases extends javax.swing.JFrame {
         picLB = new javax.swing.JLabel();
         browsePicBT = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                //Disable cells to be edited
+                return false;
+            }
+        }
+        ;
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -216,7 +222,13 @@ public class AdminDatabases extends javax.swing.JFrame {
         picLB1 = new javax.swing.JLabel();
         browsePicBT1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                //Disable cells to be edited
+                return false;
+            }
+        }
+        ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Database");
