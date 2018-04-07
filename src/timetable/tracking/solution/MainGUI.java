@@ -298,6 +298,12 @@ public class MainGUI extends javax.swing.JFrame {
         DynamicPanel.setBackground(new java.awt.Color(44, 62, 80));
         DynamicPanel.setMinimumSize(new java.awt.Dimension(700, 440));
 
+        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane2MouseClicked(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -347,7 +353,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 1 AND teacher = 'Boris'";
+            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 1 AND teacher = 'Boris'";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -356,6 +362,7 @@ public class MainGUI extends javax.swing.JFrame {
                 jTable1.setVisible(true);
             classNameLabel.setText("Year 1");
             numOfStudents.setText(jTable1.getRowCount()+"");
+            
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -364,7 +371,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         // TODO add your handling code here:
         try {
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 2 AND teacher = 'Boris'";
+            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 2 AND teacher = 'Boris'";
             PreparedStatement pst=connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -380,17 +387,17 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
 
-          AddUserGUI myAddUserGUI = new AddUserGUI();
-          this.dispose();
-          myAddUserGUI.setVisible(true);
-          myAddUserGUI.setLocationRelativeTo(this);
+        AddUserGUI myAddUserGUI = new AddUserGUI();
+        this.dispose();
+        myAddUserGUI.setVisible(true);
+        myAddUserGUI.setLocationRelativeTo(this);
         
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 3 AND teacher = 'Boris'";;
+            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 3 AND teacher = 'Boris'";;
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -407,7 +414,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
         // TODO add your handling code here:
         try{
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 4 AND teacher = 'Boris'";
+            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 4 AND teacher = 'Boris'";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -449,10 +456,10 @@ public class MainGUI extends javax.swing.JFrame {
         
         if(evt.getClickCount() == 2){
    
-            AddUserGUI myAddUserGUI = new AddUserGUI();
-            myAddUserGUI.pack();
-            myAddUserGUI.setVisible(true);
-            myAddUserGUI.setLocationRelativeTo(this);
+//            AddUserGUI myAddUserGUI = new AddUserGUI();
+//            myAddUserGUI.pack();
+//            myAddUserGUI.setVisible(true);
+//            myAddUserGUI.setLocationRelativeTo(this);
           
             String id =model.getValueAt(index, 1).toString();
             String name =model.getValueAt(index, 2).toString();
@@ -462,6 +469,12 @@ public class MainGUI extends javax.swing.JFrame {
             String dob =model.getValueAt(index, 6).toString();
             String address =model.getValueAt(index, 7).toString();
             String addInformation = model.getValueAt(index, 8).toString();
+            
+                        AddUserGUI myAddUserGUI = new AddUserGUI();
+            myAddUserGUI.pack();
+            myAddUserGUI.setVisible(true);
+            myAddUserGUI.setLocationRelativeTo(this);
+            
 
             myAddUserGUI.idTF.setText(id);
             myAddUserGUI.firstNameTF.setText(name);
@@ -485,6 +498,10 @@ public class MainGUI extends javax.swing.JFrame {
         myAdminDB.setVisible(rootPaneCheckingEnabled);
         myAdminDB.setLocationRelativeTo(this);
     }//GEN-LAST:event_searchDBsBTActionPerformed
+
+    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;

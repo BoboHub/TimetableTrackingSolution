@@ -26,16 +26,16 @@ public class AdminDatabases extends javax.swing.JFrame {
         
         connection = dbConnection.dbConnector();
         
-        refreshStudentsDBTable();
-        refreshStaffDBTable();
+        takeStudentsData();
+        takeStaffData();
     }
     
     public void takeStudentsData(){
         try{
-            String query = "SELECT * FROM students";
+            String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', mothersName as 'Mothers Name', fathersName as 'Fathers Name', phone as 'Phone Number', email as 'Email', dob as 'Date of Birth', address as 'Address', year as 'Class Year', teacher as 'Teacher', addInformation as 'Extra Information' FROM students";
             
             //More specific query
-            //String query = "SELECT id, firstName, address FROM student";
+//            String query = "SELECT id, firstName, address FROM student";
             
             //Pass the query to the preparedStatement
             PreparedStatement pst = connection.prepareStatement(query);
@@ -54,7 +54,7 @@ public class AdminDatabases extends javax.swing.JFrame {
     
     public void takeStaffData(){
         try{
-            String query = "SELECT * FROM staff";
+            String query = "SELECT id as 'Staff ID', firstName as 'Name', lastName as 'Surname', username as 'Username', password as 'Password', jobCategory as 'Job Category',userType as 'User Type', phone as 'Phone', email as 'Email', dob as 'Date of Birth', address as 'Address' FROM staff";
             
             //More specific query
             //String query = "SELECT id, firstName, address FROM student";
@@ -74,46 +74,46 @@ public class AdminDatabases extends javax.swing.JFrame {
         } 
     }
 
-    public void refreshStudentsDBTable(){
-        try{
-            String query = "SELECT * FROM students";
-            
-            //More specific query
-            //String query = "SELECT id, firstName, address FROM student";
-            
-            //Pass the query to the preparedStatement
-            PreparedStatement pst = connection.prepareStatement(query);
-            //Declare a result set - execute the query and pass it to the rs
-            ResultSet rs = pst.executeQuery();
-            
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            
-            pst.close();
-            rs.close();
-             
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void refreshStaffDBTable(){
-        try{
-            String query = "SELECT * FROM staff";
-
-            //Pass the query to the preparedStatement
-            PreparedStatement pst = connection.prepareStatement(query);
-            //Declare a result set - execute the query and pass it to the rs
-            ResultSet rs = pst.executeQuery();
-            
-            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-            
-            pst.close();
-            rs.close();
-             
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+//    public void refreshStudentsDBTable(){
+//        try{
+//            String query = "SELECT id as 'Student ID' FROM students";
+//            
+//            //More specific query
+//            //String query = "SELECT id, firstName, address FROM student";
+//            
+//            //Pass the query to the preparedStatement
+//            PreparedStatement pst = connection.prepareStatement(query);
+//            //Declare a result set - execute the query and pass it to the rs
+//            ResultSet rs = pst.executeQuery();
+//            
+//            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+//            
+//            pst.close();
+//            rs.close();
+//             
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//    }
+//    
+//    public void refreshStaffDBTable(){
+//        try{
+//            String query = "SELECT * FROM staff";
+//
+//            //Pass the query to the preparedStatement
+//            PreparedStatement pst = connection.prepareStatement(query);
+//            //Declare a result set - execute the query and pass it to the rs
+//            ResultSet rs = pst.executeQuery();
+//            
+//            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+//            
+//            pst.close();
+//            rs.close();
+//             
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//    }
     
     public void clearFields(){
         searchTF.setText(null);
@@ -821,7 +821,7 @@ public class AdminDatabases extends javax.swing.JFrame {
 
     private void clearBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTActionPerformed
         clearFields();
-        refreshStudentsDBTable();
+        takeStudentsData();
     }//GEN-LAST:event_clearBTActionPerformed
 
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
@@ -855,7 +855,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        refreshStudentsDBTable();
+        takeStudentsData();
         
         clearFields();
     }//GEN-LAST:event_saveBTActionPerformed
@@ -877,7 +877,7 @@ public class AdminDatabases extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-        refreshStudentsDBTable();
+        takeStudentsData();
         
         clearFields(); 
     }//GEN-LAST:event_updateBTActionPerformed
@@ -898,14 +898,14 @@ public class AdminDatabases extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        refreshStudentsDBTable();
+        takeStudentsData();
         
         clearFields();        
     }//GEN-LAST:event_deleteBTActionPerformed
 
     private void clearBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBT1ActionPerformed
         clearFields();
-        refreshStaffDBTable();
+        takeStaffData();
     }//GEN-LAST:event_clearBT1ActionPerformed
 
     private void saveBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBT1ActionPerformed
@@ -931,7 +931,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        refreshStaffDBTable();
+        takeStaffData();
         
         clearFields();   
     }//GEN-LAST:event_saveBT1ActionPerformed
@@ -953,7 +953,7 @@ public class AdminDatabases extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-        refreshStaffDBTable();
+        takeStaffData();
         
         clearFields(); 
     }//GEN-LAST:event_updateBT1ActionPerformed
@@ -974,7 +974,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        refreshStaffDBTable();
+        takeStaffData();
         
         clearFields();        
     }//GEN-LAST:event_deleteBT1ActionPerformed
