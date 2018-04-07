@@ -442,7 +442,6 @@ public class MainGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
-    
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
         int index = jTable1.getSelectedRow();
