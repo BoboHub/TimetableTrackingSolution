@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -28,6 +29,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         connection=dbConnection.dbConnector(); // database connection init
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
+                        
     }
 
     public void setUserType(String userType){
@@ -77,7 +79,8 @@ public class MainGUI extends javax.swing.JFrame {
         searchDBsBT = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable()
+        ;
 
         setName("Attendance Tracking Solutions"); // NOI18N
         getContentPane().setLayout(null);
@@ -295,6 +298,12 @@ public class MainGUI extends javax.swing.JFrame {
         DynamicPanel.setBackground(new java.awt.Color(44, 62, 80));
         DynamicPanel.setMinimumSize(new java.awt.Dimension(700, 440));
 
+        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane2MouseClicked(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -342,79 +351,111 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_closeBTActionPerformed
 
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
-        // TODO add your handling code here:
-        try {
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 1 AND teacher = 'Boris'";
-            PreparedStatement pst=connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 1");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 1 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
                 TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
+                jTable1.setModel(wrapperModel);
                 jTable1.setVisible(true);
-            classNameLabel.setText("Year 1");
-            numOfStudents.setText(jTable1.getRowCount()+"");
-        }catch (Exception e){
-            e.printStackTrace();
+                classNameLabel.setText("Year 1");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year1BTActionPerformed
 
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
-        // TODO add your handling code here:
-        try {
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 2 AND teacher = 'Boris'";
-            PreparedStatement pst=connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 2");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 2 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
                 TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
+                jTable1.setModel(wrapperModel);
                 jTable1.setVisible(true);
-            classNameLabel.setText("Year 2");
-            numOfStudents.setText(jTable1.getRowCount()+"");
-        }catch (Exception e){
-            e.printStackTrace();
+                classNameLabel.setText("Year 2");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year2BTActionPerformed
 
     private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
 
-          AddUserGUI myAddUserGUI = new AddUserGUI();
-          this.dispose();
-          myAddUserGUI.setVisible(true);
-          myAddUserGUI.setLocationRelativeTo(this);
+        AddUserGUI myAddUserGUI = new AddUserGUI();
+        this.dispose();
+        myAddUserGUI.setVisible(true);
+        myAddUserGUI.setLocationRelativeTo(this);
         
     }//GEN-LAST:event_addUserBTActionPerformed
 
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
-        // TODO add your handling code here:
-        try{
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 3 AND teacher = 'Boris'";;
-            PreparedStatement pst = connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 3");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 3 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
                 TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
+                jTable1.setModel(wrapperModel);
                 jTable1.setVisible(true);
-            classNameLabel.setText("Year 3");
-            numOfStudents.setText(jTable1.getRowCount()+"");
-        }catch(Exception e){
-            e.printStackTrace();
+                classNameLabel.setText("Year 3");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year3BTActionPerformed
 
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
-        // TODO add your handling code here:
-        try{
-            String query = "SELECT id, firstName, lastName, phone, email, dob, address, addInformation FROM students WHERE year = 4 AND teacher = 'Boris'";
-            PreparedStatement pst = connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 4");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 4 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
                 TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
-                jTable1.setModel( wrapperModel );
+                jTable1.setModel(wrapperModel);
                 jTable1.setVisible(true);
-            classNameLabel.setText("Year 4");
-            numOfStudents.setText(jTable1.getRowCount()+"");
-        }catch(Exception e){
-            e.printStackTrace();
+                classNameLabel.setText("Year 4");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_year4BTActionPerformed
 
@@ -440,48 +481,58 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-     // if (evt.getClickCount() == 2){
         
-         int index = jTable1.getSelectedRow();
-          TableModel model = jTable1.getModel();
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
         
+        if(evt.getClickCount() == 2){
    
-          String id =model.getValueAt(index, 1).toString();
-          String name =model.getValueAt(index, 2).toString();
-          String surname =model.getValueAt(index, 3).toString();
-          String phone =model.getValueAt(index, 4).toString();
-          String email =model.getValueAt(index, 5).toString();
-          String dob =model.getValueAt(index, 6).toString();
-          String address =model.getValueAt(index, 7).toString();
-          String addInformation = model.getValueAt(index, 8).toString();
+//            AddUserGUI myAddUserGUI = new AddUserGUI();
+//            myAddUserGUI.pack();
+//            myAddUserGUI.setVisible(true);
+//            myAddUserGUI.setLocationRelativeTo(this);
           
-          AddUserGUI myAddUserGUI = new AddUserGUI();
-          myAddUserGUI.pack();
-          myAddUserGUI.setVisible(true);
-          myAddUserGUI.setLocationRelativeTo(this);
-          
-          myAddUserGUI.idTF.setText(id);
-          myAddUserGUI.firstNameTF.setText(name);
-          myAddUserGUI.lastNameTF.setText(surname);
-          myAddUserGUI.phoneTF.setText(phone);
-          myAddUserGUI.emailTF.setText(email);
-          myAddUserGUI.dobTF.setText(dob);
-          myAddUserGUI.addressTF.setText(address);
-           myAddUserGUI.addNoteTA.setText(addInformation);
-          
-          myAddUserGUI.subProfileBT.setVisible(false); 
-          myAddUserGUI.pathTF.setVisible(false);
-          myAddUserGUI.jLabel5.setVisible(false);
-          myAddUserGUI.browsePicBT.setVisible(false);
+            String id =model.getValueAt(index, 1).toString();
+            String name =model.getValueAt(index, 2).toString();
+            String surname =model.getValueAt(index, 3).toString();
+            String phone =model.getValueAt(index, 4).toString();
+            String email =model.getValueAt(index, 5).toString();
+            String dob =model.getValueAt(index, 6).toString();
+            String address =model.getValueAt(index, 7).toString();
+            String addInformation = model.getValueAt(index, 8).toString();
+            
+                        AddUserGUI myAddUserGUI = new AddUserGUI();
+            myAddUserGUI.pack();
+            myAddUserGUI.setVisible(true);
+            myAddUserGUI.setLocationRelativeTo(this);
+            
 
+            myAddUserGUI.idTF.setText(id);
+            myAddUserGUI.firstNameTF.setText(name);
+            myAddUserGUI.lastNameTF.setText(surname);
+            myAddUserGUI.phoneTF.setText(phone);
+            myAddUserGUI.emailTF.setText(email);
+            myAddUserGUI.dobTF.setText(dob);
+            myAddUserGUI.addressTF.setText(address);
+            myAddUserGUI.addNoteTA.setText(addInformation);
+          
+            myAddUserGUI.subProfileBT.setVisible(false); 
+            myAddUserGUI.pathTF.setVisible(false);
+            myAddUserGUI.jLabel5.setVisible(false);
+            myAddUserGUI.browsePicBT.setVisible(false);
+        }
     }//GEN-LAST:event_jTable1MouseClicked
-    //}
+
     private void searchDBsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDBsBTActionPerformed
         AdminDatabases myAdminDB = new AdminDatabases();
         this.dispose();
         myAdminDB.setVisible(rootPaneCheckingEnabled);
         myAdminDB.setLocationRelativeTo(this);
     }//GEN-LAST:event_searchDBsBTActionPerformed
+
+    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
