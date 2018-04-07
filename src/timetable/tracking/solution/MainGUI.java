@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -28,6 +29,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         connection=dbConnection.dbConnector(); // database connection init
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
+                        
     }
 
     public void setUserType(String userType){
@@ -77,7 +79,8 @@ public class MainGUI extends javax.swing.JFrame {
         searchDBsBT = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable()
+        ;
 
         setName("Attendance Tracking Solutions"); // NOI18N
         getContentPane().setLayout(null);
@@ -439,43 +442,44 @@ public class MainGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_deleteRecordBTActionPerformed
 
+    
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-     // if (evt.getClickCount() == 2){
         
-         int index = jTable1.getSelectedRow();
-          TableModel model = jTable1.getModel();
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
         
+        if(evt.getClickCount() == 2){
    
-          String id =model.getValueAt(index, 1).toString();
-          String name =model.getValueAt(index, 2).toString();
-          String surname =model.getValueAt(index, 3).toString();
-          String phone =model.getValueAt(index, 4).toString();
-          String email =model.getValueAt(index, 5).toString();
-          String dob =model.getValueAt(index, 6).toString();
-          String address =model.getValueAt(index, 7).toString();
-          String addInformation = model.getValueAt(index, 8).toString();
+            AddUserGUI myAddUserGUI = new AddUserGUI();
+            myAddUserGUI.pack();
+            myAddUserGUI.setVisible(true);
+            myAddUserGUI.setLocationRelativeTo(this);
           
-          AddUserGUI myAddUserGUI = new AddUserGUI();
-          myAddUserGUI.pack();
-          myAddUserGUI.setVisible(true);
-          myAddUserGUI.setLocationRelativeTo(this);
-          
-          myAddUserGUI.idTF.setText(id);
-          myAddUserGUI.firstNameTF.setText(name);
-          myAddUserGUI.lastNameTF.setText(surname);
-          myAddUserGUI.phoneTF.setText(phone);
-          myAddUserGUI.emailTF.setText(email);
-          myAddUserGUI.dobTF.setText(dob);
-          myAddUserGUI.addressTF.setText(address);
-           myAddUserGUI.addNoteTA.setText(addInformation);
-          
-          myAddUserGUI.subProfileBT.setVisible(false); 
-          myAddUserGUI.pathTF.setVisible(false);
-          myAddUserGUI.jLabel5.setVisible(false);
-          myAddUserGUI.browsePicBT.setVisible(false);
+            String id =model.getValueAt(index, 1).toString();
+            String name =model.getValueAt(index, 2).toString();
+            String surname =model.getValueAt(index, 3).toString();
+            String phone =model.getValueAt(index, 4).toString();
+            String email =model.getValueAt(index, 5).toString();
+            String dob =model.getValueAt(index, 6).toString();
+            String address =model.getValueAt(index, 7).toString();
+            String addInformation = model.getValueAt(index, 8).toString();
 
+            myAddUserGUI.idTF.setText(id);
+            myAddUserGUI.firstNameTF.setText(name);
+            myAddUserGUI.lastNameTF.setText(surname);
+            myAddUserGUI.phoneTF.setText(phone);
+            myAddUserGUI.emailTF.setText(email);
+            myAddUserGUI.dobTF.setText(dob);
+            myAddUserGUI.addressTF.setText(address);
+            myAddUserGUI.addNoteTA.setText(addInformation);
+          
+            myAddUserGUI.subProfileBT.setVisible(false); 
+            myAddUserGUI.pathTF.setVisible(false);
+            myAddUserGUI.jLabel5.setVisible(false);
+            myAddUserGUI.browsePicBT.setVisible(false);
+        }
     }//GEN-LAST:event_jTable1MouseClicked
-    //}
+
     private void searchDBsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDBsBTActionPerformed
         AdminDatabases myAdminDB = new AdminDatabases();
         this.dispose();
