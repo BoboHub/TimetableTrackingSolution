@@ -6,9 +6,14 @@
 package timetable.tracking.solution;
 
 import dbUtil.dbConnection;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
@@ -16,6 +21,12 @@ import net.proteanit.sql.DbUtils;
 //@author Boris, Owen, Richard, Yami
 
 public class AdminDatabases extends javax.swing.JFrame {
+    
+    //global varibales
+    private ImageIcon format = null;
+    String filename = null;
+    int s = 0;
+    byte[] person_image = null;
     
     //Create a GLOBAL variable called connection
     Connection connection = null;
@@ -167,6 +178,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         addInfoTA = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
         picLB = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         browsePicBT = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable(){
@@ -202,6 +214,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         picLB1 = new javax.swing.JLabel();
         browsePicBT1 = new javax.swing.JButton();
+        pathTF = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         usernameTF = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
@@ -301,29 +314,34 @@ public class AdminDatabases extends javax.swing.JFrame {
         picLB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         browsePicBT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        browsePicBT.setText("Search Photo");
+        browsePicBT.setText("Search");
+        browsePicBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browsePicBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(picLB, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(browsePicBT)
-                        .addGap(49, 49, 49))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(browsePicBT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(picLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(picLB, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(browsePicBT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browsePicBT)))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -373,14 +391,14 @@ public class AdminDatabases extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lastNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                                .addComponent(lastNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(addressTF)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(183, 183, 183))
+                        .addGap(205, 205, 205))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(clearBT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -413,9 +431,6 @@ public class AdminDatabases extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -462,7 +477,10 @@ public class AdminDatabases extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel14)
                                     .addComponent(teacherTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
         );
 
@@ -488,7 +506,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
             .addComponent(jScrollPane2)
         );
         jPanel1Layout.setVerticalGroup(
@@ -566,29 +584,35 @@ public class AdminDatabases extends javax.swing.JFrame {
         picLB1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         browsePicBT1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        browsePicBT1.setText("Search Photo");
+        browsePicBT1.setText("Search");
+        browsePicBT1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browsePicBT1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(picLB1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(browsePicBT1)
-                        .addGap(49, 49, 49))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addComponent(browsePicBT1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(picLB1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(pathTF))
+                .addGap(29, 29, 29))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(picLB1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(browsePicBT1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(browsePicBT1)
+                    .addComponent(pathTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel22.setText("Username");
@@ -631,7 +655,7 @@ public class AdminDatabases extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(firstNameTF1))
+                                        .addComponent(firstNameTF1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(7, 7, 7)
                                         .addComponent(jLabel20)
@@ -646,7 +670,7 @@ public class AdminDatabases extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(lastNameTF1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                                        .addComponent(lastNameTF1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel18)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -758,7 +782,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
             .addComponent(jScrollPane4)
         );
         jPanel2Layout.setVerticalGroup(
@@ -938,7 +962,7 @@ public class AdminDatabases extends javax.swing.JFrame {
 
     private void saveBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBT1ActionPerformed
         try{
-            String query = "INSERT INTO staff (id, firstName, lastName, username, password, jobCategory, userType, phone, email, dob, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO staff (id, firstName, lastName, username, password, jobCategory, userType, phone, email, dob, address, profilePic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             //Pass the query to the preparedStatement
             PreparedStatement pst = connection.prepareStatement(query);
@@ -953,6 +977,7 @@ public class AdminDatabases extends javax.swing.JFrame {
             pst.setString(9, emailTF1.getText());
             pst.setString(10, dobTF1.getText());
             pst.setString(11, addressTF1.getText());
+            pst.setBytes(12, person_image);
             
             pst.execute();
             
@@ -1041,6 +1066,64 @@ public class AdminDatabases extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void browsePicBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePicBT1ActionPerformed
+
+        JFileChooser Chooser = new JFileChooser();
+        Chooser.showOpenDialog(null);
+        File f = Chooser.getSelectedFile();
+        filename = f.getAbsolutePath(); /// stores the path for the picture to be dispyed
+        String path = f.getAbsolutePath(); // stores the path for the path TEXT field
+       
+        pathTF.setText(filename); 
+       
+        format = new ImageIcon(path); // shows the path in text field
+        picLB1.setIcon(format); // dispalys the picute
+        
+        try {
+            File image = new File(filename);
+            FileInputStream fis = new FileInputStream(image);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            
+            for(int readNum; (readNum=fis.read(buf))!=-1; ){
+                bos.write(buf, 0, readNum);
+            }
+                person_image=bos.toByteArray();
+        
+        }catch (Exception e){
+            e.printStackTrace();  
+        }
+    }//GEN-LAST:event_browsePicBT1ActionPerformed
+
+    private void browsePicBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePicBTActionPerformed
+        
+        JFileChooser Chooser = new JFileChooser();
+        Chooser.showOpenDialog(null);
+        File f = Chooser.getSelectedFile();
+        filename = f.getAbsolutePath(); /// stores the path for the picture to be dispyed
+        String path = f.getAbsolutePath(); // stores the path for the path TEXT field
+       
+        pathTF.setText(filename); 
+       
+        format = new ImageIcon(path); // shows the path in text field
+        picLB.setIcon(format); // dispalys the picute
+        
+        try {
+            File image = new File(filename);
+            FileInputStream fis = new FileInputStream(image);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            
+            for(int readNum; (readNum=fis.read(buf))!=-1; ){
+                bos.write(buf, 0, readNum);
+            }
+                person_image=bos.toByteArray();
+        
+        }catch (Exception e){
+            e.printStackTrace();  
+        }
+    }//GEN-LAST:event_browsePicBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1151,11 +1234,13 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jobCategoryTF;
     private javax.swing.JTextField lastNameTF;
     private javax.swing.JTextField lastNameTF1;
     private javax.swing.JTextField mothersNameTF;
     private javax.swing.JTextField passwordTF;
+    private javax.swing.JTextField pathTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField phoneTF1;
     private javax.swing.JLabel picLB;
