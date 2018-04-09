@@ -34,8 +34,14 @@ public class MainGUI extends javax.swing.JFrame {
 
     public void setUserType(String userType){
         this.userType = userType;
-            if(userType.equals("admin")){   
-              
+            if(userType.equals("admin")){
+                classNLB.setVisible(false);
+                nStudentsLB.setVisible(false);
+                yearsP.setVisible(false);
+                jScrollPane2.setVisible(false);
+                classNameLabel.setVisible(false);
+                numOfStudents.setVisible(false);
+                tutorNLB.setText("Admin:");
             }else{
                 searchDBsBT.setVisible(false);
           }
@@ -55,15 +61,16 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         listYearsP = new javax.swing.JPanel();
-        year1BT = new javax.swing.JButton();
-        year2BT = new javax.swing.JButton();
-        year3BT = new javax.swing.JButton();
-        year4BT = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        yearsP = new javax.swing.JPanel();
+        year8BT = new javax.swing.JButton();
+        year7BT = new javax.swing.JButton();
         year5BT = new javax.swing.JButton();
         year6BT = new javax.swing.JButton();
-        year7BT = new javax.swing.JButton();
-        year8BT = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        year4BT = new javax.swing.JButton();
+        year3BT = new javax.swing.JButton();
+        year2BT = new javax.swing.JButton();
+        year1BT = new javax.swing.JButton();
         classInfoP = new javax.swing.JPanel();
         tutorNLB = new javax.swing.JLabel();
         classNLB = new javax.swing.JLabel();
@@ -85,35 +92,23 @@ public class MainGUI extends javax.swing.JFrame {
 
         listYearsP.setBackground(new java.awt.Color(248, 148, 6));
 
-        year1BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        year1BT.setText("Year 1");
-        year1BT.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(248, 148, 6));
+
+        yearsP.setBackground(new java.awt.Color(248, 148, 6));
+
+        year8BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year8BT.setText("Year 8");
+        year8BT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                year1BTActionPerformed(evt);
+                year8BTActionPerformed(evt);
             }
         });
 
-        year2BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        year2BT.setText("Year 2");
-        year2BT.addActionListener(new java.awt.event.ActionListener() {
+        year7BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year7BT.setText("Year 7");
+        year7BT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                year2BTActionPerformed(evt);
-            }
-        });
-
-        year3BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        year3BT.setText("Year 3");
-        year3BT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                year3BTActionPerformed(evt);
-            }
-        });
-
-        year4BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        year4BT.setText("Year 4");
-        year4BT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                year4BTActionPerformed(evt);
+                year7BTActionPerformed(evt);
             }
         });
 
@@ -133,39 +128,44 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        year7BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        year7BT.setText("Year 7");
-        year7BT.addActionListener(new java.awt.event.ActionListener() {
+        year4BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year4BT.setText("Year 4");
+        year4BT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                year7BTActionPerformed(evt);
+                year4BTActionPerformed(evt);
             }
         });
 
-        year8BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        year8BT.setText("Year 8");
-        year8BT.addActionListener(new java.awt.event.ActionListener() {
+        year3BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year3BT.setText("Year 3");
+        year3BT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                year8BTActionPerformed(evt);
+                year3BTActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 3253, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 641, Short.MAX_VALUE)
-        );
+        year2BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year2BT.setText("Year 2");
+        year2BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year2BTActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout listYearsPLayout = new javax.swing.GroupLayout(listYearsP);
-        listYearsP.setLayout(listYearsPLayout);
-        listYearsPLayout.setHorizontalGroup(
-            listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listYearsPLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+        year1BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year1BT.setText("Year 1");
+        year1BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year1BTActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout yearsPLayout = new javax.swing.GroupLayout(yearsP);
+        yearsP.setLayout(yearsPLayout);
+        yearsPLayout.setHorizontalGroup(
+            yearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, yearsPLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(year1BT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(year2BT)
@@ -181,7 +181,44 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(year7BT)
                 .addGap(18, 18, 18)
                 .addComponent(year8BT)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        yearsPLayout.setVerticalGroup(
+            yearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, yearsPLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(yearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(year7BT)
+                    .addComponent(year8BT)
+                    .addGroup(yearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(year5BT)
+                        .addComponent(year6BT)
+                        .addGroup(yearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(year3BT)
+                            .addComponent(year4BT)
+                            .addGroup(yearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(year1BT)
+                                .addComponent(year2BT))))))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(yearsP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(2524, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(yearsP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout listYearsPLayout = new javax.swing.GroupLayout(listYearsP);
+        listYearsP.setLayout(listYearsPLayout);
+        listYearsPLayout.setHorizontalGroup(
+            listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listYearsPLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -190,16 +227,6 @@ public class MainGUI extends javax.swing.JFrame {
             listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listYearsPLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(year1BT)
-                    .addComponent(year2BT)
-                    .addComponent(year3BT)
-                    .addComponent(year4BT)
-                    .addComponent(year5BT)
-                    .addComponent(year6BT)
-                    .addComponent(year7BT)
-                    .addComponent(year8BT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -234,33 +261,33 @@ public class MainGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
                         .addComponent(tutorNLB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
                         .addComponent(classNLB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(classNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(classNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
                         .addComponent(nStudentsLB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numOfStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         classInfoPLayout.setVerticalGroup(
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classInfoPLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addContainerGap()
                 .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tutorNLB)
                     .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(classNLB)
                     .addComponent(classNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nStudentsLB)
                     .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(386, Short.MAX_VALUE))
+                .addContainerGap(452, Short.MAX_VALUE))
         );
 
         getContentPane().add(classInfoP);
@@ -629,6 +656,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton year6BT;
     private javax.swing.JButton year7BT;
     private javax.swing.JButton year8BT;
+    private javax.swing.JPanel yearsP;
     // End of variables declaration//GEN-END:variables
 
 }
