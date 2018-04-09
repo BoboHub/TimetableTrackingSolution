@@ -115,6 +115,10 @@ public class AdminDatabases extends javax.swing.JFrame {
         emailTF1.setText(null);
         dobTF1.setText(null);
         addressTF1.setText(null);
+        usernameTF.setText(null);
+        passwordTF.setText(null);
+        jobCategoryTF.setText(null);
+        userTypeTF.setText(null);
     }
 
     /**
@@ -198,6 +202,14 @@ public class AdminDatabases extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         picLB1 = new javax.swing.JLabel();
         browsePicBT1 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        usernameTF = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        passwordTF = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jobCategoryTF = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        userTypeTF = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
@@ -579,6 +591,14 @@ public class AdminDatabases extends javax.swing.JFrame {
                 .addComponent(browsePicBT1))
         );
 
+        jLabel22.setText("Username");
+
+        jLabel23.setText("Password");
+
+        jLabel24.setText("Job Category");
+
+        jLabel25.setText("User Type");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -586,59 +606,78 @@ public class AdminDatabases extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchBT1))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(idTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dobTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchBT1))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(idTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel19)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(dobTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(firstNameTF1))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addComponent(jLabel20)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(phoneTF1)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel17))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(firstNameTF1))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(lastNameTF1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(emailTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(addressTF1))
+                                .addGap(183, 183, 183))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(phoneTF1)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(clearBT1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveBT1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(updateBT1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteBT1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel17))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(lastNameTF1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(emailTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(addressTF1))
-                        .addGap(183, 183, 183))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(clearBT1)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel22))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveBT1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateBT1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteBT1)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(jobCategoryTF))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel25))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(userTypeTF, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(passwordTF))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -678,7 +717,22 @@ public class AdminDatabases extends javax.swing.JFrame {
                                 .addComponent(jLabel19)
                                 .addComponent(jLabel21)
                                 .addComponent(addressTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(122, 122, 122)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel22)
+                                .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel23)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jobCategoryTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel25)
+                                .addComponent(userTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel24))
+                        .addGap(60, 60, 60)))
                 .addGap(19, 19, 19))
         );
 
@@ -884,17 +938,21 @@ public class AdminDatabases extends javax.swing.JFrame {
 
     private void saveBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBT1ActionPerformed
         try{
-            String query = "INSERT INTO staff (id, firstName, lastName, phone, email, dob, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO staff (id, firstName, lastName, username, password, jobCategory, userType, phone, email, dob, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             //Pass the query to the preparedStatement
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, idTF1.getText());
             pst.setString(2, firstNameTF1.getText());
             pst.setString(3, lastNameTF1.getText());
-            pst.setString(4, phoneTF1.getText());
-            pst.setString(5, emailTF1.getText());
-            pst.setString(6, dobTF1.getText());
-            pst.setString(7, addressTF1.getText());
+            pst.setString(4, usernameTF.getText());
+            pst.setString(5, passwordTF.getText());
+            pst.setString(6, jobCategoryTF.getText());
+            pst.setString(7, userTypeTF.getText());
+            pst.setString(8, phoneTF1.getText());
+            pst.setString(9, emailTF1.getText());
+            pst.setString(10, dobTF1.getText());
+            pst.setString(11, addressTF1.getText());
             
             pst.execute();
             
@@ -912,7 +970,7 @@ public class AdminDatabases extends javax.swing.JFrame {
 
     private void updateBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBT1ActionPerformed
         try{
-            String query = "UPDATE staff SET id='"+idTF1.getText()+"', firstName='"+firstNameTF1.getText()+"', lastName='"+lastNameTF1.getText()+"', phone='"+phoneTF1.getText()+"', email='"+emailTF1.getText()+"', dob='"+dobTF1.getText()+"', address='"+addressTF1.getText()+"' WHERE id='"+idTF1.getText()+"'";
+            String query = "UPDATE staff SET id='"+idTF1.getText()+"', firstName='"+firstNameTF1.getText()+"', lastName='"+lastNameTF1.getText()+"', username='"+usernameTF.getText()+"', password='"+passwordTF.getText()+"', jobCategory='"+jobCategoryTF.getText()+"', userType='"+userTypeTF.getText()+"', phone='"+phoneTF1.getText()+"', email='"+emailTF1.getText()+"', dob='"+dobTF1.getText()+"', address='"+addressTF1.getText()+"' WHERE id='"+idTF1.getText()+"'";
 
             //Pass the query to the preparedStatement
             PreparedStatement pst = connection.prepareStatement(query);
@@ -967,6 +1025,10 @@ public class AdminDatabases extends javax.swing.JFrame {
                 idTF1.setText(rs.getString("id"));
                 firstNameTF1.setText(rs.getString("firstName"));
                 lastNameTF1.setText(rs.getString("lastName"));
+                usernameTF.setText(rs.getString("username"));
+                passwordTF.setText(rs.getString("password"));
+                jobCategoryTF.setText(rs.getString("jobCategory"));
+                userTypeTF.setText(rs.getString("userType"));
                 phoneTF1.setText(rs.getString("phone"));
                 emailTF1.setText(rs.getString("email"));
                 dobTF1.setText(rs.getString("dob"));
@@ -1066,6 +1128,10 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1085,9 +1151,11 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jobCategoryTF;
     private javax.swing.JTextField lastNameTF;
     private javax.swing.JTextField lastNameTF1;
     private javax.swing.JTextField mothersNameTF;
+    private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField phoneTF1;
     private javax.swing.JLabel picLB;
@@ -1101,6 +1169,8 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JTextField teacherTF;
     private javax.swing.JButton updateBT;
     private javax.swing.JButton updateBT1;
+    private javax.swing.JTextField userTypeTF;
+    private javax.swing.JTextField usernameTF;
     private javax.swing.JTextField yearTF;
     // End of variables declaration//GEN-END:variables
 }
