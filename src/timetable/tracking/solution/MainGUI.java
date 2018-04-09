@@ -38,10 +38,6 @@ public class MainGUI extends javax.swing.JFrame {
               
             }else{
                 searchDBsBT.setVisible(false);
-                sStudentBT.setVisible(false);
-                sStaffBT.setVisible(false);
-                addUserBT.setVisible(false);
-                deleteRecordBT.setVisible(false);
           }
     }
     
@@ -63,6 +59,10 @@ public class MainGUI extends javax.swing.JFrame {
         year2BT = new javax.swing.JButton();
         year3BT = new javax.swing.JButton();
         year4BT = new javax.swing.JButton();
+        year5BT = new javax.swing.JButton();
+        year6BT = new javax.swing.JButton();
+        year7BT = new javax.swing.JButton();
+        year8BT = new javax.swing.JButton();
         classInfoP = new javax.swing.JPanel();
         tutorNLB = new javax.swing.JLabel();
         classNLB = new javax.swing.JLabel();
@@ -71,11 +71,7 @@ public class MainGUI extends javax.swing.JFrame {
         classNameLabel = new javax.swing.JLabel();
         numOfStudents = new javax.swing.JLabel();
         adminFunctionsP = new javax.swing.JPanel();
-        sStudentBT = new javax.swing.JButton();
-        sStaffBT = new javax.swing.JButton();
-        addUserBT = new javax.swing.JButton();
         closeBT = new javax.swing.JButton();
-        deleteRecordBT = new javax.swing.JButton();
         searchDBsBT = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -119,6 +115,38 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        year5BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year5BT.setText("Year 5");
+        year5BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year5BTActionPerformed(evt);
+            }
+        });
+
+        year6BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year6BT.setText("Year 6");
+        year6BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year6BTActionPerformed(evt);
+            }
+        });
+
+        year7BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year7BT.setText("Year 7");
+        year7BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year7BTActionPerformed(evt);
+            }
+        });
+
+        year8BT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        year8BT.setText("Year 8");
+        year8BT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                year8BTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout listYearsPLayout = new javax.swing.GroupLayout(listYearsP);
         listYearsP.setLayout(listYearsPLayout);
         listYearsPLayout.setHorizontalGroup(
@@ -132,7 +160,15 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(year3BT)
                 .addGap(18, 18, 18)
                 .addComponent(year4BT)
-                .addContainerGap(547, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(year5BT)
+                .addGap(18, 18, 18)
+                .addComponent(year6BT)
+                .addGap(18, 18, 18)
+                .addComponent(year7BT)
+                .addGap(18, 18, 18)
+                .addComponent(year8BT)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         listYearsPLayout.setVerticalGroup(
             listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,8 +178,12 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(year1BT)
                     .addComponent(year2BT)
                     .addComponent(year3BT)
-                    .addComponent(year4BT))
-                .addGap(27, 27, 27))
+                    .addComponent(year4BT)
+                    .addComponent(year5BT)
+                    .addComponent(year6BT)
+                    .addComponent(year7BT)
+                    .addComponent(year8BT))
+                .addGap(26, 26, 26))
         );
 
         getContentPane().add(listYearsP);
@@ -210,44 +250,12 @@ public class MainGUI extends javax.swing.JFrame {
 
         adminFunctionsP.setBackground(new java.awt.Color(248, 148, 6));
 
-        sStudentBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        sStudentBT.setText("Search Student");
-        sStudentBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sStudentBTActionPerformed(evt);
-            }
-        });
-
-        sStaffBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        sStaffBT.setText("Search Staff");
-        sStaffBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sStaffBTActionPerformed(evt);
-            }
-        });
-
-        addUserBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addUserBT.setText("Add User Profile");
-        addUserBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addUserBTActionPerformed(evt);
-            }
-        });
-
         closeBT.setBackground(new java.awt.Color(192, 57, 43));
         closeBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         closeBT.setText("Close");
         closeBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBTActionPerformed(evt);
-            }
-        });
-
-        deleteRecordBT.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deleteRecordBT.setText("Delete Record");
-        deleteRecordBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteRecordBTActionPerformed(evt);
             }
         });
 
@@ -266,15 +274,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(searchDBsBT)
-                .addGap(18, 18, 18)
-                .addComponent(sStudentBT)
-                .addGap(18, 18, 18)
-                .addComponent(sStaffBT)
-                .addGap(18, 18, 18)
-                .addComponent(addUserBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(deleteRecordBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 634, Short.MAX_VALUE)
                 .addComponent(closeBT)
                 .addContainerGap())
         );
@@ -283,11 +283,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sStudentBT)
-                    .addComponent(sStaffBT)
-                    .addComponent(addUserBT)
                     .addComponent(closeBT)
-                    .addComponent(deleteRecordBT)
                     .addComponent(searchDBsBT))
                 .addContainerGap())
         );
@@ -400,15 +396,6 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year2BTActionPerformed
 
-    private void addUserBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBTActionPerformed
-
-        AddUserGUI myAddUserGUI = new AddUserGUI();
-        this.dispose();
-        myAddUserGUI.setVisible(true);
-        myAddUserGUI.setLocationRelativeTo(this);
-        
-    }//GEN-LAST:event_addUserBTActionPerformed
-
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         
         if(userType.equalsIgnoreCase("admin")){
@@ -459,27 +446,6 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year4BTActionPerformed
 
-    private void sStaffBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStaffBTActionPerformed
-
-            SearchStaffGUI mySearchGUI = new SearchStaffGUI();
-            this.dispose();
-            mySearchGUI.setVisible(rootPaneCheckingEnabled);
-            mySearchGUI.setLocationRelativeTo(this);
-    }//GEN-LAST:event_sStaffBTActionPerformed
-
-    private void sStudentBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sStudentBTActionPerformed
-
-            SearchStudentsGUI myStudentsSearchGUI = new SearchStudentsGUI();
-            this.dispose();
-            myStudentsSearchGUI.setVisible(rootPaneCheckingEnabled);
-            myStudentsSearchGUI.setLocationRelativeTo(this);
- 
-    }//GEN-LAST:event_sStudentBTActionPerformed
-
-    private void deleteRecordBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRecordBTActionPerformed
-
-    }//GEN-LAST:event_deleteRecordBTActionPerformed
-
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
         int index = jTable1.getSelectedRow();
@@ -528,29 +494,126 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
+    private void year5BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year5BTActionPerformed
+        
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 5");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 5 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel(wrapperModel);
+                jTable1.setVisible(true);
+                classNameLabel.setText("Year 5");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_year5BTActionPerformed
+
+    private void year6BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year6BTActionPerformed
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 6");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 6 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel(wrapperModel);
+                jTable1.setVisible(true);
+                classNameLabel.setText("Year 6");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_year6BTActionPerformed
+
+    private void year7BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year7BTActionPerformed
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 7");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 7 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel(wrapperModel);
+                jTable1.setVisible(true);
+                classNameLabel.setText("Year 7");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_year7BTActionPerformed
+
+    private void year8BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year8BTActionPerformed
+        if(userType.equalsIgnoreCase("admin")){
+            
+            JOptionPane.showMessageDialog(null, "You have not students assigned to year 8");
+            jTable1.setVisible(false);
+        }
+        else{
+            try {
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 8 AND teacher = '"+nameLabel.getText()+"'";
+                PreparedStatement pst=connection.prepareStatement(query);
+                ResultSet rs = pst.executeQuery();
+                TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
+                TableModel wrapperModel = new CheckBoxwrapperTableModel(utilsModel, "Mark Attendance");
+                jTable1.setModel(wrapperModel);
+                jTable1.setVisible(true);
+                classNameLabel.setText("Year 8");
+                numOfStudents.setText(jTable1.getRowCount()+"");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_year8BTActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
-    private javax.swing.JButton addUserBT;
     private javax.swing.JPanel adminFunctionsP;
     private javax.swing.JPanel classInfoP;
     private javax.swing.JLabel classNLB;
     private javax.swing.JLabel classNameLabel;
     private javax.swing.JButton closeBT;
-    private javax.swing.JButton deleteRecordBT;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
     private javax.swing.JLabel nStudentsLB;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel numOfStudents;
-    private javax.swing.JButton sStaffBT;
-    private javax.swing.JButton sStudentBT;
     private javax.swing.JButton searchDBsBT;
     private javax.swing.JLabel tutorNLB;
     private javax.swing.JButton year1BT;
     private javax.swing.JButton year2BT;
     private javax.swing.JButton year3BT;
     private javax.swing.JButton year4BT;
+    private javax.swing.JButton year5BT;
+    private javax.swing.JButton year6BT;
+    private javax.swing.JButton year7BT;
+    private javax.swing.JButton year8BT;
     // End of variables declaration//GEN-END:variables
 
 }
