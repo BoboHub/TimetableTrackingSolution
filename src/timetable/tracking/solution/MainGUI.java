@@ -34,7 +34,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     public void setUserType(String userType){
         this.userType = userType;
-            if(userType.equals("admin")){
+            if(userType.equalsIgnoreCase("admin")){
                 classNLB.setVisible(false);
                 nStudentsLB.setVisible(false);
                 yearsP.setVisible(false);
