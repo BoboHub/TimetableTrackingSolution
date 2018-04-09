@@ -17,7 +17,7 @@ import net.proteanit.sql.DbUtils;
 
 public class AdminDatabases extends javax.swing.JFrame {
     
-    //Create a GLOBAL variable called conn
+    //Create a GLOBAL variable called connection
     Connection connection = null;
     
     //Creates new form AdminDatabases
@@ -91,47 +91,6 @@ public class AdminDatabases extends javax.swing.JFrame {
             e.printStackTrace();
         } 
     }
-
-//    public void refreshStudentsDBTable(){
-//        try{
-//            String query = "SELECT id as 'Student ID' FROM students";
-//            
-//            //More specific query
-//            //String query = "SELECT id, firstName, address FROM student";
-//            
-//            //Pass the query to the preparedStatement
-//            PreparedStatement pst = connection.prepareStatement(query);
-//            //Declare a result set - execute the query and pass it to the rs
-//            ResultSet rs = pst.executeQuery();
-//            
-//            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-//            
-//            pst.close();
-//            rs.close();
-//             
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//    }
-//    
-//    public void refreshStaffDBTable(){
-//        try{
-//            String query = "SELECT * FROM staff";
-//
-//            //Pass the query to the preparedStatement
-//            PreparedStatement pst = connection.prepareStatement(query);
-//            //Declare a result set - execute the query and pass it to the rs
-//            ResultSet rs = pst.executeQuery();
-//            
-//            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-//            
-//            pst.close();
-//            rs.close();
-//             
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//    }
     
     public void clearFields(){
         searchTF.setText(null);
@@ -845,9 +804,6 @@ public class AdminDatabases extends javax.swing.JFrame {
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         try{
             String query = "INSERT INTO students (id, firstName, lastName, mothersName, fathersName, phone, email, dob, address, year, teacher, addInformation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            
-            //More specific query
-            //String query = "SELECT id, firstName, address FROM student";
             
             //Pass the query to the preparedStatement
             PreparedStatement pst = connection.prepareStatement(query);
