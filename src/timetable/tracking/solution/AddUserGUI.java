@@ -301,7 +301,7 @@ public class AddUserGUI extends javax.swing.JFrame {
         dobTF.setText("");
         addressTF.setText("");
         addNoteTA.setText("");
-        //typeUserCB.setName("test");
+        pathTF.setText("");
     }   
     
     
@@ -328,6 +328,7 @@ public class AddUserGUI extends javax.swing.JFrame {
             clearFields();
             
             pst.close();
+            picLB.setIcon(null); // deltes the picture after submitting to the database
                    
         }catch (Exception e){
             e.printStackTrace();
@@ -340,8 +341,13 @@ public class AddUserGUI extends javax.swing.JFrame {
       JFileChooser Chooser = new JFileChooser();
        Chooser.showOpenDialog(null);
        File f = Chooser.getSelectedFile();
-       filename = f.getAbsolutePath();
+       filename = f.getAbsolutePath(); /// stores the path for the picture to be dispyed
+       String path = f.getAbsolutePath(); // stores the path for the path TEXT field
+       
        pathTF.setText(filename); 
+       
+       format = new ImageIcon(path); // shows the path in text field
+       picLB.setIcon(format); // dispalys the picute
         
         try {
             File image = new File(filename);
