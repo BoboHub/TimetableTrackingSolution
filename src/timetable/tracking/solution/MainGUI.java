@@ -63,6 +63,7 @@ public class MainGUI extends javax.swing.JFrame {
         year6BT = new javax.swing.JButton();
         year7BT = new javax.swing.JButton();
         year8BT = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         classInfoP = new javax.swing.JPanel();
         tutorNLB = new javax.swing.JLabel();
         classNLB = new javax.swing.JLabel();
@@ -79,6 +80,7 @@ public class MainGUI extends javax.swing.JFrame {
         ;
 
         setName("Attendance Tracking Solutions"); // NOI18N
+        setResizable(false);
         getContentPane().setLayout(null);
 
         listYearsP.setBackground(new java.awt.Color(248, 148, 6));
@@ -147,6 +149,17 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3253, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 641, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout listYearsPLayout = new javax.swing.GroupLayout(listYearsP);
         listYearsP.setLayout(listYearsPLayout);
         listYearsPLayout.setHorizontalGroup(
@@ -168,7 +181,10 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(year7BT)
                 .addGap(18, 18, 18)
                 .addComponent(year8BT)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listYearsPLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         listYearsPLayout.setVerticalGroup(
             listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,11 +199,13 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(year6BT)
                     .addComponent(year7BT)
                     .addComponent(year8BT))
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         getContentPane().add(listYearsP);
-        listYearsP.setBounds(0, 0, 900, 50);
+        listYearsP.setBounds(0, 0, 1280, 40);
 
         classInfoP.setBackground(new java.awt.Color(248, 188, 8));
 
@@ -225,7 +243,7 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(nStudentsLB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(numOfStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         classInfoPLayout.setVerticalGroup(
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,11 +260,11 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nStudentsLB)
                     .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         getContentPane().add(classInfoP);
-        classInfoP.setBounds(0, 50, 230, 410);
+        classInfoP.setBounds(0, 40, 180, 550);
 
         adminFunctionsP.setBackground(new java.awt.Color(248, 148, 6));
 
@@ -274,14 +292,14 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(searchDBsBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 634, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 993, Short.MAX_VALUE)
                 .addComponent(closeBT)
-                .addContainerGap())
+                .addGap(41, 41, 41))
         );
         adminFunctionsPLayout.setVerticalGroup(
             adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminFunctionsPLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeBT)
                     .addComponent(searchDBsBT))
@@ -289,7 +307,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
 
         getContentPane().add(adminFunctionsP);
-        adminFunctionsP.setBounds(0, 460, 900, 50);
+        adminFunctionsP.setBounds(0, 590, 1290, 60);
 
         DynamicPanel.setBackground(new java.awt.Color(44, 62, 80));
         DynamicPanel.setMinimumSize(new java.awt.Dimension(700, 440));
@@ -322,19 +340,15 @@ public class MainGUI extends javax.swing.JFrame {
         DynamicPanel.setLayout(DynamicPanelLayout);
         DynamicPanelLayout.setHorizontalGroup(
             DynamicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DynamicPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 34, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
         );
         DynamicPanelLayout.setVerticalGroup(
             DynamicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DynamicPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 205, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
         getContentPane().add(DynamicPanel);
-        DynamicPanel.setBounds(230, 50, 670, 410);
+        DynamicPanel.setBounds(180, 40, 1100, 550);
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBTActionPerformed
@@ -598,6 +612,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel classNLB;
     private javax.swing.JLabel classNameLabel;
     private javax.swing.JButton closeBT;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel listYearsP;
