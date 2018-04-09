@@ -774,7 +774,7 @@ public class AdminDatabases extends javax.swing.JFrame {
 
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
         try{
-            String query = "SELECT * FROM students WHERE firstName=?";
+            String query = "SELECT * FROM students WHERE firstName=? COLLATE NOCASE";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, searchTF.getText());
             ResultSet rs = pst.executeQuery();
@@ -790,7 +790,7 @@ public class AdminDatabases extends javax.swing.JFrame {
 
     private void searchBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBT1ActionPerformed
         try{
-            String query = "SELECT * FROM staff WHERE firstName=?";
+            String query = "SELECT * FROM staff WHERE firstName=? COLLATE NOCASE";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, searchTF1.getText());
             ResultSet rs = pst.executeQuery();
