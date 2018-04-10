@@ -223,7 +223,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         
              try {
-                    String query ="select ID,firstName,userType from EmployeeInfo where Username=? and password=? ";
+                    String query ="select ID,firstName,userType from staff where Username=? and password=? ";
                     PreparedStatement pst=connection.prepareStatement(query); // pst object equals to object conneciton and pass in the query
                     pst.setString(1, userNameTF.getText()); // passing valuses from the users with index pramter 1 to identify the "username" + then the value
                     pst.setString(2, passwordTF.getText());
@@ -244,7 +244,7 @@ public class LoginForm extends javax.swing.JFrame {
                     MainGUI newMainGUI = new MainGUI();
                     this.dispose();
                     newMainGUI.setVisible(true);
-                    newMainGUI.setSize(925, 550);
+                    newMainGUI.setSize(1280, 675);
                     newMainGUI.setLocationRelativeTo(null);
                     newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     newMainGUI.setUserType(userType);
