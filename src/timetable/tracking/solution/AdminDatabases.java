@@ -1072,7 +1072,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         JFileChooser Chooser = new JFileChooser();
         Chooser.showOpenDialog(null);
         File f = Chooser.getSelectedFile();
-        filename = f.getAbsolutePath(); /// stores the path for the picture to be dispyed
+        filename = f.getAbsolutePath(); /// stores the path for the picture to be displayed
         String path = f.getAbsolutePath(); // stores the path for the path TEXT field
        
         pathTF.setText(filename); 
