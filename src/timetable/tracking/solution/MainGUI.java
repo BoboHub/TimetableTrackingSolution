@@ -569,7 +569,7 @@ public class MainGUI extends javax.swing.JFrame {
                 pst.setString(4, new String(""+day+"-"+month+"-"+year));
                 
                 pst.execute();
-                
+                JOptionPane.showMessageDialog(null, "Student marked as Present");
                 pst.close();
                 
             } catch (SQLException ex) {
