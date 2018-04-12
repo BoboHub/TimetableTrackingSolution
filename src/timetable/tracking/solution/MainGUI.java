@@ -60,11 +60,11 @@ public class MainGUI extends javax.swing.JFrame {
         int month = cal.get(Calendar.MONTH);
         int year = cal.get(Calendar.YEAR);
         
-        int second = cal.get(Calendar.SECOND);
         int minute = cal.get(Calendar.MINUTE);
-        int hour = cal.get(Calendar.HOUR);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
         
-        clockLB.setText("Time "+hour+":"+minute+" Date "+day+"/"+month+"/"+year);
+        clockLB.setText("Date "+day+"/"+month+"/"+year);
+        clockLB1.setText("Hour: "+hour+":"+minute);
     }
     
     /**
@@ -95,6 +95,7 @@ public class MainGUI extends javax.swing.JFrame {
         classNameLabel = new javax.swing.JLabel();
         numOfStudents = new javax.swing.JLabel();
         clockLB = new javax.swing.JLabel();
+        clockLB1 = new javax.swing.JLabel();
         adminFunctionsP = new javax.swing.JPanel();
         closeBT = new javax.swing.JButton();
         searchDBsBT = new javax.swing.JButton();
@@ -269,6 +270,12 @@ public class MainGUI extends javax.swing.JFrame {
 
         numOfStudents.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        clockLB.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        clockLB.setText("date");
+
+        clockLB1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        clockLB1.setText("hour");
+
         javax.swing.GroupLayout classInfoPLayout = new javax.swing.GroupLayout(classInfoP);
         classInfoP.setLayout(classInfoPLayout);
         classInfoPLayout.setHorizontalGroup(
@@ -289,7 +296,8 @@ public class MainGUI extends javax.swing.JFrame {
                             .addComponent(nStudentsLB)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(clockLB, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(clockLB, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clockLB1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         classInfoPLayout.setVerticalGroup(
@@ -309,7 +317,9 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(clockLB, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clockLB1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         getContentPane().add(classInfoP);
@@ -525,7 +535,7 @@ public class MainGUI extends javax.swing.JFrame {
             String address =model.getValueAt(index, 7).toString();
             String addInformation = model.getValueAt(index, 8).toString();
             
-            AddUserGUI myAddUserGUI = new AddUserGUI();
+            ProfileGUI myAddUserGUI = new ProfileGUI();
             myAddUserGUI.pack();
             myAddUserGUI.setVisible(true);
             myAddUserGUI.setLocationRelativeTo(this);
@@ -661,6 +671,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel classNLB;
     private javax.swing.JLabel classNameLabel;
     private javax.swing.JLabel clockLB;
+    private javax.swing.JLabel clockLB1;
     private javax.swing.JButton closeBT;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
