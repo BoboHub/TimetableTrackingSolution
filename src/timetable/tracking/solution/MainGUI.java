@@ -9,8 +9,11 @@ import dbUtil.dbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
@@ -543,6 +546,36 @@ public class MainGUI extends javax.swing.JFrame {
             //myAddUserGUI.pathTF.setVisible(false);
             myAddUserGUI.jLabel5.setVisible(false);
             //myAddUserGUI.browsePicBT.setVisible(false);
+        }else if(evt.getClickCount() == 1){
+            try {
+                String test =model.getValueAt(index, 0).toString();
+                System.out.println(test);
+                
+                index = jTable1.getSelectedRow();
+                model = jTable1.getModel();
+                
+                String query ="INSERT INTO Attendance(StudentID,Name,Attendance,date) VALUES (?,?,?,?)";
+                PreparedStatement pst=connection.prepareStatement(query); // pst object equals to object conneciton and pass in the query
+                //pst.setString(1,"");
+                pst.setString(1, model.getValueAt(index, 1).toString()); // passing valuses from the users with index pramter 1 to identify the "username" + then the value
+                pst.setString(2, model.getValueAt(index, 2).toString()+model.getValueAt(index, 3).toString());
+                pst.setString(3, "Present");
+                
+                Calendar cal = new GregorianCalendar();
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                int month = cal.get(Calendar.MONTH);
+                int year = cal.get(Calendar.YEAR);
+                
+                pst.setString(4, new String(""+day+"-"+month+"-"+year));
+                
+                pst.execute();
+                
+                pst.close();
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -555,6 +588,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void year5BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year5BTActionPerformed
