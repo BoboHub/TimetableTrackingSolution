@@ -34,6 +34,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         connection=dbConnection.dbConnector(); // database connection init
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
+        submitButton.setVisible(false);
         time();
                         
     }
@@ -100,6 +101,7 @@ public class MainGUI extends javax.swing.JFrame {
         adminFunctionsP = new javax.swing.JPanel();
         closeBT = new javax.swing.JButton();
         searchDBsBT = new javax.swing.JButton();
+        submitButton = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable()
@@ -337,6 +339,14 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        submitButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout adminFunctionsPLayout = new javax.swing.GroupLayout(adminFunctionsP);
         adminFunctionsP.setLayout(adminFunctionsPLayout);
         adminFunctionsPLayout.setHorizontalGroup(
@@ -344,17 +354,21 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(searchDBsBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 993, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 877, Short.MAX_VALUE)
+                .addComponent(submitButton)
+                .addGap(39, 39, 39)
                 .addComponent(closeBT)
                 .addGap(41, 41, 41))
         );
         adminFunctionsPLayout.setVerticalGroup(
             adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminFunctionsPLayout.createSequentialGroup()
+            .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(closeBT)
-                    .addComponent(searchDBsBT))
+                .addGroup(adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(closeBT)
+                        .addComponent(searchDBsBT))
+                    .addComponent(submitButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -517,65 +531,53 @@ public class MainGUI extends javax.swing.JFrame {
         int index = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
         
+        submitButton.setVisible(true);
+        
         if(evt.getClickCount() == 2){
 
-            String id =model.getValueAt(index, 1).toString();
-            String name =model.getValueAt(index, 2).toString();
-            String surname =model.getValueAt(index, 3).toString();
-            String phone =model.getValueAt(index, 4).toString();
-            String email =model.getValueAt(index, 5).toString();
-            String dob =model.getValueAt(index, 6).toString();
-            String address =model.getValueAt(index, 7).toString();
-            String addInformation = model.getValueAt(index, 8).toString();
             
-            ProfileGUI myAddUserGUI = new ProfileGUI();
-            myAddUserGUI.pack();
-            myAddUserGUI.setVisible(true);
-            myAddUserGUI.setLocationRelativeTo(this);
-            
-            myAddUserGUI.idTF.setText(id);
-            myAddUserGUI.firstNameTF.setText(name);
-            myAddUserGUI.lastNameTF.setText(surname);
-            myAddUserGUI.phoneTF.setText(phone);
-            myAddUserGUI.emailTF.setText(email);
-            myAddUserGUI.dobTF.setText(dob);
-            myAddUserGUI.addressTF.setText(address);
-            myAddUserGUI.addNoteTA.setText(addInformation);
-          
-            myAddUserGUI.subProfileBT.setVisible(false); 
-            //myAddUserGUI.pathTF.setVisible(false);
-            myAddUserGUI.jLabel5.setVisible(false);
-            //myAddUserGUI.browsePicBT.setVisible(false);
-        }else if(evt.getClickCount() == 1){
             try {
-                String test =model.getValueAt(index, 0).toString();
-                System.out.println(test);
-                
-                index = jTable1.getSelectedRow();
-                model = jTable1.getModel();
-                
-                String query ="INSERT INTO Attendance(StudentID,Name,Attendance,date) VALUES (?,?,?,?)";
+                String query ="Select count() as total from attendance where name = ?";
                 PreparedStatement pst=connection.prepareStatement(query); // pst object equals to object conneciton and pass in the query
-                //pst.setString(1,"");
-                pst.setString(1, model.getValueAt(index, 1).toString()); // passing valuses from the users with index pramter 1 to identify the "username" + then the value
-                pst.setString(2, model.getValueAt(index, 2).toString()+model.getValueAt(index, 3).toString());
-                pst.setString(3, "Present");
                 
-                Calendar cal = new GregorianCalendar();
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-                int month = cal.get(Calendar.MONTH);
-                int year = cal.get(Calendar.YEAR);
+                pst.setString(1, model.getValueAt(index, 2).toString()+" "+model.getValueAt(index, 3).toString()); // passing valuses from the users with index pramter 1 to identify the "username" + then the value
                 
-                pst.setString(4, new String(""+day+"-"+month+"-"+year));
+                ResultSet rs=pst.executeQuery(); //resultset which executes the query and the result will be transfered to the "rs" object
                 
-                pst.execute();
-                JOptionPane.showMessageDialog(null, "Student marked as Present");
+                int total = rs.getInt("total");
                 pst.close();
                 
+                
+                String id =model.getValueAt(index, 1).toString();
+                String name =model.getValueAt(index, 2).toString();
+                String surname =model.getValueAt(index, 3).toString();
+                String phone =model.getValueAt(index, 4).toString();
+                String email =model.getValueAt(index, 5).toString();
+                String dob =model.getValueAt(index, 6).toString();
+                String address =model.getValueAt(index, 7).toString();
+                String addInformation = model.getValueAt(index, 8).toString();
+                
+                ProfileGUI myAddUserGUI = new ProfileGUI(total);
+                myAddUserGUI.pack();
+                myAddUserGUI.setVisible(true);
+                myAddUserGUI.setLocationRelativeTo(this);
+                
+                myAddUserGUI.idTF.setText(id);
+                myAddUserGUI.firstNameTF.setText(name);
+                myAddUserGUI.lastNameTF.setText(surname);
+                myAddUserGUI.phoneTF.setText(phone);
+                myAddUserGUI.emailTF.setText(email);
+                myAddUserGUI.dobTF.setText(dob);
+                myAddUserGUI.addressTF.setText(address);
+                myAddUserGUI.addNoteTA.setText(addInformation);
+                
+                myAddUserGUI.subProfileBT.setVisible(false);
+                //myAddUserGUI.pathTF.setVisible(false);
+                myAddUserGUI.jLabel5.setVisible(false);
+                //myAddUserGUI.browsePicBT.setVisible(false);
             } catch (SQLException ex) {
                 Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -688,6 +690,43 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year8BTActionPerformed
 
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+         try {
+            
+                
+                TableModel model = jTable1.getModel();
+                
+               
+               for(int i=0;i<jTable1.getRowCount();i++){
+                
+                if(model.getValueAt(i, 0).toString().equalsIgnoreCase("true")){
+                   
+                String query ="INSERT INTO Attendance(StudentID,Name,Attendance,date) VALUES (?,?,?,?)";
+                PreparedStatement pst=connection.prepareStatement(query); // pst object equals to object conneciton and pass in the query
+                //pst.setString(1,"");
+                pst.setString(1, model.getValueAt(i, 1).toString()); // passing valuses from the users with index pramter 1 to identify the "username" + then the value
+                pst.setString(2, model.getValueAt(i, 2).toString()+" "+model.getValueAt(i, 3).toString());
+                pst.setString(3, "Present");
+                
+                Calendar cal = new GregorianCalendar();
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                int month = cal.get(Calendar.MONTH);
+                int year = cal.get(Calendar.YEAR);
+                
+                pst.setString(4, new String(""+day+"-"+month+"-"+year));
+                
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Student marked as Present");
+                pst.close();
+                }
+               }
+            } catch (SQLException ex) {
+                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    }//GEN-LAST:event_submitButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
     private javax.swing.JPanel adminFunctionsP;
@@ -704,6 +743,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel numOfStudents;
     private javax.swing.JButton searchDBsBT;
+    private javax.swing.JButton submitButton;
     private javax.swing.JLabel tutorNLB;
     private javax.swing.JButton year1BT;
     private javax.swing.JButton year2BT;
