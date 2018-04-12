@@ -63,8 +63,7 @@ public class MainGUI extends javax.swing.JFrame {
         int minute = cal.get(Calendar.MINUTE);
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         
-        clockLB.setText("Date "+day+"/"+month+"/"+year);
-        clockLB1.setText("Hour: "+hour+":"+minute);
+        clockLB.setText(hour+":"+minute+" - "+day+"/"+month+"/"+year);
     }
     
     /**
@@ -87,6 +86,7 @@ public class MainGUI extends javax.swing.JFrame {
         year3BT = new javax.swing.JButton();
         year2BT = new javax.swing.JButton();
         year1BT = new javax.swing.JButton();
+        clockLB = new javax.swing.JLabel();
         classInfoP = new javax.swing.JPanel();
         tutorNLB = new javax.swing.JLabel();
         classNLB = new javax.swing.JLabel();
@@ -94,8 +94,6 @@ public class MainGUI extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         classNameLabel = new javax.swing.JLabel();
         numOfStudents = new javax.swing.JLabel();
-        clockLB = new javax.swing.JLabel();
-        clockLB1 = new javax.swing.JLabel();
         adminFunctionsP = new javax.swing.JPanel();
         closeBT = new javax.swing.JButton();
         searchDBsBT = new javax.swing.JButton();
@@ -225,28 +223,33 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(yearsP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(2524, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(yearsP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(yearsP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        clockLB.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout listYearsPLayout = new javax.swing.GroupLayout(listYearsP);
         listYearsP.setLayout(listYearsPLayout);
         listYearsPLayout.setHorizontalGroup(
             listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listYearsPLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(listYearsPLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
+                .addComponent(clockLB, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         listYearsPLayout.setVerticalGroup(
             listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listYearsPLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(listYearsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(clockLB, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -270,34 +273,25 @@ public class MainGUI extends javax.swing.JFrame {
 
         numOfStudents.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        clockLB.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        clockLB.setText("date");
-
-        clockLB1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        clockLB1.setText("hour");
-
         javax.swing.GroupLayout classInfoPLayout = new javax.swing.GroupLayout(classInfoP);
         classInfoP.setLayout(classInfoPLayout);
         classInfoPLayout.setHorizontalGroup(
             classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(classInfoPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
-                            .addComponent(tutorNLB)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
-                            .addComponent(classNLB)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(classNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
-                            .addComponent(nStudentsLB)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(clockLB, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clockLB1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(tutorNLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(classNLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(classNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, classInfoPLayout.createSequentialGroup()
+                        .addComponent(nStudentsLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         classInfoPLayout.setVerticalGroup(
@@ -315,11 +309,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(classInfoPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nStudentsLB)
                     .addComponent(numOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(clockLB, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(clockLB1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap(452, Short.MAX_VALUE))
         );
 
         getContentPane().add(classInfoP);
@@ -550,9 +540,9 @@ public class MainGUI extends javax.swing.JFrame {
             myAddUserGUI.addNoteTA.setText(addInformation);
           
             myAddUserGUI.subProfileBT.setVisible(false); 
-            myAddUserGUI.pathTF.setVisible(false);
+            //myAddUserGUI.pathTF.setVisible(false);
             myAddUserGUI.jLabel5.setVisible(false);
-            myAddUserGUI.browsePicBT.setVisible(false);
+            //myAddUserGUI.browsePicBT.setVisible(false);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -671,7 +661,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel classNLB;
     private javax.swing.JLabel classNameLabel;
     private javax.swing.JLabel clockLB;
-    private javax.swing.JLabel clockLB1;
     private javax.swing.JButton closeBT;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
