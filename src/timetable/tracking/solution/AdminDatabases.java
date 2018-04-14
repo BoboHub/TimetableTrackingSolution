@@ -178,7 +178,7 @@ public class AdminDatabases extends javax.swing.JFrame {
         addInfoTA = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
         picLB = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        pathTF1 = new javax.swing.JTextField();
         browsePicBT = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable(){
@@ -329,7 +329,7 @@ public class AdminDatabases extends javax.swing.JFrame {
                 .addComponent(browsePicBT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(pathTF1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                     .addComponent(picLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
         );
@@ -340,7 +340,7 @@ public class AdminDatabases extends javax.swing.JFrame {
                 .addComponent(picLB, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pathTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browsePicBT)))
         );
 
@@ -1101,10 +1101,10 @@ public class AdminDatabases extends javax.swing.JFrame {
         JFileChooser Chooser = new JFileChooser();
         Chooser.showOpenDialog(null);
         File f = Chooser.getSelectedFile();
-        filename = f.getAbsolutePath(); /// stores the path for the picture to be dispyed
+        filename = f.getAbsolutePath(); // stores the path for the picture to be dispyed
         String path = f.getAbsolutePath(); // stores the path for the path TEXT field
        
-        pathTF.setText(filename); 
+        pathTF1.setText(filename); 
        
         format = new ImageIcon(path); // shows the path in text field
         picLB.setIcon(format); // dispalys the picute
@@ -1234,13 +1234,13 @@ public class AdminDatabases extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jobCategoryTF;
     private javax.swing.JTextField lastNameTF;
     private javax.swing.JTextField lastNameTF1;
     private javax.swing.JTextField mothersNameTF;
     private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField pathTF;
+    private javax.swing.JTextField pathTF1;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField phoneTF1;
     private javax.swing.JLabel picLB;
