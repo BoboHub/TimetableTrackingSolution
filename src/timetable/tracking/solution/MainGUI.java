@@ -30,11 +30,11 @@ public class MainGUI extends javax.swing.JFrame {
     String userType="";
     
     public MainGUI() {
+        
         initComponents();
         
         connection=dbConnection.dbConnector(); // database connection init
         jTable1.setVisible(false); // sets the table to false + only when class is selected will it appear
-        submitButton.setVisible(false);
         time();
                         
     }
@@ -49,8 +49,10 @@ public class MainGUI extends javax.swing.JFrame {
                 classNameLabel.setVisible(false);
                 numOfStudents.setVisible(false);
                 tutorNLB.setText("Admin:");
+                submitButton.setVisible(false);
             }else{
                 searchDBsBT.setVisible(false);
+                submitButton.setVisible(true);
           }
     }
     
@@ -435,7 +437,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 1 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 1 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -460,7 +462,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 2 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 2 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -485,7 +487,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 3 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 3 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -510,7 +512,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 4 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 4 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -602,7 +604,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 5 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 5 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -626,7 +628,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 6 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 6 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -650,7 +652,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 7 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 7 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -674,7 +676,7 @@ public class MainGUI extends javax.swing.JFrame {
         }
         else{
             try {
-                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 8 AND teacher = '"+nameLabel.getText()+"'";
+                String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', year as 'Year', dob as 'Date of Birth', phone as 'Phone', email as 'Email', addInformation as 'Extra Information' FROM students WHERE year = 8 AND teacher = '"+nameLabel.getText()+"' ORDER BY firstName ASC";
                 PreparedStatement pst=connection.prepareStatement(query);
                 ResultSet rs = pst.executeQuery();
                 TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
@@ -692,13 +694,10 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-         try {
-            
-                
+         try {          
                 TableModel model = jTable1.getModel();
-                
-               
-               for(int i=0;i<jTable1.getRowCount();i++){
+              
+                for(int i=0;i<jTable1.getRowCount();i++){
                 
                 if(model.getValueAt(i, 0).toString().equalsIgnoreCase("true")){
                    
@@ -724,7 +723,6 @@ public class MainGUI extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
     }//GEN-LAST:event_submitButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
