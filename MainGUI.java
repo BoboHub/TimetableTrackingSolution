@@ -354,21 +354,20 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(searchDBsBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 877, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 888, Short.MAX_VALUE)
                 .addComponent(submitButton)
-                .addGap(39, 39, 39)
+                .addGap(28, 28, 28)
                 .addComponent(closeBT)
                 .addGap(41, 41, 41))
         );
         adminFunctionsPLayout.setVerticalGroup(
             adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(adminFunctionsPLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminFunctionsPLayout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(closeBT)
-                        .addComponent(searchDBsBT))
-                    .addComponent(submitButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(adminFunctionsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(closeBT)
+                    .addComponent(searchDBsBT)
+                    .addComponent(submitButton))
                 .addContainerGap())
         );
 
@@ -535,7 +534,6 @@ public class MainGUI extends javax.swing.JFrame {
         
         if(evt.getClickCount() == 2){
 
-            
             try {
                 String query ="Select count() as total from attendance where name = ?";
                 PreparedStatement pst=connection.prepareStatement(query); // pst object equals to object conneciton and pass in the query
@@ -571,10 +569,12 @@ public class MainGUI extends javax.swing.JFrame {
                 myAddUserGUI.addressTF.setText(address);
                 myAddUserGUI.addNoteTA.setText(addInformation);
                 
+                
                 myAddUserGUI.subProfileBT.setVisible(false);
                 //myAddUserGUI.pathTF.setVisible(false);
                 myAddUserGUI.jLabel5.setVisible(false);
                 //myAddUserGUI.browsePicBT.setVisible(false);
+                
             } catch (SQLException ex) {
                 Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -692,11 +692,10 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-         try {
+        try {
             
                 
                 TableModel model = jTable1.getModel();
-                
                
                for(int i=0;i<jTable1.getRowCount();i++){
                 
@@ -724,7 +723,7 @@ public class MainGUI extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
     }//GEN-LAST:event_submitButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
