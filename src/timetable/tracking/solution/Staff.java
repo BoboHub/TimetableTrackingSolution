@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Classname Staff.java
+Date 25/4/18
+@Yamina Santillan (x16110561) 
+ * 
  */
 package timetable.tracking.solution;
 
