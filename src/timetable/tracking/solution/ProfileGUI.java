@@ -249,7 +249,7 @@ public class ProfileGUI extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Timetable Tracking Solution | Exit", JOptionPane.YES_NO_OPTION);
         
         if (confirm == JOptionPane.YES_OPTION) {
-            System.exit(0);
+            this.dispose();
         }
     }//GEN-LAST:event_closeBTActionPerformed
     
