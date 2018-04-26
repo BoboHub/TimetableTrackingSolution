@@ -1,7 +1,7 @@
 /*
 Classname checkBoxwrapperTableModel.java
 Date 25/4/18
- 
+@reference1: https://stackoverflow.com/questions/44147350/how-to-add-checkbox-if-i-fetch-the-record-from-database
 @Yamina Santillan (x16110561) 
  * 
  */
@@ -13,8 +13,8 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 /**
- *
- * @author x16110561
+ *@author Yamina, Owen, Richard, Boris
+ *Creating a wrapper Table Model class, will add a check box column at the start of the table
  */
 public class CheckBoxwrapperTableModel extends AbstractTableModel {
  
