@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+Classname e.g. dbConnection.java
+Date 25/4/18
+@reference1: https://www.youtube.com/user/ProgrammingKnowledge
+@author:Boris Figeczky (x15048179)
+ * 
+ */ 
 package dbUtil;
 
 import java.sql.Connection;
