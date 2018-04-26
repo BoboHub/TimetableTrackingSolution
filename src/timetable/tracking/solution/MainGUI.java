@@ -2,6 +2,8 @@
 Classname e.g. LoginForm.java
 Date 25/4/18
 @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+@reference1: https://stackoverflow.com/questions/44147350/how-to-add-checkbox-if-i-fetch-the-record-from-database
+https://www.ntu.edu.sg/home/ehchua/programming/java/DateTimeCalendar.html
 @author:Boris Figeczky (x15048179)
 @Owen Crabtree (x16118791) 
 @Richard Schmidt de Almeida (x16126602)  
@@ -64,6 +66,7 @@ public class MainGUI extends javax.swing.JFrame {
     public void setName(String name){
         nameLabel.setText(name);
     }
+    //set up date and time on the MainGUI 
     
      public void time(){
         Calendar cal = new GregorianCalendar();
