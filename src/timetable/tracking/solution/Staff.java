@@ -1,9 +1,9 @@
 /*
-Classname Staff.java
-Date 25/4/18
-@Yamina Santillan (x16110561) 
- * 
- */
+*Classname Staff.java
+*Date 27/4/18
+*@Richard Schmidt de Almeida - x16126602
+*/
+
 package timetable.tracking.solution;
 
 //@author Boris, Owen, Richard, Yami

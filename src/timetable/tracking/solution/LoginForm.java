@@ -1,13 +1,11 @@
 /* 
- *  
 Classname e.g. LoginForm.java
 Date 25/4/18
 @reference1: https://www.youtube.com/user/ProgrammingKnowledge
 @author:Boris Figeczky (x15048179)
 @Owen Crabtree (x16118791) 
-
- * 
  */ 
+
 package timetable.tracking.solution;
 
 import dbUtil.dbConnection;
@@ -16,8 +14,6 @@ import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-//@author Boris, Owen, Richard, Yami
 
 public class LoginForm extends javax.swing.JFrame {
 
@@ -226,7 +222,6 @@ public class LoginForm extends javax.swing.JFrame {
     
     private void loginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTActionPerformed
 
-        
              try {
                     String query ="select ID,firstName,userType from staff where Username=? and password=? ";
                     PreparedStatement pst=connection.prepareStatement(query); // pst object equals to object conneciton and pass in the query
@@ -268,33 +263,10 @@ public class LoginForm extends javax.swing.JFrame {
         }
         catch (Exception e)    
         {
-                     JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
         }
-           
-        
-   /*
-        String password =  passwordTF.getText();
-        String username = userNameTF.getText();
-        
-        if (password.contains("password") && (username.contains("Boris")))
-        {
-       */ 
-      
-       /* }
-        else
-        {
-        JOptionPane.showMessageDialog(null, "Invalid Login Details", "Please use the correct name or password", JOptionPane.ERROR_MESSAGE);
-        clearFields();
-        }
-        
-        
-        /*
-        newMainGUI.pack();
-        
-        newMainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
-        */
     }//GEN-LAST:event_loginBTActionPerformed
+    
     // clears field when pressing CANCEL
        
     private void cancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTActionPerformed
