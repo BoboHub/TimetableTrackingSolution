@@ -436,6 +436,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_closeBTActionPerformed
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year1BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year1BTActionPerformed
         
         if(userType.equalsIgnoreCase("admin")){
@@ -461,6 +466,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year1BTActionPerformed
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year2BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year2BTActionPerformed
         
         if(userType.equalsIgnoreCase("admin")){
@@ -486,6 +496,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year2BTActionPerformed
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year3BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year3BTActionPerformed
         
         if(userType.equalsIgnoreCase("admin")){
@@ -511,6 +526,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year3BTActionPerformed
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year4BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year4BTActionPerformed
         
         if(userType.equalsIgnoreCase("admin")){
@@ -536,6 +556,10 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year4BTActionPerformed
 
+    /*
+    * @reference1: https://www.youtube.com/watch?v=QQFgxQ-B8ag
+    */
+    
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
         int index = jTable1.getSelectedRow();
@@ -591,6 +615,9 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    /*
+     * @author Richard Schmidt de Almeida - x16126602
+     */
     private void searchDBsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDBsBTActionPerformed
         AdminDatabases myAdminDB = new AdminDatabases();
         this.dispose();
@@ -603,6 +630,11 @@ public class MainGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year5BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year5BTActionPerformed
         
         if(userType.equalsIgnoreCase("admin")){
@@ -628,6 +660,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year5BTActionPerformed
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year6BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year6BTActionPerformed
         if(userType.equalsIgnoreCase("admin")){
             
@@ -652,6 +689,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year6BTActionPerformed
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year7BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year7BTActionPerformed
         if(userType.equalsIgnoreCase("admin")){
             
@@ -676,6 +718,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_year7BTActionPerformed
 
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
     private void year8BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year8BTActionPerformed
         if(userType.equalsIgnoreCase("admin")){
             
@@ -699,7 +746,9 @@ public class MainGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_year8BTActionPerformed
-
+/*
+ * Owen Crabtree (x16118791)
+ */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
          try {          

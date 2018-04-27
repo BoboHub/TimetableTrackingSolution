@@ -1,13 +1,9 @@
 /* 
- *  
-Classname: AdminDatabase.java
+Classname: AdminDatabases.java
 Date 25/4/18
 @reference1: https://www.youtube.com/user/ProgrammingKnowledge
-@author:Boris Figeczky (x15048179)
-@Owen Crabtree (x16118791) 
-@Richard Schmidt de Almeida (x16126602)  
-@Yamina Santillan (x16110561) 
- * 
+@author Richard Schmidt de Almeida (x16126602) 
+*@author Boris Figeczky (x15048179)
  */
 
 package timetable.tracking.solution;
@@ -24,8 +20,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
-
-//@author Boris, Owen, Richard, Yami
 
 public class AdminDatabases extends javax.swing.JFrame {
     
@@ -49,6 +43,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         takeStaffData();
     }
     
+    /*
+     * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+     * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+     */
+    
+    //Take all the data from the students's DB and display it in the jTable
     public void takeStudentsData(){
         try{
             String query = "SELECT id as 'Student ID', firstName as 'Name', lastName as 'Surname', mothersName as 'Mothers Name', fathersName as 'Fathers Name', phone as 'Phone Number', email as 'Email', dob as 'Date of Birth', address as 'Address', year as 'Year', teacher as 'Teacher' FROM students";
@@ -80,6 +80,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         } 
     }
     
+    /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: http://www.sqlitetutorial.net/sqlite-full-text-search/
+    */
+    
+    //Take all the data from the staff DB and display it in the jTable
     public void takeStaffData(){
         try{
             String query = "SELECT id as 'Staff ID', firstName as 'Name', lastName as 'Surname', username as 'Username', password as 'Password', jobCategory as 'Job Category',userType as 'User Type', phone as 'Phone', email as 'Email', dob as 'Date of Birth', address as 'Address' FROM staff";
@@ -110,6 +116,11 @@ public class AdminDatabases extends javax.swing.JFrame {
         } 
     }
     
+    /*
+     * @author Richard Schmidt de Almeida - x16126602
+     */
+    
+    //Clear all the text fields
     public void clearFields(){
         searchTF.setText(null);
         idTF.setText(null);
@@ -816,6 +827,17 @@ public class AdminDatabases extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: https://stackoverflow.com/questions/16242765/search-in-sqlite-database
+    */
+    
+    /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: https://stackoverflow.com/questions/16242765/search-in-sqlite-database
+    */
+    
+    //Search students by the first name in the students DB, nocase sentive
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
         try{
             String query = "SELECT * FROM students WHERE firstName=? COLLATE NOCASE";
@@ -832,6 +854,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchBTActionPerformed
 
+    /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: https://stackoverflow.com/questions/16242765/search-in-sqlite-database
+    */
+    
+    //Search staff by the first name in the staff DB, nocase sentive
     private void searchBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBT1ActionPerformed
         try{
             String query = "SELECT * FROM staff WHERE firstName=? COLLATE NOCASE";
@@ -848,6 +876,11 @@ public class AdminDatabases extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchBT1ActionPerformed
 
+    /*
+    * @reference1: https://www.youtube.com/watch?v=QQFgxQ-B8ag
+    */
+    
+    //Generate the data from a specific record (once clicked on) intot he text fields
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try{
             int row = jTable1.getSelectedRow();
@@ -881,11 +914,22 @@ public class AdminDatabases extends javax.swing.JFrame {
            
     }//GEN-LAST:event_jTable1MouseClicked
 
+    /*
+     * @author Richard Schmidt de Almeida - x16126602
+     */
+    
+    //Calls methods clearFields and takeStudentsData once pressed
     private void clearBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTActionPerformed
         clearFields();
         takeStudentsData();
     }//GEN-LAST:event_clearBTActionPerformed
 
+     /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: http://www.sqlitetutorial.net/sqlite-java/insert/
+    */
+    
+    //Save a new record into the students DB
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         try{
             String query = "INSERT INTO students (id, firstName, lastName, mothersName, fathersName, phone, email, dob, address, year, teacher, addInformation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -919,6 +963,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         clearFields();
     }//GEN-LAST:event_saveBTActionPerformed
 
+     /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: http://www.sqlitetutorial.net/sqlite-java/update/
+    */
+    
+    //Update a new record into the students DB
     private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
         try{
             String query = "UPDATE students SET id='"+idTF.getText()+"', firstName='"+firstNameTF.getText()+"', lastName='"+lastNameTF.getText()+"', mothersName='"+mothersNameTF.getText()+"', fathersName='"+fathersNameTF.getText()+"', phone='"+phoneTF.getText()+"', email='"+emailTF.getText()+"', dob='"+dobTF.getText()+"', address='"+addressTF.getText()+"', year='"+yearTF.getText()+"', teacher='"+teacherTF.getText()+"', addInformation='"+addInfoTA.getText()+"' WHERE id='"+idTF.getText()+"'";
@@ -941,6 +991,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         clearFields(); 
     }//GEN-LAST:event_updateBTActionPerformed
 
+     /*
+    * @ reference 1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @ reference 2: http://www.sqlitetutorial.net/sqlite-java/delete/
+    */
+    
+    //Delete a new record from the students DB
     private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
         try{
             String query = "DELETE FROM students WHERE id='"+idTF.getText()+"'";
@@ -962,11 +1018,22 @@ public class AdminDatabases extends javax.swing.JFrame {
         clearFields();        
     }//GEN-LAST:event_deleteBTActionPerformed
 
+    /*
+     * @author: Richard Schmidt de Almeida - x16126602
+     */
+    
+    //Calls methods clearFields and takeStaffData once pressed
     private void clearBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBT1ActionPerformed
         clearFields();
         takeStaffData();
     }//GEN-LAST:event_clearBT1ActionPerformed
 
+     /*
+    * @ reference 1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @ reference 2: http://www.sqlitetutorial.net/sqlite-java/insert/
+    */
+    
+    //Save a new record into the staff DB
     private void saveBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBT1ActionPerformed
         try{
             String query = "INSERT INTO staff (id, firstName, lastName, username, password, jobCategory, userType, phone, email, dob, address, profilePic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -1000,6 +1067,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         clearFields();   
     }//GEN-LAST:event_saveBT1ActionPerformed
 
+     /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: http://www.sqlitetutorial.net/sqlite-java/update/
+    */
+    
+    //Update a new record into the staff DB
     private void updateBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBT1ActionPerformed
         try{
             String query = "UPDATE staff SET id='"+idTF1.getText()+"', firstName='"+firstNameTF1.getText()+"', lastName='"+lastNameTF1.getText()+"', username='"+usernameTF.getText()+"', password='"+passwordTF.getText()+"', jobCategory='"+jobCategoryTF.getText()+"', userType='"+userTypeTF.getText()+"', phone='"+phoneTF1.getText()+"', email='"+emailTF1.getText()+"', dob='"+dobTF1.getText()+"', address='"+addressTF1.getText()+"' WHERE id='"+idTF1.getText()+"'";
@@ -1022,6 +1095,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         clearFields(); 
     }//GEN-LAST:event_updateBT1ActionPerformed
 
+    /*
+    * @ reference 1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @ reference 2: http://www.sqlitetutorial.net/sqlite-java/delete/
+    */
+    
+    //Delete a new record into the staff DB    
     private void deleteBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBT1ActionPerformed
         try{
             String query = "DELETE FROM staff WHERE id='"+idTF1.getText()+"'";
@@ -1043,6 +1122,11 @@ public class AdminDatabases extends javax.swing.JFrame {
         clearFields();        
     }//GEN-LAST:event_deleteBT1ActionPerformed
 
+    /*
+    * @reference1: https://www.youtube.com/watch?v=QQFgxQ-B8ag
+    */
+    
+    //Generate the data from a specific record (once clicked on) intot he text fields
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         try{
             int row = jTable2.getSelectedRow();
@@ -1074,6 +1158,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
+    /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: https://www.youtube.com/watch?v=nVWXJ3qqi0o
+    */
+    
+    //Browse for a pic in the computer to add it to a profile
     private void browsePicBT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePicBT1ActionPerformed
 
         JFileChooser Chooser = new JFileChooser();
@@ -1103,6 +1193,12 @@ public class AdminDatabases extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_browsePicBT1ActionPerformed
 
+    /*
+    * @reference1: https://www.youtube.com/user/ProgrammingKnowledge
+    * @reference2: https://www.youtube.com/watch?v=nVWXJ3qqi0o
+    */
+    
+    //Browse for a pic in the computer to add it to a profile
     private void browsePicBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePicBTActionPerformed
         
         JFileChooser Chooser = new JFileChooser();
